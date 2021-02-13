@@ -39,12 +39,8 @@ exec --no-startup-id nm-applet
 # Wallpaper
 exec --no-startup-id feh --bg-scale ~/Pictures/wallpapers/space1.jpg
 
-# Use pactl to adjust volume in PulseAudio.
-set $refresh_i3status killall -SIGUSR1 i3status
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3status
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
-bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
+# Statusbar
+exec_always --no-startup-id ~/.config/polybar/launch
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -209,7 +205,6 @@ gaps inner 20
 
 # DRACULA
 # class                 border  bground text    indicator child_border
-# client.focused          #44475A #6272A4 #F8F8F2 #6272A4   #6272A4
 client.focused          #44475A #6272A4 #F8F8F2 #6272A4   #bd93f9 
 client.focused_inactive #44475A #44475A #F8F8F2 #44475A   #44475A
 client.unfocused        #44475A #282A36 #BFBFBF #282A36   #282A36
@@ -217,21 +212,3 @@ client.urgent           #44475A #FF5555 #F8F8F2 #FF5555   #FF5555
 client.placeholder      #282A36 #282A36 #F8F8F2 #282A36   #282A36
 
 client.background       #F8F8F2
-
-bar {
-  position top
-  status_command i3status -c ~/dotfiles/i3status.conf
-
-  colors {
-    background #282A36
-    statusline #F8F8F2
-    separator  #44475A
-
-    focused_workspace  #44475A #6272A4 #F8F8F2
-    active_workspace   #282A36 #44475A #F8F8F2
-    inactive_workspace #282A36 #282A36 #BFBFBF
-    urgent_workspace   #FF5555 #FF5555 #F8F8F2
-    binding_mode       #FF5555 #FF5555 #F8F8F2
-  }
-}
-

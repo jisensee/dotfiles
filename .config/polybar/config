@@ -1,0 +1,165 @@
+[colors]
+background = #282a36
+foreground = #f8f8f2
+bar-empty = #444444
+cyan = #9be9fd
+green = #50fa7b
+orange = #ffb86c
+pink = #ff79c6
+purple = #bd93f9
+red = #ff5555
+yellow = #f1fa8c
+light-purple = #6272a4
+
+[bar/main]
+monitor = rdp1
+width = 100%
+height = 27
+radius = 6.0
+fixed-center = true
+
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+line-size = 3
+line-color = #f00
+
+border-size = 4
+border-color = #00000000
+
+module-margin-left = 5
+module-margin-right = 5
+padding-left = 4
+padding-right = 6
+
+font-0 = fixed:pixelsize=10;1
+font-1 = unifont:fontformat=truetype:size=8:antialias=false;0
+font-2 = siji:pixelsize=10;1
+
+modules-left = i3 xwindow
+modules-center = time
+modules-right = memory cpu filesystem date
+
+[bar/side]
+inherit = bar/main
+monitor = rdp0
+modules-left = i3 xwindow
+modules-center = time
+modules-right =
+
+[module/xwindow]
+type = internal/xwindow
+label = %title:0:75:...%
+
+[module/filesystem]
+type = internal/fs
+interval = 25
+
+mount-0 = /
+
+format-mounted = <label-mounted> <bar-used>
+format-prefix = ""
+format-mounted-underline = ${colors.cyan}
+label-mounted = %{F#0a81f5}%mountpoint%%{F-}: %used% / %total%  |  %percentage_used%%
+
+bar-used =
+bar-used-indicator =
+bar-used-width = 25
+bar-used-foreground-0 = #55aa55
+bar-used-foreground-1 = #557755
+bar-used-foreground-2 = #f5a70a
+bar-used-foreground-3 = #ff5555
+bar-used-fill = ▐
+bar-used-empty = ▐
+bar-used-empty-foreground = ${colors.bar-empty}
+
+[module/i3]
+type = internal/i3
+format = <label-state> <label-mode>
+index-sort = true
+wrapping-scroll = false
+pin-workspaces = true
+
+label-mode-padding = 5
+
+; focused = Active workspace on focused monitor
+label-focused = %index%
+label-focused-background = ${colors.light-purple}
+label-focused-underline= ${colors.purple}
+label-focused-padding = 5
+
+; unfocused = Inactive workspace on any monitor
+label-unfocused = %index%
+label-unfocused-padding = 5
+
+; visible = Active workspace on unfocused monitor
+label-visible = %index%
+label-visible-padding = 5
+label-visible-underline = ${colors.purple}
+
+[module/cpu]
+type = internal/cpu
+format = <label> <ramp-coreload>
+interval = 2
+format-prefix = ""
+format-prefix-foreground = ${colors.foreground}
+format-underline = ${colors.orange}
+label = %percentage:2%%
+
+ramp-coreload-spacing = 1
+ramp-coreload-0 = ▁
+ramp-coreload-1 = ▂
+ramp-coreload-2 = ▃
+ramp-coreload-3 = ▄
+ramp-coreload-4 = ▅
+ramp-coreload-5 = ▆
+ramp-coreload-6 = ▇
+ramp-coreload-7 = █
+
+[module/memory]
+type = internal/memory
+interval = 2
+format = <label> <bar-used>
+format-prefix = ""
+format-prefix-foreground = ${colors.foreground}
+format-underline = ${colors.green}
+label = %gb_used% / %gb_total%  |  %percentage_used%%
+
+bar-used =
+bar-used-indicator =
+bar-used-width = 25
+bar-used-foreground-0 = #55aa55
+bar-used-foreground-1 = #557755
+bar-used-foreground-2 = #f5a70a
+bar-used-foreground-3 = #ff5555
+bar-used-fill = ▐
+bar-used-empty = ▐
+bar-used-empty-foreground = ${colors.bar-empty}
+
+[module/date]
+type = internal/date
+interval = 60
+
+date ="%d.%m.%Y"
+
+format-prefix = 
+format-prefix-foreground = ${colors.foreground}
+format-underline = ${colors.yellow}
+
+label = %date%
+
+[module/time]
+type = internal/date
+interval = 1
+
+time = %H:%M:%S
+
+format-prefix = 
+format-prefix-foreground = ${colors.foreground}
+format-underline = ${colors.yellow}
+
+label = %time%
+
+[global/wm]
+margin-top = 5
+margin-bottom = 5

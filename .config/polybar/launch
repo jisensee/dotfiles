@@ -1,0 +1,6 @@
+#!/bin/bash
+killall -q polybar
+
+echo "---" | tee -a /tmp/polybar-main.log /tmp/polybar-side.log
+polybar main 2>&1 | tee -a /tmp/polybar-main.log & disown
+polybar side 2>&1 | tee -a /tmp/polybar-side.log & disown
