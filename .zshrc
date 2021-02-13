@@ -103,7 +103,7 @@ alias lol='lolcat'
 # VIM
 alias v='nvim'
 alias vi='nvim'
-alias vimrc='v ~/.vimrc'
+alias vimrc='v ~/.config/nvim/init.vim'
 alias vt='v -c "terminal"'
 
 # OTHER
