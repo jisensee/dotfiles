@@ -1,6 +1,16 @@
 #!/bin/bash
 killall -q polybar
 
-echo "---" | tee -a /tmp/polybar-main.log /tmp/polybar-side.log
-polybar main 2>&1 | tee -a /tmp/polybar-main.log & disown
-polybar side 2>&1 | tee -a /tmp/polybar-side.log & disown
+IFS='
+'
+for m in $(polybar -m); do
+  if [[ $m == *"primary"* ]]; then
+    bar="main"
+  else
+    bar="side"
+  fi
+  [[ $m =~ ^(.+?): ]]
+  mon=${BASH_REMATCH[1]}
+  MONITOR=$mon polybar $bar 2>&1 | tee -a /tmp/polybar.log & disown
+done
+

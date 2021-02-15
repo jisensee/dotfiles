@@ -12,7 +12,7 @@ yellow = #f1fa8c
 light-purple = #6272a4
 
 [bar/main]
-monitor = rdp1
+monitor = ${env:MONITOR}
 width = 100%
 height = 27
 radius = 6.0
@@ -37,21 +37,32 @@ font-1 = unifont:fontformat=truetype:size=8:antialias=false;0
 font-2 = siji:pixelsize=10;1
 
 modules-left = i3 xwindow
-modules-center = time
-modules-right = memory cpu filesystem date
+modules-center = memory cpu filesystem
+modules-right = date time
 
 [bar/side]
 inherit = bar/main
-monitor = rdp0
 modules-left = i3 xwindow
-modules-center = time
-modules-right =
+modules-center =
+modules-right = time
+
+[bar-used]
+bar-used =
+bar-used-indicator =
+bar-used-foreground-0 = #55aa55
+bar-used-foreground-1 = #557755
+bar-used-foreground-2 = #f5a70a
+bar-used-foreground-3 = #ff5555
+bar-used-fill = ▐
+bar-used-empty = ▐
+bar-used-empty-foreground = ${colors.bar-empty}
 
 [module/xwindow]
 type = internal/xwindow
 label = %title:0:75:...%
 
 [module/filesystem]
+inherit = bar-used
 type = internal/fs
 interval = 25
 
@@ -62,16 +73,7 @@ format-prefix = ""
 format-mounted-underline = ${colors.cyan}
 label-mounted = %{F#0a81f5}%mountpoint%%{F-}: %used% / %total%  |  %percentage_used%%
 
-bar-used =
-bar-used-indicator =
-bar-used-width = 25
-bar-used-foreground-0 = #55aa55
-bar-used-foreground-1 = #557755
-bar-used-foreground-2 = #f5a70a
-bar-used-foreground-3 = #ff5555
-bar-used-fill = ▐
-bar-used-empty = ▐
-bar-used-empty-foreground = ${colors.bar-empty}
+bar-used-width = 30
 
 [module/i3]
 type = internal/i3
@@ -117,7 +119,9 @@ ramp-coreload-6 = ▇
 ramp-coreload-7 = █
 
 [module/memory]
+inherit = bar-used
 type = internal/memory
+
 interval = 2
 format = <label> <bar-used>
 format-prefix = ""
@@ -125,16 +129,7 @@ format-prefix-foreground = ${colors.foreground}
 format-underline = ${colors.green}
 label = %gb_used% / %gb_total%  |  %percentage_used%%
 
-bar-used =
-bar-used-indicator =
-bar-used-width = 25
-bar-used-foreground-0 = #55aa55
-bar-used-foreground-1 = #557755
-bar-used-foreground-2 = #f5a70a
-bar-used-foreground-3 = #ff5555
-bar-used-fill = ▐
-bar-used-empty = ▐
-bar-used-empty-foreground = ${colors.bar-empty}
+bar-used-width = 27
 
 [module/date]
 type = internal/date
@@ -154,7 +149,7 @@ interval = 1
 
 time = %H:%M:%S
 
-format-prefix = 
+format-prefix = 
 format-prefix-foreground = ${colors.foreground}
 format-underline = ${colors.yellow}
 
