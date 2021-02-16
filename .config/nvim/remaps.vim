@@ -12,11 +12,12 @@ nnoremap <Leader>s :w<CR>
 nnoremap <Leader>x :x<CR>
 nnoremap <Leader>q :q<CR>
 
+" UPPERCASE WORD
+nnoremap <Leader>uw gUiWe
+
 " INSERT LINE
 nnoremap <Leader>o o<Esc>k
-
-" TERMINAL
-nnoremap <Leader>t :term<CR>
+nnoremap <Leader>O O<Esc>j
 
 " UMLAUTS
 inoremap \A <C-K>A:
