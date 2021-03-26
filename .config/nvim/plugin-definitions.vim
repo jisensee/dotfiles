@@ -10,6 +10,7 @@ Plug 'justinmk/vim-sneak'
 Plug 'bkad/camelcasemotion'
 Plug 'rstacruz/vim-closer'
 Plug 'psliwka/vim-smoothie'
+Plug 'wellle/targets.vim'
 
 Plug 'airblade/vim-gitgutter'
 
@@ -30,6 +31,8 @@ Plug 'glacambre/firenvim', {'do': { _ -> firenvim#install(0) }}
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
+
+Plug 'ThePrimeagen/vim-be-good'
 
 Plug 'dracula/vim'
 

@@ -1,20 +1,7 @@
 " CAMEL CASE MOTION
 let g:camelcasemotion_key = '<leader>'
 
-nnoremap <Leader>d :cd %:p:h<CR>
-
-" NERDTREE
-nnoremap <Leader>r :NERDTreeFind<CR>
-nnoremap <Leader>n :NERDTreeToggle<CR>
-
-
 " TELESCOPE
-nnoremap <Leader><Leader> <cmd>Telescope git_files<CR>
-nnoremap <Leader>f <cmd>Telescope find_files<CR>
-
-nnoremap <Leader>g <cmd>Telescope live_grep<CR>
-nnoremap <Leader>h <cmd>Telescope buffers<CR>
-
 lua << EOF
 require('telescope').setup{
   defaults = {
@@ -39,3 +26,6 @@ if exists('g:started_by_firenvim')
     \ }
 \ }
 endif
+
+" GITGUTTER
+let g:gitgutter_map_keys = 0
