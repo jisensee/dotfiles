@@ -41,8 +41,6 @@ export PATH=$PATH:/snap/bin:~/tools
 export SHELL=/bin/zsh
 export EDITOR=nvim
 
-source /usr/share/nvm/init-nvm.sh
-
 # DOCKER
 alias d='docker'
 alias ds='docker service'
