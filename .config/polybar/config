@@ -38,13 +38,13 @@ font-2 = siji:pixelsize=10;1
 
 modules-left = i3 xwindow
 modules-center = memory cpu filesystem
-modules-right = date time
+modules-right = utctime date localtime
 
 [bar/side]
 inherit = bar/main
 modules-left = i3 xwindow
 modules-center =
-modules-right = time
+modules-right = localtime
 
 [bar-used]
 bar-used =
@@ -143,17 +143,25 @@ format-underline = ${colors.yellow}
 
 label = %date%
 
-[module/time]
-type = internal/date
+[module/localtime]
+type = custom/script
 interval = 1
 
-time = %H:%M:%S
+exec = TZ=Europe/Berlin date "+%H:%M:%S %Z"
 
 format-prefix = 
 format-prefix-foreground = ${colors.foreground}
 format-underline = ${colors.yellow}
 
-label = %time%
+[module/utctime]
+type = custom/script
+interval = 1
+
+exec = date "+%H:%M:%S %Z"
+
+format-prefix = 
+format-prefix-foreground = ${colors.foreground}
+format-underline = ${colors.yellow}
 
 [global/wm]
 margin-top = 5
