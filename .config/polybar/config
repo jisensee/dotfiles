@@ -157,7 +157,7 @@ format-underline = ${colors.yellow}
 type = custom/script
 interval = 1
 
-exec = date "+%H:%M:%S %Z"
+exec = TZ=UTC date "+%H:%M:%S %Z"
 
 format-prefix = 
 format-prefix-foreground = ${colors.foreground}
