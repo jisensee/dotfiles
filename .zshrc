@@ -113,6 +113,11 @@ alias c='git --git-dir=$HOME/dotfiles --work-tree=$HOME'
 alias cst='c status -uno'
 alias hibernate='systemctl hibernate'
 
+function cdl() {
+  cd $1
+  ll
+}
+
 # CUSTOM CONFIG
 CUSTOM_DIR=~/zshrc-custom
 if [[ -d $CUSTOM_DIR ]]
