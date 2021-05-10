@@ -114,7 +114,7 @@ alias pjson='v package.json'
 alias uuid='cat /proc/sys/kernel/random/uuid'
 alias c='git --git-dir=$HOME/dotfiles --work-tree=$HOME'
 alias cst='c status -uno'
-alias hibernate='systemctl hibernate'
+alias cya='systemctl suspend-then-hibernate'
 
 function cdl() {
   cd $1
