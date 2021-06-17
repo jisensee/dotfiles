@@ -80,6 +80,9 @@ alias oni='oni2'
 b() {
   firefox $1 &
 }
+chrome() {
+  google-chrome-stable $1 &;disown
+}
 alias top='htop'
 
 # PAMAC
