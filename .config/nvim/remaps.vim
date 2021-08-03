@@ -2,10 +2,11 @@
 nnoremap <SPACE> <Nop>
 let mapleader = ' '
 
-" CLIPBOARD
+" COPY & PAST
 nnoremap <Leader>y "+y
 nnoremap <Leader>Y gg"+yG``
 nnoremap <Leader>p "+p
+nnoremap Y y$
 
 " SAVING, QUITTING
 nnoremap <Leader>s :w<CR>
@@ -27,6 +28,10 @@ nnoremap <Leader>l <C-w>l
 
 " change working dir to current buffer
 nnoremap <Leader>d :cd %:p:h<CR>
+
+" Center when searching
+nnoremap n nzz
+nnoremap N Nzz
 
 " NERDTREE
 nnoremap <Leader>r :NERDTreeFind<CR>
