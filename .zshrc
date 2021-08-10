@@ -36,7 +36,7 @@ bindkey '^ ' autosuggest-accept
 eval `dircolors ~/.dir_colors`
 
 # ENV
-export PATH=$PATH:/snap/bin:~/tools
+export PATH=$PATH:/snap/bin:/var/lib/snapd/snap/bin:~/tools
 export SHELL=/bin/zsh
 export EDITOR=nvim
 
