@@ -106,6 +106,10 @@ alias vi='nvim'
 alias vimrc='v ~/.config/nvim/init.vim'
 alias vt='v -c "terminal"'
 
+# DEV
+alias jt='b build/reports/tests/test/index.html &'
+alias jcc='b build/reports/jacoco/test/html/index.html &'
+
 # OTHER
 alias cbi='xclip -selection "clipboard"'
 alias cbo='xclip -o -selection "clipboard"'
