@@ -12,12 +12,12 @@ plugins=(
   last-working-dir
   nvm
   sudo
-  zsh-syntax-highlighting
-  zsh-autosuggestions
-  fzf
  ) 
 
 source $ZSH/oh-my-zsh.sh
+
+source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
@@ -85,10 +85,12 @@ chrome() {
 }
 alias top='htop'
 
-# PAMAC
-alias pm='pamac'
-alias pmi='sudo pamac install --no-upgrade'
-alias pms='pamac search'
+# PACKAGE MANAGER
+alias pm='yay'
+alias pmi='yay -S'
+alias pms='yay -Ss'
+alias pminfo='yay -Si'
+alias pmup='yay -Syu'
 
 # ZSH
 alias zrc='v ~/.zshrc'

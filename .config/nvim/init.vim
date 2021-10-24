@@ -6,4 +6,3 @@ source ~/.config/nvim/remaps.vim
 
 source ~/.config/nvim/plugin-definitions.vim
 source ~/.config/nvim/plugin-config.vim
-
