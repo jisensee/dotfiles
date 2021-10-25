@@ -2,11 +2,12 @@
 sudo pacman -S git
 git config --global user.name "Jannis Isensee"
 git config --global user.email ""
+git config --global pull.rebase true
 
 ssh-keygen -t ed25519
 
 # YAY
-git clone https://aur.archlinux.org/yay-bin.git
+git clone https://aur.archlinux.org/yay-bin.git ~/yay
 cd yay
 makepkg -si
 cd ..
@@ -16,8 +17,18 @@ yay -Syu --devel
 yay -Y --devel --save
 
 # PACKAGES
-yay -S man xclip zsh neovim picom tree feh polybar ttf-meslo-nerd-font-powerlevel10k \
-  zsh-syntaxt-highlighting zsh-autosuggestions woff-fira-code code firefox
+yay -S --noconfirm man xclip zsh neovim picom tree feh polybar ttf-meslo-nerd-font-powerlevel10k \
+  zsh-syntaxt-highlighting zsh-autosuggestions woff-fira-code alacritty xorg-xrandr autorandr \
+  pavucontrol i3-easyfocus xorg-xlsfonts gnome-screenshot libreoffice-fresh visual-studio-code-bin nvm \
+  docker docker-compose
+
+# DOCKER
+sudo groupadd dockerk
+sudo usermod -aG docker $USER
+
+systemctl enable docker.service
+systemctl enable containerd.service
+systemctl start docker
 
 # DOTFILES
 mkdir ~/dotfiles
@@ -25,7 +36,8 @@ mkdir ~/dotfiles
 git clone --bare git@github.com:jisensee/dotfiles.git ~/dotfiles
 alias config='git --git-dir=$HOME/dotfiles --work-tree=$HOME'
 
-rm ~/.zshrc
+rm ~/.config/.i3/config
+
 config checkout
 
 # ZSH

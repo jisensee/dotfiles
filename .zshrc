@@ -19,6 +19,8 @@ source $ZSH/oh-my-zsh.sh
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 
+source /usr/share/nvm/init-nvm.sh
+
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
@@ -36,7 +38,7 @@ bindkey '^ ' autosuggest-accept
 eval `dircolors ~/.dir_colors`
 
 # ENV
-export PATH=$PATH:/snap/bin:/var/lib/snapd/snap/bin:~/tools
+export PATH=$PATH:~/tools
 export SHELL=/bin/zsh
 export EDITOR=nvim
 
