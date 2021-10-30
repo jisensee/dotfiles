@@ -20,10 +20,10 @@ yay -Y --devel --save
 yay -S --noconfirm man xclip zsh neovim picom tree feh polybar ttf-meslo-nerd-font-powerlevel10k \
   zsh-syntaxt-highlighting zsh-autosuggestions woff-fira-code alacritty xorg-xrandr autorandr \
   pavucontrol i3-easyfocus xorg-xlsfonts gnome-screenshot libreoffice-fresh visual-studio-code-bin nvm \
-  docker docker-compose
+  docker docker-compose zsh-history-substring-search 
 
 # DOCKER
-sudo groupadd dockerk
+sudo groupadd docker
 sudo usermod -aG docker $USER
 
 systemctl enable docker.service

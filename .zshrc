@@ -11,6 +11,7 @@ plugins=(
   gradle
   last-working-dir
   nvm
+  history-substring-search
   sudo
  ) 
 
@@ -18,8 +19,7 @@ source $ZSH/oh-my-zsh.sh
 
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-
-source /usr/share/nvm/init-nvm.sh
+source /usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh
 
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
@@ -81,6 +81,9 @@ alias oni2='~/tools/Onivim2.AppImage'
 alias oni='oni2'
 b() {
   firefox $1 &
+}
+bp() {
+  firefox --private-window $1 &
 }
 chrome() {
   google-chrome-stable $1 &;disown
