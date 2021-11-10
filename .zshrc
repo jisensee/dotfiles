@@ -13,6 +13,7 @@ plugins=(
   nvm
   history-substring-search
   sudo
+  virtualenv
  ) 
 
 source $ZSH/oh-my-zsh.sh
