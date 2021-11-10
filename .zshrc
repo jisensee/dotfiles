@@ -89,7 +89,7 @@ bp() {
 chrome() {
   google-chrome-stable $1 &;disown
 }
-alias top='htop'
+alias top='btop'
 
 # PACKAGE MANAGER
 alias pm='yay'
