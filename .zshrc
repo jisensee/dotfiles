@@ -14,6 +14,7 @@ plugins=(
   history-substring-search
   sudo
   virtualenv
+  web-search
  ) 
 
 source $ZSH/oh-my-zsh.sh
