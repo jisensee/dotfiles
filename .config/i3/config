@@ -44,7 +44,7 @@ bindsym $mod+Shift+Return exec alacritty -e nvim
 bindsym $mod+q kill
 
 # start dmenu (a program launcher)
-bindsym $mod+Shift+d exec "dmenu_run -nf '#F8F8F2' -nb '#282A36' -sb '#6272A4' -sf '#F8F8F2' -fn 'monospace-10' -p 'dmenu%'"
+bindsym $mod+d exec "dmenu_run -nf '#F8F8F2' -nb '#282A36' -sb '#6272A4' -sf '#F8F8F2' -fn 'monospace-10' -p 'dmenu%'"
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
@@ -54,10 +54,10 @@ bindsym $mod+Shift+d exec "dmenu_run -nf '#F8F8F2' -nb '#282A36' -sb '#6272A4' -
 bindsym $mod+n exec "i3-easyfocus --all --color-unfocused-bg bd93f9 --color-unfocused-fg 000000 --color-focused-bg bd93f9 --color-focused-fg 000000"
 
 # change focus
-bindsym $mod+h focus left
-bindsym $mod+j focus down
-bindsym $mod+k focus up
-bindsym $mod+t focus right
+bindsym $mod+o focus left
+bindsym $mod+e focus down
+bindsym $mod+period focus up
+bindsym $mod+u focus right
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Left focus left
@@ -66,10 +66,10 @@ bindsym $mod+Up focus up
 bindsym $mod+Right focus right
 
 # move focused window
-bindsym $mod+Shift+h move left
-bindsym $mod+Shift+j move down
-bindsym $mod+Shift+k move up
-bindsym $mod+Shift+t move right
+bindsym $mod+Shift+o move left
+bindsym $mod+Shift+e move down
+bindsym $mod+Shift+period move up
+bindsym $mod+Shift+u move right
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Shift+Left move left
@@ -89,7 +89,7 @@ bindsym $mod+f fullscreen toggle
 # change container layout (stacked, tabbed, toggle split)
 bindsym $mod+s layout stacking
 bindsym $mod+semicolon layout tabbed
-bindsym $mod+e layout toggle split
+bindsym $mod+z layout toggle split
 
 # toggle tiling / floating
 # bindsym $mod+Shift+space floating toggle
@@ -117,10 +117,10 @@ set $ws9 "9"
 set $ws10 "10"
 
 # next/prev workspace
-bindsym $mod+o workspace prev
-bindsym $mod+i workspace next
-bindsym $mod+shift+o move container to workspace prev
-bindsym $mod+shift+i move container to workspace next
+# bindsym $mod+o workspace prev
+# bindsym $mod+i workspace next
+# bindsym $mod+shift+o move container to workspace prev
+# bindsym $mod+shift+i move container to workspace next
 
 # workspace back and forth
 bindsym $mod+space workspace back_and_forth
@@ -155,8 +155,12 @@ bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
+bindsym $mod+Shift+z exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
 
+bindsym $mod+Ctrl+o resize shrink width 10 px or 1 ppt
+bindsym $mod+Ctrl+period resize grow height 10 px or 1 ppt
+bindsym $mod+Ctrl+e resize shrink height 10 px or 1 ppt
+bindsym $mod+Ctrl+u resize grow width 10 px or 1 ppt
 # resize window (you can also use the mouse for that)
 mode "resize" {
         # These bindings trigger as soon as you enter the resize mode
@@ -165,15 +169,15 @@ mode "resize" {
         # Pressing right will grow the window’s width.
         # Pressing up will shrink the window’s height.
         # Pressing down will grow the window’s height.
-        bindsym h resize shrink width 1 px or 1 ppt
-        bindsym j resize grow height 1 px or 1 ppt
-        bindsym k resize shrink height 1 px or 1 ppt
-        bindsym t resize grow width 1 px or 1 ppt
+        bindsym o resize shrink width 1 px or 1 ppt
+        bindsym period resize grow height 1 px or 1 ppt
+        bindsym e resize shrink height 1 px or 1 ppt
+        bindsym u resize grow width 1 px or 1 ppt
 
-        bindsym Shift+h resize shrink width 10 px or 10 ppt
-        bindsym Shift+j resize grow height 10 px or 10 ppt
-        bindsym Shift+k resize shrink height 10 px or 10 ppt
-        bindsym Shift+t resize grow width 10 px or 10 ppt
+        bindsym Shift+o resize shrink width 10 px or 10 ppt
+        bindsym Shift+period resize grow height 10 px or 10 ppt
+        bindsym Shift+e resize shrink height 10 px or 10 ppt
+        bindsym Shift+u resize grow width 10 px or 10 ppt
 
         # back to normal: Enter or Escape or $mod+r
         bindsym Return mode "default"
@@ -185,7 +189,7 @@ bindsym $mod+r mode "resize"
 
 # CUSTOM
 bindsym $mod+b exec firefox
-bindsym $mod+p exec firefox --private-window
+bindsym $mod+Shift+b exec firefox --private-window
 
 bindsym Print exec gnome-screenshot -w
 bindsym Control+Print exec gnome-screenshot -i
