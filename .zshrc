@@ -119,6 +119,12 @@ alias vt='v -c "terminal"'
 alias jt='b build/reports/tests/test/index.html &'
 alias jcc='b build/reports/jacoco/test/html/index.html &'
 
+# SYSTEM
+alias cya='systemctl suspend-then-hibernate'
+alias gn='systemctl hibernate'
+alias brb='sudo reboot'
+alias bb='sudo shutdown now'
+
 # OTHER
 alias cbi='xclip -selection "clipboard"'
 alias cbo='xclip -o -selection "clipboard"'
@@ -127,10 +133,6 @@ alias pjson='v package.json'
 alias uuid='cat /proc/sys/kernel/random/uuid'
 alias c='git --git-dir=$HOME/dotfiles --work-tree=$HOME'
 alias cst='c status -uno'
-alias cya='systemctl suspend-then-hibernate'
-alias gn='systemctl hibernate'
-alias rb='sudo reboot'
-alias sd='sudo shutdown now'
 
 function cdl() {
   cd $1
