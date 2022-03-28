@@ -32,9 +32,8 @@ module-margin-right = 5
 padding-left = 4
 padding-right = 6
 
-font-0 = fixed:pixelsize=10;1
-font-1 = unifont:fontformat=truetype:size=8:antialias=false;0
-font-2 = siji:pixelsize=10;1
+font-0 = DejaVuSans:style=Regular:pixelsize=12;1
+font-1 = NotoColorEmoji:style=Regular:scale=8
 
 modules-left = i3 xwindow
 modules-center = memory cpu filesystem
@@ -69,11 +68,11 @@ interval = 25
 mount-0 = /
 
 format-mounted = <label-mounted> <bar-used>
-format-prefix = ""
+format-prefix = 
 format-mounted-underline = ${colors.cyan}
-label-mounted = %{F#0a81f5}%mountpoint%%{F-}: %used% / %total%  |  %percentage_used%%
+label-mounted = 📁  %{F#0a81f5}%mountpoint%%{F-}: %used% / %total%  |  %percentage_used%%
 
-bar-used-width = 30
+bar-used-width = 15
 
 [module/i3]
 type = internal/i3
@@ -82,28 +81,28 @@ index-sort = true
 wrapping-scroll = false
 pin-workspaces = true
 
-label-mode-padding = 5
+label-mode-padding = 3
 
 ; focused = Active workspace on focused monitor
 label-focused = %index%
 label-focused-background = ${colors.light-purple}
 label-focused-underline= ${colors.purple}
-label-focused-padding = 5
+label-focused-padding = 3
 
 ; unfocused = Inactive workspace on any monitor
 label-unfocused = %index%
-label-unfocused-padding = 5
+label-unfocused-padding = 3
 
 ; visible = Active workspace on unfocused monitor
 label-visible = %index%
-label-visible-padding = 5
+label-visible-padding = 3
 label-visible-underline = ${colors.purple}
 
 [module/cpu]
 type = internal/cpu
 format = <label> <ramp-coreload>
 interval = 2
-format-prefix = ""
+format-prefix = "📈"
 format-prefix-foreground = ${colors.foreground}
 format-underline = ${colors.orange}
 label = %percentage:2%%
@@ -124,18 +123,18 @@ type = internal/memory
 
 interval = 2
 format = <label> <bar-used>
-format-prefix = ""
+format-prefix = "📊 "
 format-prefix-foreground = ${colors.foreground}
 format-underline = ${colors.green}
 label = %gb_used% / %gb_total%  |  %percentage_used%%
 
-bar-used-width = 27
+bar-used-width = 15
 
 [module/date]
 type = internal/date
 interval = 60
 
-date ="%d.%m.%Y"
+date ="🗓 %d.%m.%Y"
 
 format-prefix = 
 format-prefix-foreground = ${colors.foreground}
@@ -149,7 +148,7 @@ interval = 1
 
 exec = TZ=Europe/Berlin date "+%H:%M:%S %Z"
 
-format-prefix = 
+format-prefix = "⌛ "
 format-prefix-foreground = ${colors.foreground}
 format-underline = ${colors.yellow}
 
@@ -159,7 +158,7 @@ interval = 1
 
 exec = TZ=UTC date "+%H:%M:%S %Z"
 
-format-prefix = 
+format-prefix = "🌐 "
 format-prefix-foreground = ${colors.foreground}
 format-underline = ${colors.yellow}
 

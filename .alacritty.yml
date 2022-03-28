@@ -1,6 +1,6 @@
 font:
   normal:
-    family: MesloLGS NF
+    family: FiraCodeNerdFont
 
 shell:
   program: /bin/zsh
