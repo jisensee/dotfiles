@@ -148,7 +148,7 @@ interval = 1
 
 exec = TZ=Europe/Berlin date "+%H:%M:%S %Z"
 
-format-prefix = "⌛ "
+format-prefix = "🕘 "
 format-prefix-foreground = ${colors.foreground}
 format-underline = ${colors.yellow}
 
