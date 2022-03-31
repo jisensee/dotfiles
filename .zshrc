@@ -124,6 +124,8 @@ alias cya='systemctl suspend-then-hibernate'
 alias gn='systemctl hibernate'
 alias brb='sudo reboot'
 alias bb='sudo shutdown now'
+alias ff='fastfetch'
+alias s='systemctl'
 
 # OTHER
 alias cbi='xclip -selection "clipboard"'
