@@ -115,6 +115,12 @@ alias vi='nvim'
 alias vimrc='v ~/.config/nvim/init.vim'
 alias vt='v -c "terminal"'
 
+# TMUX
+alias t='tmux'
+alias tl='tmux ls'
+alias ta='tmux attach'
+alias td='tmux detach'
+
 # DEV
 alias jt='b build/reports/tests/test/index.html &'
 alias jcc='b build/reports/jacoco/test/html/index.html &'
@@ -131,10 +137,12 @@ alias s='systemctl'
 alias cbi='xclip -selection "clipboard"'
 alias cbo='xclip -o -selection "clipboard"'
 alias find-alias='alias | grep'
+alias search-history='history | grep'
 alias pjson='v package.json'
 alias uuid='cat /proc/sys/kernel/random/uuid'
 alias c='git --git-dir=$HOME/dotfiles --work-tree=$HOME'
 alias cst='c status -uno'
+
 
 function cdl() {
   cd $1
