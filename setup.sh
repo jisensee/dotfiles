@@ -20,7 +20,7 @@ yay -Y --devel --save
 yay -S --noconfirm man xclip zsh neovim picom tree feh polybar ttf-meslo-nerd-font-powerlevel10k \
   zsh-syntaxt-highlighting zsh-autosuggestions ttf-fira-code alacritty xorg-xrandr autorandr \
   pavucontrol i3-easyfocus xorg-xlsfonts gnome-screenshot libreoffice-fresh visual-studio-code-bin nvm \
-  docker docker-compose zsh-history-substring-search btop tmux tmux-plugin-manager entr nerd-fonts-fira-code noto-fonts-emoji python-libtmux
+  docker docker-compose zsh-history-substring-search btop tmux tmux-plugin-manager entr nerd-fonts-fira-code noto-fonts-emoji python-libtmux rofi
 
 # DOCKER
 sudo groupadd docker
