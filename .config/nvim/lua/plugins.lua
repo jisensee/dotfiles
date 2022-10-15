@@ -25,6 +25,7 @@ require 'packer'.startup(function(use)
   use 'jayp0521/mason-null-ls.nvim'
   use 'nvim-treesitter/nvim-treesitter-context'
   use 'ggandor/leap.nvim'
+  use 'ray-x/lsp_signature.nvim'
   use {
     'kosayoda/nvim-lightbulb',
     requires = 'antoinemadec/FixCursorHold.nvim',

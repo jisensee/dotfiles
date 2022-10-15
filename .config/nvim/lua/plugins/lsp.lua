@@ -39,6 +39,7 @@ require 'mason-lspconfig'.setup_handlers {
     }
   end,
 }
+
 local null_ls = require 'null-ls'
 local mnls = require 'mason-null-ls'
 mnls.setup({
@@ -51,12 +52,6 @@ mnls.setup_handlers {
     null_ls.register(null_ls.builtins.formatting.prettier)
   end
 }
-
 null_ls.setup()
 
--- nls.setup({
---   sources = {
---     nls.builtins.formatting.prettier,
---     -- nls.builtins.code_actions.eslint,
---   }
--- })
+require'lsp_signature'.setup()
