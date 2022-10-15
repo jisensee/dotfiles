@@ -1,0 +1,35 @@
+{
+  "function component with props": {
+    "prefix": ["fc"],
+    "body": [
+      "type $1Props = {",
+      "  $0",
+      "}",
+      "const $1: FC<$1Props> = ({}) => null"
+    ]
+  },
+  "function component without props": {
+    "prefix": ["fcnp"],
+    "body": [
+      "const $1 = () => $0"
+    ]
+  },
+  "className prop": {
+    "prefix": ["cnp"],
+    "body": [
+      "className?: string,"
+    ]
+  },
+  "use state with default value": {
+    "prefix": ["us"],
+    "body": [
+      "const [$1, set$2] = useState($0)"
+    ]
+  },
+  "use state without default value": {
+    "prefix": ["use"],
+    "body": [
+      "const [$1, set$2] = useState<$0>()"
+    ]
+  }
+}

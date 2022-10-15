@@ -69,7 +69,7 @@ require 'indent_blankline'.setup {
   show_current_context = true,
   show_current_context_start = true,
 }
-require'leap'.add_default_mappings()
+require 'leap'.add_default_mappings()
 
 if vim.g.started_by_firenvim then
   require 'plugins.firenvim'
@@ -79,8 +79,8 @@ else
   require 'plugins.lualine'
   require 'plugins.lsp'
   require 'plugins.cmp'
-  -- require 'plugins.null-ls'
   require 'plugins.telescope'
+  require 'plugins.vsnip'
 
   require 'gitsigns'.setup()
   require 'nvim-tree'.setup()
