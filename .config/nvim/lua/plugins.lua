@@ -23,6 +23,8 @@ require 'packer'.startup(function(use)
   use 'lewis6991/gitsigns.nvim'
   use 'jose-elias-alvarez/null-ls.nvim'
   use 'jayp0521/mason-null-ls.nvim'
+  use 'nvim-treesitter/nvim-treesitter-context'
+  use 'ggandor/leap.nvim'
   use {
     'kosayoda/nvim-lightbulb',
     requires = 'antoinemadec/FixCursorHold.nvim',
@@ -66,6 +68,7 @@ require 'indent_blankline'.setup {
   show_current_context = true,
   show_current_context_start = true,
 }
+require'leap'.add_default_mappings()
 
 if vim.g.started_by_firenvim then
   require 'plugins.firenvim'
@@ -82,4 +85,5 @@ else
   require 'nvim-tree'.setup()
   require 'toggleterm'.setup()
   require 'nvim-lightbulb'.setup { autocmd = { enabled = true } }
+  require 'treesitter-context'.setup()
 end

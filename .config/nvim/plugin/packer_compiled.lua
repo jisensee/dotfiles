@@ -114,6 +114,11 @@ _G.packer_plugins = {
     path = "/home/jannis/.local/share/nvim/site/pack/packer/start/indent-blankline.nvim",
     url = "https://github.com/lukas-reineke/indent-blankline.nvim"
   },
+  ["leap.nvim"] = {
+    loaded = true,
+    path = "/home/jannis/.local/share/nvim/site/pack/packer/start/leap.nvim",
+    url = "https://github.com/ggandor/leap.nvim"
+  },
   ["lsp-status.nvim"] = {
     loaded = true,
     path = "/home/jannis/.local/share/nvim/site/pack/packer/start/lsp-status.nvim",
@@ -186,6 +191,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/jannis/.local/share/nvim/site/pack/packer/start/nvim-treesitter",
     url = "https://github.com/nvim-treesitter/nvim-treesitter"
+  },
+  ["nvim-treesitter-context"] = {
+    loaded = true,
+    path = "/home/jannis/.local/share/nvim/site/pack/packer/start/nvim-treesitter-context",
+    url = "https://github.com/nvim-treesitter/nvim-treesitter-context"
   },
   ["nvim-ts-rainbow"] = {
     loaded = true,
