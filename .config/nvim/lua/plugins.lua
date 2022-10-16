@@ -26,7 +26,6 @@ require 'packer'.startup(function(use)
   use 'nvim-treesitter/nvim-treesitter-context'
   use 'ggandor/leap.nvim'
   use 'ray-x/lsp_signature.nvim'
-  use 'lukas-reineke/lsp-format.nvim'
   use 'simrat39/symbols-outline.nvim'
   use 'windwp/nvim-ts-autotag'
   use {

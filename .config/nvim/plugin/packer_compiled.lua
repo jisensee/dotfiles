@@ -119,11 +119,6 @@ _G.packer_plugins = {
     path = "/home/jannis/.local/share/nvim/site/pack/packer/start/leap.nvim",
     url = "https://github.com/ggandor/leap.nvim"
   },
-  ["lsp-format.nvim"] = {
-    loaded = true,
-    path = "/home/jannis/.local/share/nvim/site/pack/packer/start/lsp-format.nvim",
-    url = "https://github.com/lukas-reineke/lsp-format.nvim"
-  },
   ["lsp-status.nvim"] = {
     loaded = true,
     path = "/home/jannis/.local/share/nvim/site/pack/packer/start/lsp-status.nvim",
