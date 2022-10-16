@@ -52,11 +52,6 @@ imap('\\s', '<c-K>ss')
 
 -- saving & quitting
 nmap('<leader>s', ':w<cr>')
--- nmap('<leader>s', function()
---   vim.lsp.buf.format()
---   vim.cmd [[ :EslintFixAll<cr> ]]
---   vim.cmd [[ :w<cr> ]]
--- end)
 nmap('<leader>x', ':x<cr>')
 nmap('<leader>q', ':q<cr>')
 nmap('<leader>Q', ':q!<cr>')
@@ -79,11 +74,13 @@ nmap('<leader><leader>', telescope.builtin)
 -- lsp
 nmap('gh', vim.lsp.buf.hover)
 nmap('gd', telescope.lsp_definitions)
+nmap('gD', telescope.lsp_implementations)
 nmap('gr', telescope.lsp_references)
 nmap('gs', telescope.lsp_document_symbols)
+nmap('<leader>a', ':SymbolsOutline<cr>')
 nmap('<leader>r', vim.lsp.buf.rename)
 nmap('<leader>,', vim.diagnostic.open_float)
 nmap('<leader>.', ':CodeActionMenu<cr>')
-nmap('<leader>]', vim.diagnostic.goto_next)
-nmap('<leader>[', vim.diagnostic.goto_prev)
+nmap('<leader>v', vim.diagnostic.goto_next)
+nmap('<leader>z', vim.diagnostic.goto_prev)
 nmap('==', vim.lsp.buf.format)

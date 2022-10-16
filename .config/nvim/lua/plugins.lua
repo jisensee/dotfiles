@@ -27,6 +27,8 @@ require 'packer'.startup(function(use)
   use 'ggandor/leap.nvim'
   use 'ray-x/lsp_signature.nvim'
   use 'lukas-reineke/lsp-format.nvim'
+  use 'simrat39/symbols-outline.nvim'
+  use 'windwp/nvim-ts-autotag'
   use {
     'kosayoda/nvim-lightbulb',
     requires = 'antoinemadec/FixCursorHold.nvim',
@@ -72,6 +74,8 @@ require 'indent_blankline'.setup {
 }
 require 'leap'.add_default_mappings()
 
+require 'nvim-ts-autotag'.setup()
+
 if vim.g.started_by_firenvim then
   require 'plugins.firenvim'
 else
@@ -82,6 +86,7 @@ else
   require 'plugins.cmp'
   require 'plugins.telescope'
   require 'plugins.vsnip'
+  require 'plugins.symbols_outline'
 
   require 'gitsigns'.setup()
   require 'nvim-tree'.setup()
