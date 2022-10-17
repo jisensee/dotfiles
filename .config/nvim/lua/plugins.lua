@@ -29,6 +29,10 @@ require 'packer'.startup(function(use)
   use 'simrat39/symbols-outline.nvim'
   use 'windwp/nvim-ts-autotag'
   use {
+    'folke/trouble.nvim',
+    requires = "kyazdani42/nvim-web-devicons",
+  }
+  use {
     'kosayoda/nvim-lightbulb',
     requires = 'antoinemadec/FixCursorHold.nvim',
   }
@@ -93,4 +97,8 @@ else
   require 'toggleterm'.setup()
   require 'nvim-lightbulb'.setup { autocmd = { enabled = true } }
   require 'treesitter-context'.setup()
+  require 'trouble'.setup {
+    auto_open = true,
+    auto_close = true,
+  }
 end

@@ -1,21 +1,6 @@
 require 'mason'.setup()
 
 require 'mason-lspconfig'.setup {
-  ensure_installed = {
-    'prettier',
-    'kotlin_language_server',
-    'yaml-language-server',
-    'rescript-lsp',
-    'prisma-language-server',
-    'html-lsp',
-    'css-lsp',
-    'graphql-language-service-cli',
-    'json-lsp',
-    'tailwindcss-language-server',
-    'eslint-lsp',
-    'typescript-language-server',
-    'lua-language-server',
-  },
   automatic_installation = true,
 }
 
