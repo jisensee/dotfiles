@@ -84,3 +84,8 @@ nmap('<leader>.', ':CodeActionMenu<cr>')
 nmap('<leader>v', vim.diagnostic.goto_next)
 nmap('<leader>z', vim.diagnostic.goto_prev)
 nmap('==', vim.lsp.buf.format)
+
+-- toggleterm
+nmap('<c-t>t', ':ToggleTerm<cr>')
+nmap('<c-t>h', ':ToggleTerm dir="%:p:h"<cr>')
+map('t', '<c-n>', '<c-\\><c-N>')
