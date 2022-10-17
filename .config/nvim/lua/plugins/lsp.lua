@@ -56,20 +56,3 @@ mnls.setup_handlers {
 }
 
 null_ls.setup()
-
-vim.api.nvim_create_autocmd({ 'BufWritePre' }, {
-  pattern = { "*.*" },
-  callback = function()
-    if vim.bo.filetype == 'kotlin' then
-      return
-    end
-    vim.cmd [[
-      if exists(":EslintFixAll")
-        EslintFixAll
-      endif
-    ]]
-    vim.lsp.buf.format({ async = false })
-  end
-})
-
-require 'lsp_signature'.setup()
