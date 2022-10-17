@@ -94,11 +94,6 @@ _G.packer_plugins = {
     path = "/home/jannis/.local/share/nvim/site/pack/packer/start/cmp-vsnip",
     url = "https://github.com/hrsh7th/cmp-vsnip"
   },
-  ["dracula.nvim"] = {
-    loaded = true,
-    path = "/home/jannis/.local/share/nvim/site/pack/packer/start/dracula.nvim",
-    url = "https://github.com/Mofiqul/dracula.nvim"
-  },
   firenvim = {
     loaded = true,
     path = "/home/jannis/.local/share/nvim/site/pack/packer/start/firenvim",
@@ -242,6 +237,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/jannis/.local/share/nvim/site/pack/packer/start/toggleterm.nvim",
     url = "https://github.com/akinsho/toggleterm.nvim"
+  },
+  vim = {
+    loaded = true,
+    path = "/home/jannis/.local/share/nvim/site/pack/packer/start/vim",
+    url = "https://github.com/dracula/vim"
   },
   ["vim-commentary"] = {
     loaded = true,

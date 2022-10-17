@@ -1,7 +1,7 @@
 vim.cmd [[packadd packer.nvim]]
 
 require 'packer'.startup(function(use)
-  use 'Mofiqul/dracula.nvim'
+  use 'dracula/vim'
   use 'karb94/neoscroll.nvim'
   use 'lukas-reineke/indent-blankline.nvim'
   use 'windwp/nvim-autopairs'
@@ -63,9 +63,10 @@ require 'packer'.startup(function(use)
   }
 end)
 
+vim.cmd [[colorscheme dracula]]
+
 vim.g.camelcasemotion_key = '<leader>'
 
-require 'plugins.dracula'
 require 'nvim-autopairs'.setup()
 require 'indent_blankline'.setup {
   show_current_context = true,

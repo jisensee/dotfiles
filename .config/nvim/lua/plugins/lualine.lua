@@ -1,7 +1,7 @@
 require 'lualine'.setup {
   options = {
     globalstatus = false,
-    theme = 'dracula-nvim',
+    theme = 'dracula',
   },
   sections = {
     lualine_a = { 'mode' },
@@ -9,6 +9,6 @@ require 'lualine'.setup {
     lualine_c = { 'diff', 'branch' },
     lualine_x = { { 'filename', path = 1 } },
     lualine_y = { 'encoding', 'fileformat', 'filetype' },
-    lualine_z = {'progress', 'location' }
+    lualine_z = { 'progress', 'location' }
   },
 }
