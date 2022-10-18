@@ -66,7 +66,15 @@ nmap('<leader>tf', ':NvimTreeFocus<cr>')
 
 -- telescope
 local telescope = require 'telescope.builtin'
-nmap('<leader>f', telescope.find_files)
+local find_files = function()
+  local in_git_repo = vim.fn.systemlist "git rev-parse --is-inside-work-tree"[1] == 'true'
+  if in_git_repo then
+    telescope.git_files()
+  else
+    telescope.find_files()
+  end
+end
+nmap('<leader>f', find_files)
 nmap('<leader>g', telescope.live_grep)
 nmap('<leader>c', telescope.buffers)
 nmap('<leader><leader>', telescope.builtin)
@@ -81,8 +89,8 @@ nmap('<leader>a', ':SymbolsOutline<cr>')
 nmap('<leader>r', vim.lsp.buf.rename)
 nmap('<leader>,', vim.diagnostic.open_float)
 nmap('<leader>.', ':CodeActionMenu<cr>')
-nmap('<leader>v', vim.diagnostic.goto_next)
-nmap('<leader>z', vim.diagnostic.goto_prev)
+nmap('<leader>v', vim.diagnostic.goto_prev)
+nmap('<leader>z', vim.diagnostic.goto_next)
 nmap('==', vim.lsp.buf.format)
 
 -- toggleterm

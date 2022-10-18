@@ -1,6 +1,7 @@
 vim.cmd [[packadd packer.nvim]]
 
 require 'packer'.startup(function(use)
+  use 'wbthomason/packer.nvim'
   use 'dracula/vim'
   use 'karb94/neoscroll.nvim'
   use 'lukas-reineke/indent-blankline.nvim'
