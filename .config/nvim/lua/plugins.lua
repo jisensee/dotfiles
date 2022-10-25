@@ -99,7 +99,7 @@ else
   require 'nvim-lightbulb'.setup { autocmd = { enabled = true } }
   require 'treesitter-context'.setup()
   require 'trouble'.setup {
-    auto_open = true,
+    auto_open = false,
     auto_close = true,
   }
 end

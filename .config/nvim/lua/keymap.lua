@@ -76,7 +76,8 @@ local find_files = function()
 end
 nmap('<leader>f', find_files)
 nmap('<leader>g', telescope.live_grep)
-nmap('<leader>c', telescope.buffers)
+nmap('<leader>c', telescope.commands)
+nmap('<leader>\'', telescope.buffers)
 nmap('<leader><leader>', telescope.builtin)
 
 -- lsp
