@@ -6,7 +6,7 @@ dracula.setup({
     bg = "#282A36",
     fg = "#F8F8F2",
     selection = "#2f3242",
-    comment = "#017a0f",
+    comment = "#7a88f2",
     red = "#FF5555",
     orange = "#FFB86C",
     yellow = "#F1FA8C",
@@ -26,14 +26,10 @@ dracula.setup({
     gutter_fg = "#4B5263",
     nontext = "#3B4048",
   },
-  -- show the '~' characters after the end of buffers
-  show_end_of_buffer = true, -- default false
-  -- use transparent background
-  transparent_bg = true, -- default false
-  -- set custom lualine background color
-  lualine_bg_color = "#44475a", -- default nil
-  -- set italic comment
-  italic_comment = true, -- default false
+  show_end_of_buffer = false,
+  transparent_bg = false,
+  lualine_bg_color = "#44475a",
+  italic_comment = true,
   -- overrides the default highlights see `:h synIDattr`
   overrides = {
     -- Examples
