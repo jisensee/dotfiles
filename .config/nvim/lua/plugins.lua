@@ -2,8 +2,9 @@ vim.cmd [[packadd packer.nvim]]
 
 require 'packer'.startup(function(use)
   use 'wbthomason/packer.nvim'
-  use 'dracula/vim'
-  use 'karb94/neoscroll.nvim'
+  use 'theHamsta/nvim-semantic-tokens'
+  use 'Mofiqul/dracula.nvim'
+  use 'declancm/cinnamon.nvim'
   use 'lukas-reineke/indent-blankline.nvim'
   use 'windwp/nvim-autopairs'
   use 'p00f/nvim-ts-rainbow'
@@ -29,6 +30,7 @@ require 'packer'.startup(function(use)
   use 'ray-x/lsp_signature.nvim'
   use 'simrat39/symbols-outline.nvim'
   use 'windwp/nvim-ts-autotag'
+  use 'onsails/lspkind.nvim'
   use {
     'folke/trouble.nvim',
     requires = "kyazdani42/nvim-web-devicons",
@@ -68,7 +70,6 @@ require 'packer'.startup(function(use)
   }
 end)
 
-vim.cmd [[colorscheme dracula]]
 
 vim.g.camelcasemotion_key = '<leader>'
 
@@ -80,11 +81,12 @@ require 'indent_blankline'.setup {
 require 'leap'.add_default_mappings()
 
 require 'nvim-ts-autotag'.setup()
+require 'cinnamon'.setup()
+require 'plugins.dracula'
 
 if vim.g.started_by_firenvim then
   require 'plugins.firenvim'
 else
-  require 'plugins.neoscroll'
   require 'plugins.treesitter'
   require 'plugins.lualine'
   require 'plugins.lsp'

@@ -19,3 +19,4 @@ vim.opt.hlsearch = false
 vim.opt.cursorline = true
 vim.opt.hidden = true
 vim.opt.signcolumn = 'yes:2'
+vim.opt.updatetime = 500

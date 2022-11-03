@@ -1,7 +1,7 @@
 require 'lualine'.setup {
   options = {
     globalstatus = false,
-    theme = 'dracula',
+    theme = 'dracula-nvim',
   },
   sections = {
     lualine_a = { 'mode' },
