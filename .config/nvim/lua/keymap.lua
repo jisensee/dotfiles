@@ -66,15 +66,15 @@ nmap('<leader>tf', ':NvimTreeFocus<cr>')
 
 -- telescope
 local telescope = require 'telescope.builtin'
-local find_files = function()
-  local in_git_repo = vim.fn.systemlist "git rev-parse --is-inside-work-tree"[1] == 'true'
-  if in_git_repo then
-    telescope.git_files()
-  else
-    telescope.find_files()
-  end
-end
-nmap('<leader>f', find_files)
+-- local find_files = function()
+--   local in_git_repo = vim.fn.systemlist "git rev-parse --is-inside-work-tree"[1] == 'true'
+--   if in_git_repo then
+--     telescope.git_files()
+--   else
+--     telescope.find_files()
+--   end
+-- end
+nmap('<leader>f', telescope.find_files)
 nmap('<leader>g', telescope.live_grep)
 nmap('<leader>c', telescope.commands)
 nmap('<leader>\'', telescope.buffers)

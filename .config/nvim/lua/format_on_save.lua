@@ -16,7 +16,7 @@ vim.api.nvim_create_autocmd({ 'BufWritePre' }, {
 
 -- special kotlin format on save
 vim.api.nvim_create_autocmd({ 'BufWritePre' }, {
-  pattern = { "*.kt" },
+  pattern = { "*.kt", "*.kts" },
   callback = function()
     local view = vim.fn.winsaveview()
     vim.cmd [[:%! java -jar ~/ktfmt.jar -]]
