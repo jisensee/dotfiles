@@ -31,6 +31,7 @@ require 'packer'.startup(function(use)
   use 'simrat39/symbols-outline.nvim'
   use 'windwp/nvim-ts-autotag'
   use 'onsails/lspkind.nvim'
+  use 'gorbit99/codewindow.nvim'
   use {
     'folke/trouble.nvim',
     requires = "kyazdani42/nvim-web-devicons",
@@ -81,7 +82,13 @@ require 'indent_blankline'.setup {
 require 'leap'.add_default_mappings()
 
 require 'nvim-ts-autotag'.setup()
-require 'cinnamon'.setup()
+require 'cinnamon'.setup({
+  default_keymaps = true,
+  extra_keymaps = true,
+  extended_keymaps = true,
+  scroll_limit = 75,
+  max_length = 100,
+})
 require 'plugins.dracula'
 
 if vim.g.started_by_firenvim then
@@ -94,6 +101,7 @@ else
   require 'plugins.telescope'
   require 'plugins.vsnip'
   require 'plugins.symbols_outline'
+  require 'plugins.minimap'
 
   require 'gitsigns'.setup()
   require 'nvim-tree'.setup()

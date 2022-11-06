@@ -99,6 +99,11 @@ _G.packer_plugins = {
     path = "/home/jannis/.local/share/nvim/site/pack/packer/start/cmp-vsnip",
     url = "https://github.com/hrsh7th/cmp-vsnip"
   },
+  ["codewindow.nvim"] = {
+    loaded = true,
+    path = "/home/jannis/.local/share/nvim/site/pack/packer/start/codewindow.nvim",
+    url = "https://github.com/gorbit99/codewindow.nvim"
+  },
   ["dracula.nvim"] = {
     loaded = true,
     path = "/home/jannis/.local/share/nvim/site/pack/packer/start/dracula.nvim",
