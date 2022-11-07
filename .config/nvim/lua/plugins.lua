@@ -104,7 +104,11 @@ else
   require 'plugins.minimap'
 
   require 'gitsigns'.setup()
-  require 'nvim-tree'.setup()
+  require 'nvim-tree'.setup {
+    view = {
+      adaptive_size = true
+    }
+  }
   require 'toggleterm'.setup()
   require 'nvim-lightbulb'.setup { autocmd = { enabled = true } }
   require 'treesitter-context'.setup()
