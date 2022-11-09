@@ -109,6 +109,11 @@ _G.packer_plugins = {
     path = "/home/jannis/.local/share/nvim/site/pack/packer/start/dracula.nvim",
     url = "https://github.com/Mofiqul/dracula.nvim"
   },
+  ["dressing.nvim"] = {
+    loaded = true,
+    path = "/home/jannis/.local/share/nvim/site/pack/packer/start/dressing.nvim",
+    url = "https://github.com/stevearc/dressing.nvim"
+  },
   firenvim = {
     loaded = true,
     path = "/home/jannis/.local/share/nvim/site/pack/packer/start/firenvim",
@@ -128,6 +133,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/jannis/.local/share/nvim/site/pack/packer/start/leap.nvim",
     url = "https://github.com/ggandor/leap.nvim"
+  },
+  ["legendary.nvim"] = {
+    loaded = true,
+    path = "/home/jannis/.local/share/nvim/site/pack/packer/start/legendary.nvim",
+    url = "https://github.com/mrjones2014/legendary.nvim"
   },
   ["lsp-status.nvim"] = {
     loaded = true,

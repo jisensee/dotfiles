@@ -32,6 +32,7 @@ require 'packer'.startup(function(use)
   use 'windwp/nvim-ts-autotag'
   use 'onsails/lspkind.nvim'
   use 'gorbit99/codewindow.nvim'
+  use 'mrjones2014/legendary.nvim'
   use {
     'folke/trouble.nvim',
     requires = "kyazdani42/nvim-web-devicons",
@@ -69,8 +70,9 @@ require 'packer'.startup(function(use)
     'nvim-telescope/telescope.nvim',
     requires = { { 'nvim-lua/plenary.nvim' } },
   }
-end)
 
+  use 'stevearc/dressing.nvim'
+end)
 
 vim.g.camelcasemotion_key = '<leader>'
 
