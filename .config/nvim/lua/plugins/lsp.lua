@@ -64,3 +64,11 @@ mnls.setup_handlers {
 }
 
 null_ls.setup()
+
+-- customize hover floating window
+local orig_hover = vim.lsp.util.open_floating_preview
+function vim.lsp.util.open_floating_preview(contents, syntax, opts)
+  opts.border = 'single'
+  opts.max_width = 80
+  return orig_hover(contents, syntax, opts)
+end
