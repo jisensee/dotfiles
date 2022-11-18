@@ -48,7 +48,7 @@ require 'legendary'.setup {
     { 'gr', telescope.lsp_references, description = 'Show all references' },
     { 'gs', telescope.lsp_document_symbols, description = 'Show all symbols in file' },
     { '<leader>a', ':SymbolsOutline<cr>', description = 'Toggle symbol outline' },
-    { '<leader>r', vim.lsp.buf.rename, description = 'Rename symbol' },
+    { '<leader>r', ':IncRename<cr>', description = 'Rename symbol' },
     { '<leader>,', vim.diagnostic.open_float, description = 'Show diagnostic at current position' },
     { '<leader>.', ':CodeActionMenu<cr>', description = 'Show code actions' },
     { '<leader>v', vim.diagnostic.goto_prev, description = 'Go to previous diagnostic' },

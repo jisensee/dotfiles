@@ -159,11 +159,6 @@ _G.packer_plugins = {
     path = "/home/jannis/.local/share/nvim/site/pack/packer/start/lsp-status.nvim",
     url = "https://github.com/nvim-lua/lsp-status.nvim"
   },
-  ["lsp_signature.nvim"] = {
-    loaded = true,
-    path = "/home/jannis/.local/share/nvim/site/pack/packer/start/lsp_signature.nvim",
-    url = "https://github.com/ray-x/lsp_signature.nvim"
-  },
   ["lspkind.nvim"] = {
     loaded = true,
     path = "/home/jannis/.local/share/nvim/site/pack/packer/start/lspkind.nvim",
@@ -306,11 +301,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/jannis/.local/share/nvim/site/pack/packer/start/vim-commentary",
     url = "https://github.com/tpope/vim-commentary"
-  },
-  ["vim-eunuch"] = {
-    loaded = true,
-    path = "/home/jannis/.local/share/nvim/site/pack/packer/start/vim-eunuch",
-    url = "https://github.com/tpope/vim-eunuch"
   },
   ["vim-illuminate"] = {
     loaded = true,

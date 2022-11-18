@@ -2,84 +2,96 @@ vim.cmd [[packadd packer.nvim]]
 
 require 'packer'.startup(function(use)
   use 'wbthomason/packer.nvim'
-  use 'theHamsta/nvim-semantic-tokens'
+
+  -- colorschemes
   use 'Mofiqul/dracula.nvim'
-  use 'declancm/cinnamon.nvim'
-  use 'lukas-reineke/indent-blankline.nvim'
-  use 'windwp/nvim-autopairs'
-  use 'p00f/nvim-ts-rainbow'
-  use 'tpope/vim-surround'
-  use 'tpope/vim-commentary'
-  use 'tpope/vim-eunuch'
-  use 'wellle/targets.vim'
-  use 'tpope/vim-repeat'
+
+  -- lsp base setup
   use 'neovim/nvim-lspconfig'
   use 'williamboman/mason.nvim'
   use 'williamboman/mason-lspconfig.nvim'
-  use 'bkad/camelcasemotion'
+  use 'jose-elias-alvarez/null-ls.nvim'
+  use 'jayp0521/mason-null-ls.nvim'
+
+  -- lsp extensions
   use 'nvim-lua/lsp-status.nvim'
   use 'hrsh7th/nvim-cmp'
   use 'hrsh7th/cmp-nvim-lsp'
-  use 'hrsh7th/vim-vsnip'
-  use 'hrsh7th/cmp-vsnip'
-  use 'lewis6991/gitsigns.nvim'
-  use 'jose-elias-alvarez/null-ls.nvim'
-  use 'jayp0521/mason-null-ls.nvim'
-  use 'nvim-treesitter/nvim-treesitter-context'
-  use 'ggandor/leap.nvim'
-  use 'ray-x/lsp_signature.nvim'
-  use 'simrat39/symbols-outline.nvim'
-  use 'windwp/nvim-ts-autotag'
   use 'onsails/lspkind.nvim'
-  use 'gorbit99/codewindow.nvim'
-  use 'mrjones2014/legendary.nvim'
-  use 'goolord/alpha-nvim'
+  use 'simrat39/symbols-outline.nvim'
+  use 'theHamsta/nvim-semantic-tokens'
+  use 'p00f/nvim-ts-rainbow'
+  use 'windwp/nvim-ts-autotag'
   use 'RRethy/vim-illuminate'
-  use 'ellisonleao/glow.nvim'
-  use 'rmagatti/auto-session'
-  use { 'folke/noice.nvim',
-    requires = {
-      'MunifTanjim/nui.nvim'
-    } }
   use {
     'folke/trouble.nvim',
     requires = "kyazdani42/nvim-web-devicons",
   }
   use {
-    'kosayoda/nvim-lightbulb',
-    requires = 'antoinemadec/FixCursorHold.nvim',
-  }
-  use 'akinsho/toggleterm.nvim'
-  use {
     'weilbith/nvim-code-action-menu',
     cmd = 'CodeActionMenu'
   }
-  use {
-    'glacambre/firenvim',
-    run = function() vim.fn['firenvim#install'](0) end
-  }
 
+  -- treesitter
   use {
     'nvim-treesitter/nvim-treesitter',
     run = function() require 'nvim-treesitter.install'.update({ with_sync = true }) end,
   }
+  use 'nvim-treesitter/nvim-treesitter-context'
 
+  -- editing
+  use 'windwp/nvim-autopairs'
+  use 'tpope/vim-surround'
+  use 'tpope/vim-commentary'
+  use 'tpope/vim-repeat'
+  use 'wellle/targets.vim'
+  use 'lukas-reineke/indent-blankline.nvim'
+
+  -- motions
+  use 'bkad/camelcasemotion'
+  use 'ggandor/leap.nvim'
+
+  -- snippets
+  use 'hrsh7th/vim-vsnip'
+  use 'hrsh7th/cmp-vsnip'
+
+  -- UI
+  use 'declancm/cinnamon.nvim'
+  use 'lewis6991/gitsigns.nvim'
+  use 'gorbit99/codewindow.nvim'
+  use 'goolord/alpha-nvim'
+  use { 'folke/noice.nvim',
+    requires = {
+      'MunifTanjim/nui.nvim',
+    }
+  }
+  use {
+    'kosayoda/nvim-lightbulb',
+    requires = 'antoinemadec/FixCursorHold.nvim',
+  }
   use {
     'nvim-lualine/lualine.nvim',
     requires = { 'kyazdani42/nvim-web-devicons', opt = true }
   }
-
   use {
     'nvim-tree/nvim-tree.lua',
     requires = 'nvim-tree/nvim-web-devicons',
   }
-
   use {
     'nvim-telescope/telescope.nvim',
     requires = { { 'nvim-lua/plenary.nvim' } },
   }
-
   use 'stevearc/dressing.nvim'
+  use 'ellisonleao/glow.nvim'
+  use 'akinsho/toggleterm.nvim'
+
+  -- misc
+  use 'mrjones2014/legendary.nvim'
+  use 'rmagatti/auto-session'
+  use {
+    'glacambre/firenvim',
+    run = function() vim.fn['firenvim#install'](0) end
+  }
 end)
 
 vim.g.camelcasemotion_key = '<leader>'
@@ -112,6 +124,7 @@ else
   require 'plugins.vsnip'
   require 'plugins.symbols_outline'
   require 'plugins.minimap'
+  require 'plugins.noice'
 
   require 'gitsigns'.setup()
   require 'nvim-tree'.setup {
@@ -129,7 +142,6 @@ else
   require 'alpha'.setup(require 'alpha.themes.startify'.config)
   require 'glow'.setup()
   require 'auto-session'.setup()
-  require 'noice'.setup()
 
   vim.api.nvim_set_hl(0, 'IlluminatedWordText', {
     bg = "#282A36",

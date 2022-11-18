@@ -29,7 +29,7 @@ dracula.setup({
   show_end_of_buffer = false,
   transparent_bg = false,
   lualine_bg_color = "#44475a",
-  italic_comment = true,
+  italic_comment = false,
   -- overrides the default highlights see `:h synIDattr`
   overrides = {
     -- Examples
