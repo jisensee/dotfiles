@@ -33,6 +33,14 @@ require 'packer'.startup(function(use)
   use 'onsails/lspkind.nvim'
   use 'gorbit99/codewindow.nvim'
   use 'mrjones2014/legendary.nvim'
+  use 'goolord/alpha-nvim'
+  use 'RRethy/vim-illuminate'
+  use 'ellisonleao/glow.nvim'
+  use 'rmagatti/auto-session'
+  use { 'folke/noice.nvim',
+    requires = {
+      'MunifTanjim/nui.nvim'
+    } }
   use {
     'folke/trouble.nvim',
     requires = "kyazdani42/nvim-web-devicons",
@@ -118,4 +126,18 @@ else
     auto_open = false,
     auto_close = true,
   }
+  require 'alpha'.setup(require 'alpha.themes.startify'.config)
+  require 'glow'.setup()
+  require 'auto-session'.setup()
+  require 'noice'.setup()
+
+  vim.api.nvim_set_hl(0, 'IlluminatedWordText', {
+    bg = "#282A36",
+  })
+  vim.api.nvim_set_hl(0, 'IlluminatedWordRead', {
+    bg = "#282A36",
+  })
+  vim.api.nvim_set_hl(0, 'IlluminatedWordWrite', {
+    bg = "#282A36",
+  })
 end
