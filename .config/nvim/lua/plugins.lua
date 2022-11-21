@@ -55,9 +55,12 @@ require 'packer'.startup(function(use)
   use 'hrsh7th/vim-vsnip'
   use 'hrsh7th/cmp-vsnip'
 
+  -- git
+  use 'lewis6991/gitsigns.nvim'
+  use { 'TimUntersberger/neogit', requires = 'nvim-lua/plenary.nvim' }
+
   -- UI
   use 'declancm/cinnamon.nvim'
-  use 'lewis6991/gitsigns.nvim'
   use 'gorbit99/codewindow.nvim'
   use 'goolord/alpha-nvim'
   use { 'folke/noice.nvim',
@@ -142,6 +145,7 @@ else
   require 'alpha'.setup(require 'alpha.themes.startify'.config)
   require 'glow'.setup()
   require 'auto-session'.setup()
+  require 'neogit'.setup()
 
   vim.api.nvim_set_hl(0, 'IlluminatedWordText', {
     bg = "#282A36",
