@@ -1,5 +1,3 @@
-vim.cmd [[packadd packer.nvim]]
-
 require 'packer'.startup(function(use)
   use 'wbthomason/packer.nvim'
 
@@ -66,6 +64,7 @@ require 'packer'.startup(function(use)
   use { 'folke/noice.nvim',
     requires = {
       'MunifTanjim/nui.nvim',
+      'rcarriga/nvim-notify'
     }
   }
   use {
@@ -89,6 +88,12 @@ require 'packer'.startup(function(use)
   use 'akinsho/toggleterm.nvim'
 
   -- misc
+  use { 'jackMort/ChatGPT.nvim',
+    requires = {
+      'MunifTanjim/nui.nvim',
+      'nvim-lua/plenary.nvim',
+      'nvim-telescope/telescope.nvim'
+    } }
   use 'mrjones2014/legendary.nvim'
   use 'rmagatti/auto-session'
   use {
@@ -146,6 +151,7 @@ else
   require 'glow'.setup()
   require 'auto-session'.setup()
   require 'neogit'.setup()
+  require 'chatgpt'.setup()
 
   vim.api.nvim_set_hl(0, 'IlluminatedWordText', {
     bg = "#282A36",

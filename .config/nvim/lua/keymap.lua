@@ -4,6 +4,7 @@ vim.g.mapleader = " "
 
 local codewindow = require 'codewindow'
 local telescope = require 'telescope.builtin'
+local notify = require 'notify'
 
 require 'legendary'.setup {
   keymaps = {
@@ -48,7 +49,7 @@ require 'legendary'.setup {
     { 'gr', telescope.lsp_references, description = 'Show all references' },
     { 'gs', telescope.lsp_document_symbols, description = 'Show all symbols in file' },
     { '<leader>a', ':SymbolsOutline<cr>', description = 'Toggle symbol outline' },
-    { '<leader>r', ':IncRename<cr>', description = 'Rename symbol' },
+    { '<leader>r', vim.lsp.buf.rename, description = 'Rename symbol' },
     { '<leader>,', vim.diagnostic.open_float, description = 'Show diagnostic at current position' },
     { '<leader>.', ':CodeActionMenu<cr>', description = 'Show code actions' },
     { '<leader>v', vim.diagnostic.goto_prev, description = 'Go to previous diagnostic' },
@@ -77,5 +78,9 @@ require 'legendary'.setup {
     { '<leader>o', 'o<esc>k', description = 'Insert empty below' },
     { '<leader>O', 'O<esc>j', description = 'Insert empty above' },
     { '<leader>uw', 'gUiWe', description = 'Uppercase word' },
+    { '<Esc>', function()
+      vim.cmd("noh")
+      notify.dismiss()
+    end }
   }
 }
