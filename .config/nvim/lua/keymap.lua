@@ -65,6 +65,9 @@ require 'legendary'.setup {
     { '<leader>mf', codewindow.toggle_focus, description = 'Focus minimap' },
     { '<leader>mm', codewindow.toggle_minimap, description = 'Toggle minimap' },
 
+    -- undotree
+    { '<leader>u', ':UndotreeToggle<cr>' },
+
     -- umlauts
     { '\\A', { i = '<c-K>A:' } },
     { '\\a', { i = '<c-K>a:' } },

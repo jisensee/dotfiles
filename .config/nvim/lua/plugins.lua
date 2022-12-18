@@ -86,6 +86,7 @@ require 'packer'.startup(function(use)
   use 'stevearc/dressing.nvim'
   use 'ellisonleao/glow.nvim'
   use 'akinsho/toggleterm.nvim'
+  use 'mbbill/undotree'
 
   -- misc
   use { 'jackMort/ChatGPT.nvim',
