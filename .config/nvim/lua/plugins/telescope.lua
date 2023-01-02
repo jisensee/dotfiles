@@ -1,4 +1,4 @@
-local actions = require'telescope.actions'
+local actions = require 'telescope.actions'
 
 require 'telescope'.setup {
   defaults = {
@@ -11,7 +11,7 @@ require 'telescope'.setup {
     layout_strategy = 'flex',
     layout_config = {
       flex = {
-        flip_columns = 120,
+        flip_columns = 150,
       },
       vertical = {
         mirror = true,
