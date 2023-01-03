@@ -4,7 +4,7 @@ vim.g.mapleader = " "
 
 local codewindow = require 'codewindow'
 local telescope = require 'telescope.builtin'
-local notify = require 'notify'
+-- local notify = require 'notify'
 
 require 'legendary'.setup {
   keymaps = {
@@ -83,7 +83,7 @@ require 'legendary'.setup {
     { '<leader>uw', 'gUiWe', description = 'Uppercase word' },
     { '<Esc>', function()
       vim.cmd("noh")
-      notify.dismiss()
+      -- notify.dismiss()
     end }
   }
 }

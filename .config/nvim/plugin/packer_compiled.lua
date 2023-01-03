@@ -237,11 +237,6 @@ _G.packer_plugins = {
     path = "/home/jannis/.local/share/nvim/site/pack/packer/start/nvim-lspconfig",
     url = "https://github.com/neovim/nvim-lspconfig"
   },
-  ["nvim-notify"] = {
-    loaded = true,
-    path = "/home/jannis/.local/share/nvim/site/pack/packer/start/nvim-notify",
-    url = "https://github.com/rcarriga/nvim-notify"
-  },
   ["nvim-semantic-tokens"] = {
     loaded = true,
     path = "/home/jannis/.local/share/nvim/site/pack/packer/start/nvim-semantic-tokens",
