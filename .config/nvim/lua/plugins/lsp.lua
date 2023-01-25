@@ -1,16 +1,3 @@
-require 'mason'.setup()
-
-require 'nvim-semantic-tokens'.setup {
-  preset = 'default',
-  highlighters = { require 'nvim-semantic-tokens.table-highlighter' }
-}
-
-require 'mason-lspconfig'.setup {
-  automatic_installation = true,
-}
-
-local lsp_config = require 'lspconfig'
-
 local function on_attach(client, bufnr)
   local caps = client.server_capabilities
   if caps.semanticTokensProvider and caps.semanticTokensProvider.full then
@@ -27,48 +14,60 @@ local function on_attach(client, bufnr)
   end
 end
 
-require 'mason-lspconfig'.setup_handlers {
-  -- The first entry (without a key) will be the default handler
-  -- and will be called for each installed server that doesn't have
-  -- a dedicated handler.
-  function(server_name)
-    lsp_config[server_name].setup {
-      on_attach = on_attach
-    }
-  end,
-  ['sumneko_lua'] = function()
-    lsp_config.sumneko_lua.setup {
-      settings = {
-        Lua = {
-          diagnostics = {
-            globals = { 'vim' }
-          }
+return {
+  {
+    'VonHeikemen/lsp-zero.nvim',
+    branch = 'v1.x',
+    dependencies = {
+      -- LSP Support
+      'neovim/nvim-lspconfig',
+      'williamboman/mason.nvim',
+      'williamboman/mason-lspconfig.nvim',
+
+      -- Autocompletion
+      'hrsh7th/nvim-cmp',
+      'hrsh7th/cmp-nvim-lsp',
+      'hrsh7th/cmp-buffer',
+      'hrsh7th/cmp-path',
+      'saadparwaiz1/cmp_luasnip',
+      'hrsh7th/cmp-nvim-lua',
+
+      -- Snippets
+      'L3MON4D3/LuaSnip',
+      'rafamadriz/friendly-snippets',
+
+      'theHamsta/nvim-semantic-tokens',
+    },
+    cond = not vim.g.started_by_firenvim,
+    config = function()
+      require 'nvim-semantic-tokens'.setup {
+        preset = 'default',
+        highlighters = { require 'nvim-semantic-tokens.table-highlighter' }
+      }
+      local lsp = require 'lsp-zero'
+      lsp.preset 'recommended'
+      lsp.nvim_workspace()
+      lsp.on_attach(on_attach)
+      lsp.setup()
+    end,
+  },
+  {
+    'jose-elias-alvarez/null-ls.nvim',
+    cond = not vim.g.started_by_firenvim,
+    config = function()
+      local nls = require 'null-ls'
+      local helpers = require 'null-ls.helpers'
+      local ktfmt_source = require 'formatting'.make_ktfmt_source(nls, helpers)
+
+      nls.setup {
+        sources = {
+          nls.builtins.formatting.prettierd,
+          nls.builtins.formatting.eslint_d,
+          nls.builtins.code_actions.eslint_d,
+          nls.builtins.formatting.rustywind,
+          ktfmt_source,
         }
       }
-    }
-  end,
+    end
+  }
 }
-
-local null_ls = require 'null-ls'
-local mnls = require 'mason-null-ls'
-
-mnls.setup({
-  ensure_installed = { 'prettier', 'eslint' }
-})
-
-mnls.setup_handlers {
-  function() end,
-  prettier = function()
-    null_ls.register(null_ls.builtins.formatting.prettier)
-  end
-}
-
-null_ls.setup()
-
--- customize hover floating window
-local orig_hover = vim.lsp.util.open_floating_preview
-function vim.lsp.util.open_floating_preview(contents, syntax, opts)
-  opts.border = 'single'
-  opts.max_width = 80
-  return orig_hover(contents, syntax, opts)
-end
