@@ -3,7 +3,9 @@ return {
     'nvim-tree/nvim-tree.lua',
     dependencies = { 'nvim-tree/nvim-web-devicons' },
     opts = {
-      adaptive_size = true,
+      view = {
+        adaptive_size = true,
+      },
     },
     cond = not vim.g.started_by_firenvim,
     config = function(_, opts)
