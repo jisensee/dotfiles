@@ -31,5 +31,5 @@ return {
         ['<leader>.'] = { ':CodeActionMenu<cr>', 'Show code actions' }
       })
     end
-  }
+  },
 }
