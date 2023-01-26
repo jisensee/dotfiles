@@ -39,3 +39,6 @@ wk.register({
   u = { '<c-K>u:' },
   s = { '<c-K>s:' },
 }, { prefix = '\\', mode = 'i' })
+
+vim.keymap.set('n', 'n', 'nzz')
+vim.keymap.set('n', 'N', 'Nzz')
