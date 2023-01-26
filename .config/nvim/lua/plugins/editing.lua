@@ -1,5 +1,6 @@
 return {
   'wellle/targets.vim',
+  'tpope/vim-repeat',
   {
     'windwp/nvim-autopairs',
     config = true,
