@@ -9,5 +9,5 @@ return {
     cond = not vim.g.started_by_firenvim,
     config = true,
   },
-  'haya14busa/is.vim',
+  'romainl/vim-cool',
 }

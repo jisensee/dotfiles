@@ -79,24 +79,43 @@ local function make_statusline_comps()
 end
 
 local function make_winbar_comps(active)
+  local function switch_active(on_active, on_inactive) return active and on_active or on_inactive end
+
+  local file_bg = switch_active('violet')
+  local file_fg = switch_active('black', 'white')
+
   local left = {
-    { provider = '   ', hl = { bg = active and 'violet' } },
+    { provider = '   ', hl = { bg = file_bg } },
     {
-      provider = 'file_info',
+      provider = {
+        name = 'file_info',
+        opts = {
+          type = 'unique',
+          colored_icon = false,
+        }
+      },
       hl = {
         style = active and 'bold' or 'NONE',
-        bg = active and 'violet',
-        fg = active and 'black' or 'white',
+        bg = file_bg,
+        fg = file_fg,
       },
-      opts = {
-        type = 'unique',
-        colored_icon = false,
-      }
     },
     {
       provider = '   ',
-      hl = { bg = active and 'violet' },
-      right_sep = { 'slant_right_2' }, ''
+      hl = { bg = file_bg },
+      right_sep = 'slant_right_2',
+    },
+    {
+      provider = 'file_type',
+      hl = { bg = switch_active('skyblue'), fg = file_fg },
+      left_sep = 'slant_left',
+      right_sep = 'slant_right_2',
+    },
+    {
+      provider = 'file_size',
+      hl = { bg = switch_active('skyblue'), fg = file_fg },
+      left_sep = 'slant_left',
+      right_sep = { 'slant_right_2' },
     },
     {
       provider = 'diagnostic_errors',
@@ -129,34 +148,20 @@ local function make_winbar_comps(active)
 
   local right = {
     {
-      provider = ' ',
-      hl = { bg = 'cyan' },
-      left_sep = 'slant_left'
-    },
-    {
-      provider = 'file_type',
-      hl = { bg = 'cyan', fg = 'black' },
-      right_sep = { 'slant_right_2' },
-    },
-    {
-      provider = 'file_size',
-      hl = { bg = 'cyan', fg = 'black' },
-      left_sep = 'slant_left',
-      right_sep = { 'slant_right_2' },
-    },
-    {
       provider = 'position',
-      hl = { bg = 'skyblue', fg = 'black' },
+      hl = { bg = 'violet', fg = 'black' },
       left_sep = 'slant_left',
     },
+    { provider = ' ', hl = { bg = 'violet' } },
     { provider = ' ' },
     {
-      provider = 'scroll_bar',
+      provider = {
+        name = 'scroll_bar',
+        opts = { reverse = false },
+      },
       right_sep = ' ',
+      reverse = true,
       hl = { fg = 'violet' },
-      opts = {
-        reverse = false,
-      }
     }
   }
 
@@ -168,14 +173,6 @@ return {
   dependencies = { 'lewis6991/gitsigns.nvim' },
   config = function()
     local colors = require 'dracula'.colors()
-    local disabled_config = {
-      filetypes = {
-        'NvimTree',
-      },
-      buftypes = {
-        'terminal',
-      },
-    }
     local theme = {
       fg = colors.fg,
       bg = colors.bg,
@@ -196,14 +193,16 @@ return {
       components = {
         active = make_statusline_comps(),
       },
-      disable = disabled_config,
     }
     require 'feline'.winbar.setup {
       components = {
         active = make_winbar_comps(true),
         inactive = make_winbar_comps(false),
       },
-      disable = disabled_config,
+      disable = {
+        filetypes = { 'NvimTree' },
+        buftypes = { 'terminal' },
+      },
     }
   end
 }
