@@ -27,7 +27,3 @@ vim.opt.hidden = true
 vim.opt.signcolumn = 'yes:2'
 vim.opt.updatetime = 500
 vim.opt.laststatus = 3
-
-vim.diagnostic.config {
-  virtual_text = true,
-}

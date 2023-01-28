@@ -1,5 +1,34 @@
+local function lsp_keymap(bufnr)
+  local telescope = require 'telescope.builtin'
+  local wk = require 'which-key'
+
+  wk.register({
+    H = { vim.lsp.buf.hover, 'Show lsp hover' },
+  }, { buffer = bufnr })
+
+  wk.register({
+    h = { vim.lsp.buf.signature_help, 'Show signature help' },
+    r = { vim.lsp.buf.rename, 'Rename symbol' },
+    [','] = { vim.diagnostic.open_float, 'Show diagnostic messages' },
+    v = { vim.diagnostic.goto_prev, 'Go to previous diagnostic' },
+    z = { vim.diagnostic.goto_prev, 'Go to next diagnostic' },
+  }, { prefix = '<leader>', buffer = bufnr })
+
+  wk.register({
+    -- d = { telescope.lsp_definitions, 'Go to definition' },
+    d = { ':Telescope lsp_definitions<cr>', 'Go to definition' },
+    D = { telescope.lsp_implementiations, 'Show implementations' },
+    r = { telescope.lsp_references, 'Show all references' },
+    o = { telescope.lsp_type_definitions, 'Go to type definition of current symbol' },
+    s = { telescope.lsp_document_symbols, 'Show document symbols' },
+    S = { telescope.lsp_worksapce_symbols, 'Show workspace symbols' },
+  }, { prefix = 'g', buffer = bufnr })
+end
+
 local function on_attach(client, bufnr)
   local caps = client.server_capabilities
+  lsp_keymap(bufnr)
+
   if caps.semanticTokensProvider and caps.semanticTokensProvider.full then
     local augroup = vim.api.nvim_create_augroup("SemanticTokens", {})
     vim.api.nvim_create_autocmd("TextChanged", {
@@ -36,7 +65,9 @@ return {
       'L3MON4D3/LuaSnip',
       'rafamadriz/friendly-snippets',
 
+      -- Other
       'theHamsta/nvim-semantic-tokens',
+      'nvim-telescope/telescope.nvim',
     },
     cond = not vim.g.started_by_firenvim,
     config = function()
@@ -46,9 +77,16 @@ return {
       }
       local lsp = require 'lsp-zero'
       lsp.preset 'recommended'
+      lsp.set_preferences {
+        set_lsp_keymaps = false
+      }
       lsp.nvim_workspace()
       lsp.on_attach(on_attach)
       lsp.setup()
+
+      vim.diagnostic.config {
+        virtual_text = true,
+      }
     end,
   },
   {
@@ -63,8 +101,6 @@ return {
         sources = {
           nls.builtins.formatting.prettierd,
           nls.builtins.formatting.eslint_d,
-          nls.builtins.code_actions.eslint_d,
-          nls.builtins.formatting.rustywind,
           ktfmt_source,
         }
       }

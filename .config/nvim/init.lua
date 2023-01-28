@@ -10,7 +10,7 @@ if not vim.loop.fs_stat(lazypath) then
   })
 end
 vim.opt.rtp:prepend(lazypath)
-vim.keymap.set('n', '<space>', '<nop>', { noremap = true, silent = true })
+
 vim.g.mapleader = " "
 
 require 'lazy'.setup 'plugins'
