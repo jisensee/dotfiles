@@ -21,4 +21,8 @@ return {
       }, { prefix = '<leader>' })
     end
   },
+  {
+    'sindrets/diffview.nvim',
+    dependencies = 'nvim-lua/plenary.nvim',
+  }
 }

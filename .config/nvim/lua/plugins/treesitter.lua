@@ -42,6 +42,10 @@ return {
         enable = true,
         extended_mode = true,
       },
+      context_commentstring = {
+        enable = true,
+        enable_autocmd = false,
+      },
     }
   },
   {
@@ -49,4 +53,5 @@ return {
     name = 'treesitter-context',
     config = true,
   },
+  'JoosepAlviste/nvim-ts-context-commentstring',
 }

@@ -8,7 +8,12 @@ return {
   'tpope/vim-surround',
   {
     'numToStr/Comment.nvim',
-    config = true,
+    config = function()
+      require 'Comment'.setup {
+        pre_hook = require('ts_context_commentstring.integrations.comment_nvim').create_pre_hook(),
+      }
+    end,
+    dependencies = { 'JoosepAlviste/nvim-ts-context-commentstring' }
   },
   {
     'lukas-reineke/indent-blankline.nvim',
@@ -34,6 +39,18 @@ return {
         l = { ':ISwapWithLeft<cr>', 'Swap element under cursor with element to the right' },
         r = { ':ISwapWithRight<cr>', 'Swap element under cursor with element to the left' },
       }, { prefix = '<leader>s' })
+    end
+  },
+  {
+    'abecodes/tabout.nvim',
+    config = function()
+      require 'tabout'.setup {
+        tabkey = '<c-s>',
+        backwards_tabkey = '<c-t>',
+        act_as_tab = false,
+        act_as_shift_tab = false,
+        completion = false,
+      }
     end
   }
 }
