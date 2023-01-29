@@ -45,8 +45,8 @@ return {
     'abecodes/tabout.nvim',
     config = function()
       require 'tabout'.setup {
-        tabkey = '<c-s>',
-        backwards_tabkey = '<c-t>',
+        tabkey = '<c-n>',
+        backwards_tabkey = '<c-s>',
         act_as_tab = false,
         act_as_shift_tab = false,
         completion = false,

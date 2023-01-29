@@ -4,19 +4,18 @@ local function lsp_keymap(bufnr)
 
   wk.register({
     H = { vim.lsp.buf.hover, 'Show lsp hover' },
+    T = { vim.diagnostic.open_float, 'Show diagnostic messages' },
+    ['<a-h>'] = { vim.lsp.buf.signature_help, 'Show signature help' }
   }, { buffer = bufnr })
 
   wk.register({
-    h = { vim.lsp.buf.signature_help, 'Show signature help' },
     r = { vim.lsp.buf.rename, 'Rename symbol' },
-    [','] = { vim.diagnostic.open_float, 'Show diagnostic messages' },
     v = { vim.diagnostic.goto_prev, 'Go to previous diagnostic' },
     z = { vim.diagnostic.goto_prev, 'Go to next diagnostic' },
   }, { prefix = '<leader>', buffer = bufnr })
 
   wk.register({
-    -- d = { telescope.lsp_definitions, 'Go to definition' },
-    d = { ':Telescope lsp_definitions<cr>', 'Go to definition' },
+    d = { telescope.lsp_definitions, 'Go to definition' },
     D = { telescope.lsp_implementiations, 'Show implementations' },
     r = { telescope.lsp_references, 'Show all references' },
     o = { telescope.lsp_type_definitions, 'Go to type definition of current symbol' },
@@ -43,6 +42,36 @@ local function on_attach(client, bufnr)
   end
 end
 
+local function semantic_tokens_setup()
+  require 'nvim-semantic-tokens'.setup {
+    preset = 'default',
+    highlighters = { require 'nvim-semantic-tokens.table-highlighter' }
+  }
+end
+
+local function lsp_zero_setup()
+  local lsp = require 'lsp-zero'
+  lsp.preset 'recommended'
+  lsp.set_preferences {
+    set_lsp_keymaps = false
+  }
+  lsp.nvim_workspace()
+  lsp.on_attach(on_attach)
+  lsp.setup()
+
+  vim.diagnostic.config {
+    virtual_text = true,
+  }
+end
+
+local function snippets_setup()
+  require 'luasnip.loaders.from_lua'.lazy_load {
+    paths = { './snippets' }
+  }
+  local ls = require 'luasnip'
+  ls.filetype_extend('typescriptreact', { 'typescript' })
+end
+
 return {
   {
     'VonHeikemen/lsp-zero.nvim',
@@ -63,7 +92,6 @@ return {
 
       -- Snippets
       'L3MON4D3/LuaSnip',
-      'rafamadriz/friendly-snippets',
 
       -- Other
       'theHamsta/nvim-semantic-tokens',
@@ -71,22 +99,9 @@ return {
     },
     cond = not vim.g.started_by_firenvim,
     config = function()
-      require 'nvim-semantic-tokens'.setup {
-        preset = 'default',
-        highlighters = { require 'nvim-semantic-tokens.table-highlighter' }
-      }
-      local lsp = require 'lsp-zero'
-      lsp.preset 'recommended'
-      lsp.set_preferences {
-        set_lsp_keymaps = false
-      }
-      lsp.nvim_workspace()
-      lsp.on_attach(on_attach)
-      lsp.setup()
-
-      vim.diagnostic.config {
-        virtual_text = true,
-      }
+      semantic_tokens_setup()
+      lsp_zero_setup()
+      snippets_setup()
     end,
   },
   {
