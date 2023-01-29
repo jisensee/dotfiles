@@ -10,4 +10,10 @@ return {
     config = true,
   },
   'romainl/vim-cool',
+  {
+    'chrisbra/Colorizer',
+    init = function()
+      vim.g.colorizer_auto_color = 1
+    end
+  }
 }
