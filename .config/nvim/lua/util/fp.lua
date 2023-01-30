@@ -2,6 +2,14 @@ local M = {}
 
 local List = require 'util.list'
 
+function M.curry(func, args)
+  return function(arg) return func(arg, unpack(args)) end
+end
+
+function M.make_pipe(configs)
+  return M.curry(M.pipe, { configs })
+end
+
 function M.pipe(input, configs)
   return List.reduce(configs, input, function(current, config)
     if type(config) == 'table' then

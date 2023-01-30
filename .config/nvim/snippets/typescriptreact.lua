@@ -17,15 +17,23 @@ local function parse_prop_def(args)
   })
 end
 
+local function first_line(args) return args[1][1] end
+
 return {
-  s('us', {
-    t 'const [', i(1),
-    f(function(args)
-      local var_name = args[1][1]
-      return ', set' .. str.capitalize(var_name)
-    end, { 1 }),
-    t '] = useState(', i(2), t ')'
-  }),
+  s('us',
+    fmta('const [<var_name>, set<setter>] = useState(<initial>)', {
+      var_name = i(1),
+      initial = i(2),
+      setter = f(fp.make_pipe { first_line, str.capitalize }, { 1 })
+    })),
+  s('ue', fmta([[
+    useEffect(() =>> {
+      <body>
+    }, [<deps>])
+    ]], {
+    body = i(1),
+    deps = i(2),
+  })),
   s('rc', fmta([[
     type <comp_name>Props = {
       <props_def>
