@@ -35,7 +35,18 @@ local function make_statusline_comps()
       right_sep = 'slant_right_2',
     },
     {
-      provider = ' '
+      provider = '      '
+    },
+    {
+      provider = {
+        name = 'file_info',
+        opts = {
+          type = 'relative',
+          file_modified_icon = '',
+          file_readonly_icon = '',
+        }
+      },
+      icon = '',
     }
   }
 
