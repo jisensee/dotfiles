@@ -1,3 +1,5 @@
+local fp = require 'util.fp'
+
 local M = {}
 
 function M.reduce(list, initial, reducer)
@@ -36,5 +38,15 @@ function M.from_iterator(it)
   end
   return list
 end
+
+function M.get(list, index)
+  return list[index]
+end
+
+function M.first(list)
+  return M.get(list, 1)
+end
+
+M.first = fp.curry(M.get, 1)
 
 return M

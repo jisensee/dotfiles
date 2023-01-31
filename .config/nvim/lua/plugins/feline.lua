@@ -35,9 +35,6 @@ local function make_statusline_comps()
       right_sep = 'slant_right_2',
     },
     {
-      provider = '      '
-    },
-    {
       provider = {
         name = 'file_info',
         opts = {
@@ -46,6 +43,9 @@ local function make_statusline_comps()
           file_readonly_icon = '',
         }
       },
+      hl = { bg = 'black' },
+      left_sep = 'slant_left',
+      right_sep = 'slant_right_2',
       icon = '',
     }
   }
@@ -110,7 +110,7 @@ local function make_winbar_comps(active)
         }
       },
       hl = {
-        style = active and 'bold' or 'NONE',
+        style = active and 'bold,underline' or 'NONE',
         bg = file_bg,
         fg = file_fg,
       },

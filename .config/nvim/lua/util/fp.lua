@@ -1,9 +1,13 @@
 local M = {}
 
-local List = require 'util.list'
-
 function M.curry(func, args)
-  return function(arg) return func(arg, unpack(args)) end
+  return function(arg)
+    if type(args) == 'table' then
+      return func(arg, unpack(args))
+    else
+      return func(arg, args)
+    end
+  end
 end
 
 function M.make_pipe(configs)
@@ -11,21 +15,31 @@ function M.make_pipe(configs)
 end
 
 function M.pipe(input, configs)
-  return List.reduce(configs, input, function(current, config)
+  local current = input
+  for _, config in pairs(configs) do
     if type(config) == 'table' then
       local func = table.remove(config, 1)
-      return func(current, unpack(config))
+      current = func(current, unpack(config))
     else
-      return config(current)
+      current = config(current)
     end
-  end)
+  end
+  return current
 end
 
-function M.peek(v, label)
-  if type(v) == 'table' then
-    print(label .. ' = ' .. List.to_string(v))
+function M.peek(value, label)
+  if type(value) == 'table' then
+    local str_table = '['
+    for index, str in ipairs(value) do
+      if index == 1 then
+        str_table = str_table .. str
+      else
+        str_table = str_table .. ', ' .. str
+      end
+    end
+    print(label .. ' = ' .. str_table .. ']')
   else
-    print(label .. ' = ' .. v)
+    print(label .. ' = ' .. value)
   end
   return v
 end
