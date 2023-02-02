@@ -9,7 +9,7 @@ local function lsp_keymap(bufnr)
   }, { buffer = bufnr })
 
   wk.register({
-    r = { vim.lsp.buf.rename, 'Rename symbol' },
+    r = { ':IncRename ', 'Rename symbol' },
     v = { vim.diagnostic.goto_prev, 'Go to previous diagnostic' },
     z = { vim.diagnostic.goto_prev, 'Go to next diagnostic' },
   }, { prefix = '<leader>', buffer = bufnr })

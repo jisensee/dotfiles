@@ -56,4 +56,9 @@ return {
       end)
     end,
   },
+  {
+    'smjonas/inc-rename.nvim',
+    name = 'inc_rename',
+    config = true,
+  },
 }

@@ -85,7 +85,11 @@ local function make_statusline_comps()
         fg = 'black',
       },
       left_sep = 'slant_left',
-    }
+    },
+    {
+      provider = ' ',
+      hl = { bg = 'violet' },
+    },
   }
 
   return { left, right }
@@ -110,7 +114,7 @@ local function make_winbar_comps(active)
         }
       },
       hl = {
-        style = active and 'bold,underline' or 'NONE',
+        style = 'bold',
         bg = file_bg,
         fg = file_fg,
       },
