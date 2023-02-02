@@ -1,3 +1,4 @@
+local list = require 'util.list'
 return {
   {
     'folke/trouble.nvim',
@@ -31,5 +32,28 @@ return {
         ['<leader>.'] = { ':CodeActionMenu<cr>', 'Show code actions' }
       })
     end
+  },
+  {
+    'RRethy/vim-illuminate',
+    opts = {
+      filetypes_denylist = {
+        'NvimTree',
+      }
+    },
+    config = function(_, opts)
+      require 'illuminate'.configure(opts)
+      local colors = require 'dracula'.colors()
+      local hl_groups = {
+        'IlluminatedWordText',
+        'IlluminatedWordRead',
+        'IlluminatedWordWrite',
+      }
+      list.foreach(hl_groups, function(group)
+        vim.api.nvim_set_hl(0, group, {
+          bg = colors.nontext,
+          underline = true,
+        })
+      end)
+    end,
   },
 }

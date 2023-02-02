@@ -18,6 +18,7 @@
   "git-blame.nvim": { "branch": "master", "commit": "5ddf157139ecfc0d2161f00c2cce4874578dc355" },
   "gitsigns.nvim": { "branch": "main", "commit": "0d4fe37ba5285171f3729da955955205f3fa945b" },
   "glow.nvim": { "branch": "main", "commit": "c87b1120b618577e64d910a7493a26829044a8a2" },
+  "illuminate": { "branch": "master", "commit": "d6ca7f77eeaf61b3e6ce9f0e5a978d606df44298" },
   "indent-blankline.nvim": { "branch": "master", "commit": "8299fe7703dfff4b1752aeed271c3b95281a952d" },
   "iswap.nvim": { "branch": "master", "commit": "f4935e477c3dd8914a008884c4d83388d024487a" },
   "lazy.nvim": { "branch": "main", "commit": "15fe46a728b7473d4cae368838bbc1c79c3a3f48" },

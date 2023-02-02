@@ -22,7 +22,7 @@ return {
 {
   '<name>',
   config = <config>,
-}
+},
     ]], {
       config = i(1),
       name = f(function(_, parent)
