@@ -4,13 +4,8 @@ local function make_statusline_comps()
   local vi_mode_provider = require 'feline.providers.vi_mode'
   local left = {
     {
-      provider = '   ',
-      hl = function()
-        return { bg = vi_mode_provider.get_mode_color() }
-      end,
-    },
-    {
       provider = 'vi_mode',
+      icon = '',
       hl = function()
         return {
           name = vi_mode_provider.get_mode_highlight_name(),
@@ -19,14 +14,21 @@ local function make_statusline_comps()
           style = 'bold',
         }
       end,
-      icon = '',
-    },
-    {
-      provider = '  ',
-      hl = function()
-        return { bg = vi_mode_provider.get_mode_color() }
-      end,
-      right_sep = { 'slant_right_2' },
+      left_sep = {
+        str = '   ',
+        hl = function()
+          return { bg = vi_mode_provider.get_mode_color() }
+        end,
+      },
+      right_sep = {
+        {
+          str = '  ',
+          hl = function()
+            return { bg = vi_mode_provider.get_mode_color() }
+          end,
+        },
+        'slant_right_2'
+      }
     },
     {
       provider = 'macro',
@@ -44,8 +46,14 @@ local function make_statusline_comps()
         }
       },
       hl = { bg = 'black' },
-      left_sep = 'slant_left',
-      right_sep = 'slant_right_2',
+      left_sep = {
+        'slant_left',
+        { str = ' ', hl = { bg = 'black' } }
+      },
+      right_sep = {
+        { str = ' ', hl = { bg = 'black' } },
+        'slant_right_2',
+      },
       icon = '',
     }
   }
@@ -85,10 +93,10 @@ local function make_statusline_comps()
         fg = 'black',
       },
       left_sep = 'slant_left',
-    },
-    {
-      provider = ' ',
-      hl = { bg = 'violet' },
+      right_sep = {
+        str = ' ',
+        hl = { bg = 'violet' },
+      }
     },
   }
 

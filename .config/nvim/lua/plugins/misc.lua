@@ -11,9 +11,13 @@ return {
   },
   'romainl/vim-cool',
   {
-    'chrisbra/Colorizer',
-    init = function()
-      vim.g.colorizer_auto_color = 1
-    end
-  }
+    'NvChad/nvim-colorizer.lua',
+    opts = {
+      user_default_options = {
+        names = false,
+        tailwind = true,
+      }
+    },
+    config = true,
+  },
 }

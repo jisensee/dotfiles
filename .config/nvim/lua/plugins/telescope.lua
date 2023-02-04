@@ -26,13 +26,19 @@ local function setup()
       },
     },
     extensions = {
-      smart_open = {
-        ignore_patters = {
-          '*.git/*',
-          '*/tmp/*',
-          '*/node_modules/*',
-        }
-      }
+      extensions = {
+        smart_open = {
+          show_scores = false,
+          max_unindexed = 1000,
+          ignore_patterns = {
+            '*.git/*',
+            '*/tmp/*',
+            '**/node_modules/**'
+          },
+          match_algorithm = "fzy",
+          disable_devicons = false,
+        },
+      },
     }
   }
   telescope.load_extension('smart_open')
