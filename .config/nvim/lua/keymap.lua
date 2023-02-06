@@ -39,8 +39,6 @@ vim.keymap.set('n', 'N', 'Nzz')
 vim.keymap.set('n', '*', '*zz')
 vim.keymap.set('n', '#', '#zz')
 
-vim.keymap.set('n', '<esc>', ':noh<cr>')
-
 -- Umlauts
 vim.keymap.set('i', '\\a', '<c-k>a:')
 vim.keymap.set('i', '\\A', '<c-k>A:')
@@ -48,4 +46,4 @@ vim.keymap.set('i', '\\o', '<c-k>o:')
 vim.keymap.set('i', '\\O', '<c-k>O:')
 vim.keymap.set('i', '\\u', '<c-k>u:')
 vim.keymap.set('i', '\\U', '<c-k>U:')
-vim.keymap.set('i', '\\s', '<c-k>s:')
+vim.keymap.set('i', '\\s', '<c-k>ss')
