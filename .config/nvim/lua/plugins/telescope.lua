@@ -27,6 +27,10 @@ local function setup()
     },
     extensions = {
       extensions = {
+        fzy_native = {
+          ovrride_generic_sorter = false,
+          ovrride_file_sorter = false,
+        },
         smart_open = {
           show_scores = false,
           max_unindexed = 1000,
@@ -42,6 +46,7 @@ local function setup()
     }
   }
   telescope.load_extension('smart_open')
+  telescope.load_extension('fzy_native')
 end
 
 local function keys()
@@ -57,7 +62,11 @@ end
 return {
   {
     'nvim-telescope/telescope.nvim',
-    dependencies = { 'nvim-lua/plenary.nvim', 'danielfalk/smart-open.nvim' },
+    dependencies = {
+      'nvim-lua/plenary.nvim',
+      'danielfalk/smart-open.nvim',
+      'nvim-telescope/telescope-fzy-native.nvim',
+    },
     cond = not vim.g.started_by_firenvim,
     config = function()
       setup()
