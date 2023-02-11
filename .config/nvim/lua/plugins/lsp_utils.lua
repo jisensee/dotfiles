@@ -1,4 +1,5 @@
 local list = require 'util.list'
+
 return {
   {
     'folke/trouble.nvim',
@@ -8,13 +9,16 @@ return {
       auto_close = true,
     },
     config = function(_, opts)
-      require 'trouble'.setup(opts)
+      require('trouble').setup(opts)
       local wk = require 'which-key'
 
       wk.register({
         name = 'Diagnostics window',
         d = { ':Trouble document_diagnostics<cr>', 'Open document diagnostics' },
-        w = { ':Trouble workspace_diagnostics<cr>', 'Open workspace diagnostics' },
+        w = {
+          ':Trouble workspace_diagnostics<cr>',
+          'Open workspace diagnostics',
+        },
       }, { prefix = '<leader>d' })
     end,
   },
@@ -23,37 +27,41 @@ return {
     dependencies = 'antoinemadec/FixCursorHold.nvim',
     opts = {
       autocmd = { enabled = true },
-    }
+    },
   },
   {
     'weilbith/nvim-code-action-menu',
     config = function()
-      require 'which-key'.register({
-        ['<leader>.'] = { ':CodeActionMenu<cr>', 'Show code actions' }
-      })
-    end
+      require('which-key').register {
+        ['<leader>.'] = { ':CodeActionMenu<cr>', 'Show code actions' },
+      }
+    end,
   },
   {
     'RRethy/vim-illuminate',
+    cond = false,
     opts = {
       filetypes_denylist = {
         'NvimTree',
-      }
+      },
     },
     config = function(_, opts)
-      require 'illuminate'.configure(opts)
-      local colors = require 'dracula'.colors()
+      require('illuminate').configure(opts)
+      local colors = require('dracula').colors()
       local hl_groups = {
         'IlluminatedWordText',
         'IlluminatedWordRead',
         'IlluminatedWordWrite',
       }
-      list.foreach(hl_groups, function(group)
-        vim.api.nvim_set_hl(0, group, {
-          bg = colors.nontext,
-          underline = true,
-        })
-      end)
+      list.foreach(
+        hl_groups,
+        function(group)
+          vim.api.nvim_set_hl(0, group, {
+            bg = colors.nontext,
+            underline = true,
+          })
+        end
+      )
     end,
   },
   {
