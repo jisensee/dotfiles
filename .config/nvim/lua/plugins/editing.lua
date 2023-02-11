@@ -64,6 +64,24 @@ return {
   {
     'AckslD/nvim-neoclip.lua',
     dependencies = { 'nvim-telescope/telescope.nvim' },
-    config = function() require('neoclip').setup() end,
+    config = function()
+      require('neoclip').setup()
+      require('telescope').load_extension 'neoclip'
+
+      require('which-key').register({
+        c = { ':Telescope neoclip<cr>', 'Open Neoclip' },
+      }, { prefix = '<leader>' })
+    end,
+  },
+  {
+    'nvim-pack/nvim-spectre',
+    config = function()
+      local spectre = require 'spectre'
+      spectre.setup()
+
+      require('which-key').register({
+        S = { spectre.open, 'Open Spectre' },
+      }, { prefix = '<leader>' })
+    end,
   },
 }

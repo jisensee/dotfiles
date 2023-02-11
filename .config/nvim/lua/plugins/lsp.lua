@@ -52,10 +52,17 @@ end
 
 local function lsp_zero_setup()
   local lsp = require 'lsp-zero'
+  local lspkind = require 'lspkind'
   lsp.preset 'recommended'
   lsp.set_preferences { set_lsp_keymaps = false }
   lsp.nvim_workspace()
   lsp.on_attach(on_attach)
+
+  lsp.setup_nvim_cmp {
+    formatting = {
+      format = lspkind.cmp_format(),
+    },
+  }
   lsp.setup()
 
   vim.diagnostic.config { virtual_text = true }
@@ -84,9 +91,11 @@ return {
       'hrsh7th/cmp-nvim-lua',
 
       -- Snippets
-      'L3MON4D3/LuaSnip', -- Other
+      'L3MON4D3/LuaSnip',
+      -- Other
       'theHamsta/nvim-semantic-tokens',
       'nvim-telescope/telescope.nvim',
+      'onsails/lspkind.nvim',
     },
     cond = not vim.g.started_by_firenvim,
     config = function()

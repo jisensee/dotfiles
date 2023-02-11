@@ -14,7 +14,7 @@ return {
     'mbbill/undotree',
     cond = not vim.g.started_by_firenvim,
     config = function()
-      require 'which-key'.register({
+      require('which-key').register({
         u = { ':UndotreeToggle<cr>', 'Toggle undotree' },
       }, { prefix = '<leader>' })
     end,

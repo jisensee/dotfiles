@@ -37,16 +37,16 @@ local function setup()
           ignore_patterns = {
             '*.git/*',
             '*/tmp/*',
-            '**/node_modules/**'
+            '**/node_modules/**',
           },
-          match_algorithm = "fzy",
+          match_algorithm = 'fzy',
           disable_devicons = false,
         },
       },
-    }
+    },
   }
-  telescope.load_extension('smart_open')
-  telescope.load_extension('fzy_native')
+  telescope.load_extension 'smart_open'
+  telescope.load_extension 'fzy_native'
 end
 
 local function keys()
@@ -71,7 +71,7 @@ return {
     config = function()
       setup()
       keys()
-    end
+    end,
   },
   {
     'danielfalk/smart-open.nvim',
@@ -83,10 +83,17 @@ return {
       local telescope = require 'telescope'
 
       wk.register({
-        f = { function() telescope.extensions.smart_open.smart_open({ cwd_only = true }) end,
-          'Smart open file in current working directory' },
-        F = { telescope.extensions.smart_open.smart_open, 'Smart open file everywhere' },
+        f = {
+          function()
+            telescope.extensions.smart_open.smart_open { cwd_only = true }
+          end,
+          'Smart open file in current working directory',
+        },
+        F = {
+          telescope.extensions.smart_open.smart_open,
+          'Smart open file everywhere',
+        },
       }, { prefix = '<leader>' })
     end,
-  }
+  },
 }
