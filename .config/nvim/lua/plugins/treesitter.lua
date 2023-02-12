@@ -4,9 +4,7 @@ return {
     'nvim-treesitter/nvim-treesitter',
     lazy = false,
     priority = 900,
-    config = function(_, opts)
-      require 'nvim-treesitter.configs'.setup(opts)
-    end,
+    config = function(_, opts) require('nvim-treesitter.configs').setup(opts) end,
     opts = {
       -- A list of parser names, or "all"
       ensure_installed = 'all',
@@ -18,7 +16,7 @@ return {
       auto_install = true,
 
       -- List of parsers to ignore installing (for "all")
-      ignore_install = {},
+      ignore_install = { 'markdown_inline' },
 
       ---- If you need to change the installation directory of the parsers (see -> Advanced Setup)
       -- parser_install_dir = "/some/path/to/store/parsers", -- Remember to run vim.opt.runtimepath:append("/some/path/to/store/parsers")!
@@ -46,7 +44,7 @@ return {
         enable = true,
         enable_autocmd = false,
       },
-    }
+    },
   },
   {
     'nvim-treesitter/nvim-treesitter-context',
