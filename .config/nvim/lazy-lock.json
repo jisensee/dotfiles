@@ -47,6 +47,7 @@
   "nvim-web-devicons": { "branch": "master", "commit": "bd7a222287c5828cd0607cd0a5605e52f0460074" },
   "plenary.nvim": { "branch": "master", "commit": "9a0d3bf7b832818c042aaf30f692b081ddd58bd9" },
   "smart-open.nvim": { "branch": "0.1.x", "commit": "462e7c1e07b7a11ea5b31d77bc6f2736b573bd3f" },
+  "splitjoin.nvim": { "branch": "main", "commit": "d6b66a39c73eebe1a0ac82be372b460d99d8c55e" },
   "sqlite.lua": { "branch": "master", "commit": "93ff5824682ecc874200e338fd8ca9ccd08508f8" },
   "tabout.nvim": { "branch": "master", "commit": "c37ce26f316a2df693140450b8def41e89c0f57e" },
   "targets.vim": { "branch": "master", "commit": "8d6ff2984cdfaebe5b7a6eee8f226a6dd1226f2d" },
