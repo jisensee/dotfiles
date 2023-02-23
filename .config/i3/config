@@ -33,9 +33,9 @@ exec_always --no-startup-id ~/.config/polybar/launch
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec alacritty
-bindsym Mod1+Return exec alacritty
-bindsym $mod+Shift+Return exec alacritty -e nvim
+bindsym $mod+Return exec wezterm
+bindsym Mod1+Return exec wezterm
+bindsym $mod+Shift+Return exec wezterm -e nvim
 
 # kill focused window
 bindsym $mod+q kill

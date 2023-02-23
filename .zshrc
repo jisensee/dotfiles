@@ -110,8 +110,8 @@ alias fucking='sudo'
 alias lol='lolcat'
 
 # VIM
-alias v='nvim'
-alias vi='nvim'
+alias v='env TERM=wezterm nvim'
+alias vi='v'
 alias vimrc='v ~/.config/nvim/init.vim'
 alias vt='v -c "terminal"'
 
