@@ -115,7 +115,6 @@ return {
       nls.setup {
         sources = {
           nls.builtins.formatting.prettierd,
-          nls.builtins.formatting.eslint_d,
           nls.builtins.formatting.stylua,
           ktfmt_source,
         },
