@@ -39,14 +39,16 @@ return {
   },
   {
     'RRethy/vim-illuminate',
-    cond = false,
+    cond = true,
     opts = {
       filetypes_denylist = {
         'NvimTree',
       },
     },
     config = function(_, opts)
-      require('illuminate').configure(opts)
+      local illuminate = require 'illuminate'
+      illuminate.configure(opts)
+
       local colors = require('dracula').colors()
       local hl_groups = {
         'IlluminatedWordText',
@@ -62,6 +64,18 @@ return {
           })
         end
       )
+
+      local wk = require 'which-key'
+      wk.register({
+        V = {
+          illuminate.goto_prev_reference,
+          'Goto prev reference illuminated token',
+        },
+        Z = {
+          illuminate.goto_next_reference,
+          'Goto next reference illuminated token',
+        },
+      }, { prefix = '<leader>' })
     end,
   },
   {
