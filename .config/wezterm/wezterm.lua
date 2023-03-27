@@ -8,6 +8,9 @@ return {
   disable_default_key_bindings = true,
   leader = { key = 'Backspace', mods = 'CTRL' },
   keys = {
+    { key = '=', mods = 'CTRL', action = act.IncreaseFontSize },
+    { key = '-', mods = 'CTRL', action = act.DecreaseFontSize },
+    { key = '0', mods = 'CTRL', action = act.ResetFontSize },
     { key = 'n', mods = 'LEADER', action = act.ActivateTabRelative(1) },
     { key = 'p', mods = 'LEADER', action = act.ActivateTabRelative(-1) },
     { key = 'Backspace', mods = 'LEADER', action = act.ActivateLastTab },
