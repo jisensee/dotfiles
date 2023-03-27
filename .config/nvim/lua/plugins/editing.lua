@@ -64,6 +64,7 @@ return {
   {
     'AckslD/nvim-neoclip.lua',
     dependencies = { 'nvim-telescope/telescope.nvim' },
+    cond = not vim.g.started_by_firenvim,
     config = function()
       require('neoclip').setup()
       require('telescope').load_extension 'neoclip'
@@ -75,6 +76,7 @@ return {
   },
   {
     'nvim-pack/nvim-spectre',
+    cond = not vim.g.started_by_firenvim,
     config = function()
       local spectre = require 'spectre'
       spectre.setup()
