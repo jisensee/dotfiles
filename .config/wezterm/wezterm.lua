@@ -6,6 +6,7 @@ return {
   font = wezterm.font 'FiraCode Nerd Font Mono',
   color_scheme = 'Dracula (Official)',
   disable_default_key_bindings = true,
+  adjust_window_size_when_changing_font_size = false,
   leader = { key = 'Backspace', mods = 'CTRL' },
   keys = {
     { key = '=', mods = 'CTRL', action = act.IncreaseFontSize },
