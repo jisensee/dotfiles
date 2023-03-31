@@ -27,7 +27,7 @@ return {
     { key = '0', mods = 'LEADER', action = act.ActivateTab(9) },
     { key = '[', mods = 'LEADER', action = act.ActivateCopyMode },
     { key = ']', mods = 'LEADER', action = act.QuickSelect },
-    { key = 'v', mods = 'CTRL', action = act.PasteFrom 'Clipboard' },
+    { key = 'v', mods = 'CTRL|SHIFT', action = act.PasteFrom 'Clipboard' },
     { key = 'r', mods = 'LEADER', action = act.RotatePanes 'Clockwise' },
     {
       key = '/',
