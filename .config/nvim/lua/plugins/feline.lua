@@ -16,19 +16,15 @@ local function make_statusline_comps()
       end,
       left_sep = {
         str = '   ',
-        hl = function()
-          return { bg = vi_mode_provider.get_mode_color() }
-        end,
+        hl = function() return { bg = vi_mode_provider.get_mode_color() } end,
       },
       right_sep = {
         {
           str = '  ',
-          hl = function()
-            return { bg = vi_mode_provider.get_mode_color() }
-          end,
+          hl = function() return { bg = vi_mode_provider.get_mode_color() } end,
         },
-        'slant_right_2'
-      }
+        'slant_right_2',
+      },
     },
     {
       provider = 'macro',
@@ -43,19 +39,19 @@ local function make_statusline_comps()
           type = 'relative',
           file_modified_icon = '',
           file_readonly_icon = '',
-        }
+        },
       },
       hl = { bg = 'black' },
       left_sep = {
         'slant_left',
-        { str = ' ', hl = { bg = 'black' } }
+        { str = ' ', hl = { bg = 'black' } },
       },
       right_sep = {
         { str = ' ', hl = { bg = 'black' } },
         'slant_right_2',
       },
       icon = '',
-    }
+    },
   }
 
   local right = {
@@ -96,7 +92,7 @@ local function make_statusline_comps()
       right_sep = {
         str = ' ',
         hl = { bg = 'violet' },
-      }
+      },
     },
   }
 
@@ -108,7 +104,7 @@ local function make_winbar_comps(active)
     return fp.ternary(active, on_active, on_inactive)
   end
 
-  local file_bg = switch_active('violet')
+  local file_bg = switch_active 'violet'
   local file_fg = switch_active('black', 'white')
 
   local left = {
@@ -119,7 +115,7 @@ local function make_winbar_comps(active)
         opts = {
           type = 'unique',
           colored_icon = false,
-        }
+        },
       },
       hl = {
         style = 'bold',
@@ -134,13 +130,13 @@ local function make_winbar_comps(active)
     },
     {
       provider = 'file_type',
-      hl = { bg = switch_active('magenta'), fg = file_fg },
+      hl = { bg = switch_active 'magenta', fg = file_fg },
       left_sep = 'slant_left',
       right_sep = 'slant_right_2',
     },
     {
       provider = 'file_size',
-      hl = { bg = switch_active('magenta'), fg = file_fg },
+      hl = { bg = switch_active 'magenta', fg = file_fg },
       left_sep = 'slant_left',
       right_sep = { 'slant_right_2' },
     },
@@ -170,7 +166,7 @@ local function make_winbar_comps(active)
     },
     {
       provider = ' ',
-    }
+    },
   }
 
   local right = {
@@ -189,7 +185,7 @@ local function make_winbar_comps(active)
       right_sep = ' ',
       reverse = true,
       hl = { fg = 'violet' },
-    }
+    },
   }
 
   return { left, right }
@@ -200,7 +196,7 @@ return {
   dependencies = { 'lewis6991/gitsigns.nvim' },
   cond = not vim.g.started_by_firenvim,
   config = function()
-    local colors = require 'dracula'.colors()
+    local colors = require 'dracula.palettes'
     local theme = {
       fg = colors.fg,
       bg = colors.bg,
@@ -217,13 +213,13 @@ return {
       white = colors.bright_white,
       yellow = colors.yellow,
     }
-    require 'feline'.setup {
+    require('feline').setup {
       components = {
         active = make_statusline_comps(),
       },
     }
-    require 'feline'.use_theme(theme)
-    require 'feline'.winbar.setup {
+    require('feline').use_theme(theme)
+    require('feline').winbar.setup {
       components = {
         active = make_winbar_comps(true),
         inactive = make_winbar_comps(false),
@@ -233,5 +229,5 @@ return {
         buftypes = { 'terminal' },
       },
     }
-  end
+  end,
 }

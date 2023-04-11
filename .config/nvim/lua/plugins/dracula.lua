@@ -1,6 +1,7 @@
 return {
   {
-    'Mofiqul/dracula.nvim',
+    -- 'Mofiqul/dracula.nvim',
+    'maxmx03/dracula.nvim',
     lazy = false,
     priority = 1000,
     opts = {
@@ -28,22 +29,11 @@ return {
         gutter_fg = '#4B5263',
         nontext = '#3B4048',
       },
-      show_end_of_buffer = false,
-      transparent_bg = false,
-      lualine_bg_color = '#44475a',
-      italic_comment = false,
-      -- overrides the default highlights see `:h synIDattr`
-      overrides = {
-        -- Examples
-        -- NonText = { fg = dracula.colors().white }, -- set NonText fg to white
-        -- NvimTreeIndentMarker = { link = "NonText" }, -- link to NonText highlight
-        -- Nothing = {} -- clear highlight of Nothing
-      },
+      transparent = true,
     },
-    config = function(_, opts) require('dracula').setup(opts) end,
-  },
-  {
-    'folke/tokyonight.nvim',
-    config = function() vim.cmd [[colorscheme tokyonight]] end,
+    config = function(_, opts)
+      require('dracula').setup(opts)
+      vim.cmd [[colorscheme dracula]]
+    end,
   },
 }

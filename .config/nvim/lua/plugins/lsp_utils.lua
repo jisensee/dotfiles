@@ -49,7 +49,7 @@ return {
       local illuminate = require 'illuminate'
       illuminate.configure(opts)
 
-      local colors = require('dracula').colors()
+      local colors = require 'dracula.palettes'
       local hl_groups = {
         'IlluminatedWordText',
         'IlluminatedWordRead',
