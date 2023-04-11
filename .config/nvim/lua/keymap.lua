@@ -32,7 +32,6 @@ wk.register({
   U = { 'gUiWe', 'Uppercase word' },
 }, { prefix = '<leader>' })
 
-
 -- Center screen when searching
 vim.keymap.set('n', 'n', 'nzz')
 vim.keymap.set('n', 'N', 'Nzz')

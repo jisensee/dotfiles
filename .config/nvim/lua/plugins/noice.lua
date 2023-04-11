@@ -3,9 +3,17 @@ return {
     'folke/noice.nvim',
     dependencies = {
       'MunifTanjim/nui.nvim',
-      -- 'rcarriga/nvim-notify'
+      'rcarriga/nvim-notify',
     },
     cond = not vim.g.started_by_firenvim,
+    config = function(_, opts)
+      require('noice').setup(opts)
+      vim.keymap.set('n', '<Esc>', require('notify').dismiss)
+      require('which-key').register(
+        { n = { ':Telescope notify<cr>', 'Show recent notifications' } },
+        { prefix = '<leader>' }
+      )
+    end,
     opts = {
       lsp = {
         override = {

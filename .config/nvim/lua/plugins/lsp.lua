@@ -30,24 +30,6 @@ end
 local function on_attach(client, bufnr)
   local caps = client.server_capabilities
   lsp_keymap(bufnr)
-
-  if caps.semanticTokensProvider and caps.semanticTokensProvider.full then
-    local augroup = vim.api.nvim_create_augroup('SemanticTokens', {})
-    vim.api.nvim_create_autocmd('TextChanged', {
-      group = augroup,
-      buffer = bufnr,
-      callback = function() vim.lsp.buf.semantic_tokens_full() end,
-    })
-    -- fire it first time on load as well
-    vim.lsp.buf.semantic_tokens_full()
-  end
-end
-
-local function semantic_tokens_setup()
-  require('nvim-semantic-tokens').setup {
-    preset = 'default',
-    highlighters = { require 'nvim-semantic-tokens.table-highlighter' },
-  }
 end
 
 local function lsp_zero_setup()
@@ -93,13 +75,11 @@ return {
       -- Snippets
       'L3MON4D3/LuaSnip',
       -- Other
-      'theHamsta/nvim-semantic-tokens',
       'nvim-telescope/telescope.nvim',
       'onsails/lspkind.nvim',
     },
     cond = not vim.g.started_by_firenvim,
     config = function()
-      semantic_tokens_setup()
       lsp_zero_setup()
       snippets_setup()
     end,
