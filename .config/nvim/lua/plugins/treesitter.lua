@@ -52,4 +52,5 @@ return {
     config = true,
   },
   'JoosepAlviste/nvim-ts-context-commentstring',
+  'nkrkv/nvim-treesitter-rescript',
 }
