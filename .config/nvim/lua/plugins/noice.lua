@@ -21,6 +21,9 @@ return {
           ['vim.lsp.util.stylize_markdown'] = true,
           ['cmp.entry.get_documentation'] = true,
         },
+        hover = {
+          silent = true,
+        },
         documentation = {
           opts = {
             size = {
@@ -35,10 +38,6 @@ return {
         lsp_doc_border = true, -- add a border to hover docs and signature help
       },
       routes = {
-        {
-          filter = { find = 'No information available' },
-          opts = { stop = true },
-        },
         {
           filter = { find = '.+%d+B written' },
           view = 'mini',
