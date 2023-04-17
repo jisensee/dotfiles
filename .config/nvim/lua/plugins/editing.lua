@@ -105,7 +105,7 @@ return {
   {
     'github/copilot.vim',
     config = function()
-      vim.cmd [[imap <silent><script><expr> <C-Tab> copilot#Accept("")]]
+      vim.cmd [[imap <silent><script><expr> <C-Space> copilot#Accept("")]]
     end,
   },
 }
