@@ -104,6 +104,7 @@ return {
   },
   {
     'github/copilot.vim',
+    cond = not vim.g.started_by_firenvim,
     config = function()
       vim.cmd [[imap <silent><script><expr> <C-Space> copilot#Accept("")]]
     end,
