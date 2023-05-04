@@ -12,16 +12,19 @@ cd yay
 makepkg -si
 cd ..
 rm -rf yay
-yay -Y --gendb
-yay -Syu --devel
-yay -Y --devel --save
+yay -Y --gendb --noconfirm
+yay -Syu --devel --noconfirm
+yay -Y --devel --save --noconfirm
 
 # PACKAGES
 yay -S --noconfirm man xclip zsh neovim picom tree feh polybar \
-  zsh-syntaxt-highlighting zsh-autosuggestions wezterm xorg-xrandr autorandr \
-  pavucontrol i3-easyfocus xorg-xlsfonts gnome-screenshot libreoffice-fresh nvm \
+  zsh-syntax-highlighting zsh-autosuggestions wezterm xorg-xrandr autorandr \
+  pavucontrol xorg-xlsfonts gnome-screenshot libreoffice-fresh nvm \
   docker docker-compose zsh-history-substring-search btop entr nerd-fonts-fira-code \
-  noto-fonts-emoji rofi tldr autojump neofetch
+  noto-fonts-emoji rofi tldr autojump neofetch firefox
+
+sudo chmod +x /usr/share/nvm/init-nvm.sh
+./usr/share/nvm/init-nvm.sh
 
 # DOCKER
 sudo groupadd docker
@@ -34,12 +37,13 @@ systemctl start docker
 # DOTFILES
 mkdir ~/dotfiles
 
-git clone --bare git@github.com:jisensee/dotfiles.git ~/dotfiles
+git clone --bare https://github.com/jisensee/dotfiles.git ~/dotfiles
 alias config='git --git-dir=$HOME/dotfiles --work-tree=$HOME'
 
 rm ~/.config/.i3/config
 
 config checkout
+config remote set-url origin git@github.com:jisensee/dotfiles.git
 
 # ZSH
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"

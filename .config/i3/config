@@ -48,9 +48,6 @@ bindsym $mod+a exec "rofi -show combi -monitor -1 -show-icons"
 # installed.
 # bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 
-# i3-easyfocus
-bindsym $mod+n exec "i3-easyfocus --all --color-unfocused-bg bd93f9 --color-unfocused-fg 000000 --color-focused-bg bd93f9 --color-focused-fg 000000"
-
 # change focus
 bindsym $mod+o focus left
 bindsym $mod+e focus down
