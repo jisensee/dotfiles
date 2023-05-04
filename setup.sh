@@ -38,12 +38,12 @@ systemctl start docker
 mkdir ~/dotfiles
 
 git clone --bare https://github.com/jisensee/dotfiles.git ~/dotfiles
-alias config='git --git-dir=$HOME/dotfiles --work-tree=$HOME'
+alias config=''
 
-rm ~/.config/.i3/config
+rm ~/.config/i3/config
 
-config checkout
-config remote set-url origin git@github.com:jisensee/dotfiles.git
+git --git-dir=$HOME/dotfiles --work-tree=$HOME checkout
+git --git-dir=$HOME/dotfiles --work-tree=$HOME remote set-url origin git@github.com:jisensee/dotfiles.git
 
 # ZSH
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
