@@ -41,6 +41,7 @@ git clone --bare https://github.com/jisensee/dotfiles.git ~/dotfiles
 alias config=''
 
 rm ~/.config/i3/config
+rm ~/.zshrc
 
 git --git-dir=$HOME/dotfiles --work-tree=$HOME checkout
 git --git-dir=$HOME/dotfiles --work-tree=$HOME remote set-url origin git@github.com:jisensee/dotfiles.git
