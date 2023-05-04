@@ -34,19 +34,17 @@ systemctl enable docker.service
 systemctl enable containerd.service
 systemctl start docker
 
-# DOTFILES
-mkdir ~/dotfiles
-
-git clone --bare https://github.com/jisensee/dotfiles.git ~/dotfiles
-alias config=''
-
-rm ~/.config/i3/config
-rm ~/.zshrc
-
-git --git-dir=$HOME/dotfiles --work-tree=$HOME checkout
-git --git-dir=$HOME/dotfiles --work-tree=$HOME remote set-url origin git@github.com:jisensee/dotfiles.git
-
 # ZSH
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
 git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:=$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
+
+# DOTFILES
+mkdir ~/dotfiles
+
+git clone --bare https://github.com/jisensee/dotfiles.git ~/dotfiles
+
+rm ~/.zshrc
+
+git --git-dir=$HOME/dotfiles --work-tree=$HOME checkout
+git --git-dir=$HOME/dotfiles --work-tree=$HOME remote set-url origin git@github.com:jisensee/dotfiles.git
