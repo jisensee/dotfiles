@@ -83,4 +83,12 @@ return {
     name = 'inc_rename',
     config = true,
   },
+  {
+    'antosha417/nvim-lsp-file-operations',
+    config = true,
+    dependencies = {
+      'nvim-lua/plenary.nvim',
+      'nvim-tree/nvim-tree.lua',
+    },
+  },
 }
