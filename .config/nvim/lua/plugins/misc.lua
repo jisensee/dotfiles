@@ -7,6 +7,7 @@ return {
   {
     'ellisonleao/glow.nvim',
     cond = not vim.g.started_by_firenvim,
+    event = 'VeryLazy',
     config = true,
   },
   'romainl/vim-cool',
@@ -27,24 +28,23 @@ return {
       'rcarriga/nvim-notify',
     },
     cond = not vim.g.started_by_firenvim,
-    config = function()
-      require('telescope').load_extension 'harpoon'
-      local wk = require 'which-key'
-      local notify = require 'notify'
+    keys = {
+      {
+        '<leader>a',
+        function()
+          require('harpoon.mark').add_file()
 
-      wk.register({
-        a = {
-          function()
-            require('harpoon.mark').add_file()
-            notify('Added file to harpoon', 'info', { title = 'Harpoon' })
-          end,
-          'Add file to harpoon',
-        },
-        m = {
-          require('telescope').extensions.harpoon.marks,
-          'Open marked files',
-        },
-      }, { prefix = '<leader>' })
-    end,
+          local notify = require 'notify'
+          notify('Added file to harpoon', 'info', { title = 'Harpoon' })
+        end,
+        desc = 'Add file to harpoon',
+      },
+      {
+        '<leader>m',
+        function() require('telescope').extensions.harpoon.marks() end,
+        desc = 'Open marked files',
+      },
+    },
+    config = function() require('telescope').load_extension 'harpoon' end,
   },
 }

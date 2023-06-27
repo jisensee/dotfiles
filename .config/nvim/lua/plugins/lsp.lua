@@ -27,10 +27,7 @@ local function lsp_keymap(bufnr)
   }, { prefix = 'g', buffer = bufnr })
 end
 
-local function on_attach(client, bufnr)
-  local caps = client.server_capabilities
-  lsp_keymap(bufnr)
-end
+local function on_attach(_, bufnr) lsp_keymap(bufnr) end
 
 local function lsp_zero_setup()
   local lsp = require 'lsp-zero'
@@ -75,7 +72,7 @@ return {
       -- Snippets
       'L3MON4D3/LuaSnip',
       -- Other
-      'nvim-telescope/telescope.nvim',
+      -- 'nvim-telescope/telescope.nvim',
       'onsails/lspkind.nvim',
     },
     cond = not vim.g.started_by_firenvim,

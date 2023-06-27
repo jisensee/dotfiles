@@ -3,6 +3,7 @@ return {
   'tpope/vim-repeat',
   {
     'windwp/nvim-autopairs',
+    event = 'InsertEnter',
     config = true,
   },
   'tpope/vim-surround',
@@ -19,6 +20,7 @@ return {
   },
   {
     'lukas-reineke/indent-blankline.nvim',
+    event = 'InsertEnter',
     opts = {
       show_current_context = true,
       show_current_context_start = true,
@@ -33,24 +35,30 @@ return {
     opts = {
       keys = 'aoeuhtns',
     },
-    config = function(_, opts)
-      require('iswap').setup(opts)
-      require('which-key').register({
-        name = 'ISwap',
-        a = { ':ISwapWith<cr>', 'Swap element under cursor with adjacent' },
-        l = {
-          ':ISwapWithLeft<cr>',
-          'Swap element under cursor with element to the right',
-        },
-        r = {
-          ':ISwapWithRight<cr>',
-          'Swap element under cursor with element to the left',
-        },
-      }, { prefix = '<leader>s' })
-    end,
+    keys = {
+      {
+        '<leader>sa',
+        ':ISwapWith<cr>',
+        desc = 'Swap element under cursor with adjacent',
+        silent = true,
+      },
+      {
+        '<leader>sl',
+        ':ISwapWithLeft<cr>',
+        desc = 'Swap element under cursor with element to the right',
+        silent = true,
+      },
+      {
+        '<leader>sr',
+        ':ISwapWithRight<cr>',
+        desc = 'Swap element under cursor with element to the left',
+        silent = true,
+      },
+    },
   },
   {
     'abecodes/tabout.nvim',
+    event = 'InsertEnter',
     config = function()
       require('tabout').setup {
         tabkey = '<c-n>',
@@ -65,30 +73,32 @@ return {
     'AckslD/nvim-neoclip.lua',
     dependencies = { 'nvim-telescope/telescope.nvim' },
     cond = not vim.g.started_by_firenvim,
+    keys = {
+      {
+        '<leader>c',
+        ':Telescope neoclip<cr>',
+        desc = 'Open Neoclip',
+      },
+    },
     config = function()
       require('neoclip').setup()
       require('telescope').load_extension 'neoclip'
-
-      require('which-key').register({
-        c = { ':Telescope neoclip<cr>', 'Open Neoclip' },
-      }, { prefix = '<leader>' })
     end,
   },
   {
     'nvim-pack/nvim-spectre',
     cond = not vim.g.started_by_firenvim,
-    config = function()
-      local spectre = require 'spectre'
-      spectre.setup()
-
-      require('which-key').register({
-        S = { spectre.open, 'Open Spectre' },
-      }, { prefix = '<leader>' })
-    end,
+    keys = {
+      {
+        '<leader>S',
+        function() require('spectre').open() end,
+        desc = 'Open Spectre',
+      },
+    },
+    config = true,
   },
   {
     'bennypowers/splitjoin.nvim',
-    lazy = true,
     keys = {
       {
         'gj',
@@ -105,6 +115,7 @@ return {
   {
     'github/copilot.vim',
     cond = not vim.g.started_by_firenvim,
+    event = 'InsertEnter',
     config = function()
       vim.cmd [[imap <silent><script><expr> <C-Space> copilot#Accept("")]]
     end,

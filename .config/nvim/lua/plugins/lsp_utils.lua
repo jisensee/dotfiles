@@ -8,19 +8,20 @@ return {
       auto_open = false,
       auto_close = true,
     },
-    config = function(_, opts)
-      require('trouble').setup(opts)
-      local wk = require 'which-key'
-
-      wk.register({
-        name = 'Diagnostics window',
-        d = { ':Trouble document_diagnostics<cr>', 'Open document diagnostics' },
-        w = {
-          ':Trouble workspace_diagnostics<cr>',
-          'Open workspace diagnostics',
-        },
-      }, { prefix = '<leader>d' })
-    end,
+    keys = {
+      {
+        '<leader>dd',
+        ':Trouble document_diagnostics<cr>',
+        desc = 'Open document diagnostics',
+        silent = true,
+      },
+      {
+        '<leader>dw',
+        ':Trouble workspace_diagnostics<cr>',
+        desc = 'Open workspace diagnostics',
+        silent = true,
+      },
+    },
   },
   {
     'kosayoda/nvim-lightbulb',
@@ -31,11 +32,14 @@ return {
   },
   {
     'weilbith/nvim-code-action-menu',
-    config = function()
-      require('which-key').register {
-        ['<leader>.'] = { ':CodeActionMenu<cr>', 'Show code actions' },
-      }
-    end,
+    keys = {
+      {
+        '<leader>.',
+        ':CodeActionMenu<cr>',
+        desc = 'Show code actions',
+        silent = true,
+      },
+    },
   },
   {
     'RRethy/vim-illuminate',

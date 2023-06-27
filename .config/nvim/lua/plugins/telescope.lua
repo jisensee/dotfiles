@@ -49,16 +49,6 @@ local function setup()
   telescope.load_extension 'fzy_native'
 end
 
-local function keys()
-  local telescope = require 'telescope.builtin'
-  local wk = require 'which-key'
-
-  wk.register({
-    g = { telescope.live_grep, 'Live grep' },
-    ['<leader>'] = { telescope.builtin, 'Telescope pickers' },
-  }, { prefix = '<leader>' })
-end
-
 return {
   {
     'nvim-telescope/telescope.nvim',
@@ -67,33 +57,32 @@ return {
       'danielfalk/smart-open.nvim',
       'nvim-telescope/telescope-fzy-native.nvim',
     },
+    keys = {
+      {
+        '<leader>g',
+        function() require('telescope.builtin').live_grep() end,
+        desc = 'Live grep',
+      },
+      {
+        '<S-Enter>',
+        function() require('telescope.builtin').builtin() end,
+        desc = 'Telescope pickers',
+      },
+    },
     cond = not vim.g.started_by_firenvim,
-    config = function()
-      setup()
-      keys()
-    end,
+    config = function() setup() end,
   },
   {
     'danielfalk/smart-open.nvim',
     branch = '0.1.x',
     dependencies = { 'kkharji/sqlite.lua', 'nvim-telescope/telescope.nvim' },
     cond = not vim.g.started_by_firenvim,
-    config = function()
-      local wk = require 'which-key'
-      local telescope = require 'telescope'
-
-      wk.register({
-        f = {
-          function()
-            telescope.extensions.smart_open.smart_open { cwd_only = true }
-          end,
-          'Smart open file in current working directory',
-        },
-        F = {
-          telescope.extensions.smart_open.smart_open,
-          'Smart open file everywhere',
-        },
-      }, { prefix = '<leader>' })
-    end,
+    keys = {
+      {
+        '<Enter>',
+        function() require('telescope').extensions.smart_open.smart_open() end,
+        desc = 'Smart open file in current working directory',
+      },
+    },
   },
 }
