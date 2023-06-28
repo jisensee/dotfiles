@@ -15,18 +15,18 @@ return {
     },
     keys = {
       {
-        '*',
+        '<Enter>',
+        mode = 'n',
+        function() require('flash').jump() end,
+      },
+      {
+        '<S-Enter>',
         mode = 'n',
         function()
           require('flash').jump {
             pattern = vim.fn.expand '<cword>',
           }
         end,
-      },
-      {
-        '<BS>',
-        mode = 'n',
-        function() require('flash').jump() end,
       },
       {
         's',

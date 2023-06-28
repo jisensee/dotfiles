@@ -64,7 +64,7 @@ return {
         desc = 'Live grep',
       },
       {
-        '<S-Enter>',
+        '<S-BS>',
         function() require('telescope.builtin').builtin() end,
         desc = 'Telescope pickers',
       },
@@ -79,7 +79,7 @@ return {
     cond = not vim.g.started_by_firenvim,
     keys = {
       {
-        '<Enter>',
+        '<BS>',
         function() require('telescope').extensions.smart_open.smart_open() end,
         desc = 'Smart open file in current working directory',
       },
