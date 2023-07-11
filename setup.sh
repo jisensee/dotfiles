@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # GIT
 sudo pacman -S git
 git config --global user.name "Jannis Isensee"
@@ -21,7 +23,7 @@ yay -S --noconfirm man xclip zsh neovim picom tree feh polybar \
   zsh-syntax-highlighting zsh-autosuggestions wezterm xorg-xrandr autorandr \
   pavucontrol xorg-xlsfonts gnome-screenshot libreoffice-fresh nvm \
   docker docker-compose zsh-history-substring-search btop entr nerd-fonts-fira-code \
-  noto-fonts-emoji rofi tldr autojump neofetch firefox
+  noto-fonts-emoji rofi tldr autojump-rs neofetch firefox ttf-firacode-nerd
 
 sudo chmod +x /usr/share/nvm/init-nvm.sh
 ./usr/share/nvm/init-nvm.sh
