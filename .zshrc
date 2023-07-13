@@ -145,6 +145,10 @@ alias bb='sudo shutdown now'
 alias ff='fastfetch'
 alias s='systemctl'
 
+# KEYBOARD LAYOUTS
+alias kb-q='setxkbmap us,us'
+alias kb-d='setxkbmap -layout us,us -variant dvorak,dvorak'
+
 # OTHER
 alias cbi='xclip -selection "clipboard"'
 alias cbo='xclip -o -selection "clipboard"'
