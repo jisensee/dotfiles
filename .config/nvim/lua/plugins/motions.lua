@@ -15,12 +15,12 @@ return {
     },
     keys = {
       {
-        '<Enter>',
+        '<S-Enter>',
         mode = 'n',
         function() require('flash').jump() end,
       },
       {
-        '<S-Enter>',
+        '<C-Enter>',
         mode = 'n',
         function()
           require('flash').jump {
