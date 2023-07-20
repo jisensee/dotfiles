@@ -1,5 +1,30 @@
 return {
-  'mrjones2014/nvim-ts-rainbow',
+  {
+    'hiphish/rainbow-delimiters.nvim',
+    config = function()
+      local rainbow_delimiters = require 'rainbow-delimiters'
+
+      vim.g.rainbow_delimiters = {
+        strategy = {
+          [''] = rainbow_delimiters.strategy['global'],
+          vim = rainbow_delimiters.strategy['local'],
+        },
+        query = {
+          [''] = 'rainbow-delimiters',
+          lua = 'rainbow-blocks',
+        },
+        highlight = {
+          'RainbowDelimiterRed',
+          'RainbowDelimiterYellow',
+          'RainbowDelimiterBlue',
+          'RainbowDelimiterOrange',
+          'RainbowDelimiterGreen',
+          'RainbowDelimiterViolet',
+          'RainbowDelimiterCyan',
+        },
+      }
+    end,
+  },
   {
     'nvim-treesitter/nvim-treesitter',
     lazy = false,
@@ -36,10 +61,10 @@ return {
         -- Instead of true it can also be a list of languages
         additional_vim_regex_highlighting = false,
       },
-      rainbow = {
-        enable = true,
-        extended_mode = true,
-      },
+      -- rainbow = {
+      --   enable = true,
+      --   extended_mode = true,
+      -- },
       context_commentstring = {
         enable = true,
         enable_autocmd = false,
