@@ -11,7 +11,7 @@ local function lsp_keymap(bufnr)
   wk.register({
     r = { ':IncRename ', 'Rename symbol' },
     v = { vim.diagnostic.goto_prev, 'Go to previous diagnostic' },
-    z = { vim.diagnostic.goto_prev, 'Go to next diagnostic' },
+    z = { vim.diagnostic.goto_next, 'Go to next diagnostic' },
   }, { prefix = '<leader>', buffer = bufnr })
 
   wk.register({
