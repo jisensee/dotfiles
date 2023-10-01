@@ -20,6 +20,7 @@ return {
   },
   {
     'lukas-reineke/indent-blankline.nvim',
+    main = 'ibl',
     event = 'InsertEnter',
     opts = {
       show_current_context = true,
