@@ -27,28 +27,57 @@ local function lsp_keymap(bufnr)
   }, { prefix = 'g', buffer = bufnr })
 end
 
-local function on_attach(_, bufnr) lsp_keymap(bufnr) end
-
-local function lsp_zero_setup()
-  local lsp = require 'lsp-zero'
+local function cmp_setup()
   local lspkind = require 'lspkind'
-  lsp.preset 'recommended'
-  lsp.set_preferences { set_lsp_keymaps = false }
-  lsp.nvim_workspace()
-  lsp.on_attach(on_attach)
+  local cmp = require 'cmp'
+  local cmp_action = require('lsp-zero').cmp_action()
 
-  lsp.setup_nvim_cmp {
+  cmp.setup {
+    preselect = 'item',
+    completion = {
+      completeopt = 'menu,menuone,noinsert',
+    },
+    sources = {
+      { name = 'nvim_lsp' },
+      { name = 'luasnip' },
+      { name = 'buffer' },
+      { name = 'path' },
+      { name = 'nvim_lua' },
+    },
     formatting = {
       format = lspkind.cmp_format(),
     },
+    mapping = cmp.mapping.preset.insert {
+      ['<C-e>'] = cmp.mapping.complete(),
+      ['<Tab>'] = cmp_action.luasnip_supertab(),
+      ['<S-Tab>'] = cmp_action.luasnip_shift_supertab(),
+      ['<CR>'] = cmp.mapping.confirm {
+        behavior = cmp.ConfirmBehavior.Replace,
+        select = true,
+      },
+    },
   }
-  lsp.setup()
+end
 
-  vim.diagnostic.config { virtual_text = true }
+local function lsp_zero_setup()
+  local lsp_zero = require 'lsp-zero'
+
+  lsp_zero.on_attach(function(_, bufnr) lsp_keymap(bufnr) end)
+
+  require('mason').setup()
+  require('mason-lspconfig').setup {
+    handlers = {
+      lsp_zero.default_setup,
+    },
+  }
+
+  require('lspconfig').lua_ls.setup(lsp_zero.nvim_lua_ls())
+
+  cmp_setup()
 end
 
 local function snippets_setup()
-  require('luasnip.loaders.from_lua').lazy_load { paths = { './snippets' } }
+  require('luasnip.loaders.from_lua').load { paths = { './snippets' } }
   local ls = require 'luasnip'
   ls.filetype_extend('typescriptreact', { 'typescript' })
 end
@@ -56,46 +85,26 @@ end
 return {
   {
     'VonHeikemen/lsp-zero.nvim',
-    branch = 'v1.x',
+    branch = 'v3.x',
     dependencies = {
-      -- LSP Support
-      'neovim/nvim-lspconfig',
+      -- LSP
       'williamboman/mason.nvim',
-      'williamboman/mason-lspconfig.nvim', -- Autocompletion
+      'williamboman/mason-lspconfig.nvim',
+      'neovim/nvim-lspconfig',
+      -- CMP
       'hrsh7th/nvim-cmp',
       'hrsh7th/cmp-nvim-lsp',
       'hrsh7th/cmp-buffer',
       'hrsh7th/cmp-path',
-      'saadparwaiz1/cmp_luasnip',
       'hrsh7th/cmp-nvim-lua',
-
-      -- Snippets
-      'L3MON4D3/LuaSnip',
-      -- Other
-      -- 'nvim-telescope/telescope.nvim',
+      'saadparwaiz1/cmp_luasnip',
       'onsails/lspkind.nvim',
+      'L3MON4D3/LuaSnip',
     },
     cond = not vim.g.started_by_firenvim,
     config = function()
       lsp_zero_setup()
       snippets_setup()
-    end,
-  },
-  {
-    'jose-elias-alvarez/null-ls.nvim',
-    cond = not vim.g.started_by_firenvim,
-    config = function()
-      local nls = require 'null-ls'
-      local helpers = require 'null-ls.helpers'
-      local ktfmt_source = require('formatting').make_ktfmt_source(nls, helpers)
-
-      nls.setup {
-        sources = {
-          nls.builtins.formatting.prettierd,
-          nls.builtins.formatting.stylua,
-          ktfmt_source,
-        },
-      }
     end,
   },
 }

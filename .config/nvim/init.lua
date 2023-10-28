@@ -17,5 +17,4 @@ require 'lazy'.setup 'plugins'
 
 require 'keymap'
 require 'options'
-require 'formatting'
 require 'misc'
