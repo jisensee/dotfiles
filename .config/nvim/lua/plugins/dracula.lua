@@ -1,6 +1,9 @@
+local red = '#FF5555'
+local orange = '#FFB86C'
+local cyan = '#8BE9FD'
+
 return {
   {
-    -- 'Mofiqul/dracula.nvim',
     'maxmx03/dracula.nvim',
     lazy = false,
     priority = 1000,
@@ -10,12 +13,12 @@ return {
         fg = '#F8F8F2',
         selection = '#2f3242',
         comment = '#7a88f2',
-        red = '#FF5555',
-        orange = '#FFB86C',
+        red = red,
+        orange = orange,
         yellow = '#F1FA8C',
         green = '#50fa7b',
         purple = '#BD93F9',
-        cyan = '#8BE9FD',
+        cyan = cyan,
         pink = '#FF79C6',
         bright_red = '#FF6E6E',
         bright_green = '#69FF94',
@@ -30,6 +33,28 @@ return {
         nontext = '#3B4048',
       },
       transparent = true,
+      override = {
+        DiagnosticUnderlineError = {
+          fg = 'NONE',
+          sp = red,
+          underline = true,
+        },
+        DiagnosticUnderlineWarn = {
+          fg = 'NONE',
+          sp = orange,
+          underline = true,
+        },
+        DiagnosticUnderlineInfo = {
+          fg = 'NONE',
+          sp = cyan,
+          underline = true,
+        },
+        DiagnosticUnderlineHint = {
+          fg = 'NONE',
+          sp = cyan,
+          underline = true,
+        },
+      },
     },
     config = function(_, opts)
       require('dracula').setup(opts)

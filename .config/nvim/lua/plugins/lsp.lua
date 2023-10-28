@@ -63,6 +63,12 @@ local function lsp_zero_setup()
   local lsp_zero = require 'lsp-zero'
 
   lsp_zero.on_attach(function(_, bufnr) lsp_keymap(bufnr) end)
+  lsp_zero.set_sign_icons {
+    error = '✘',
+    warn = '▲',
+    hint = '⚑',
+    info = '»',
+  }
 
   require('mason').setup()
   require('mason-lspconfig').setup {
