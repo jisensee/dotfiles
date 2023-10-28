@@ -1,5 +1,7 @@
 export ZSH="/home/jannis/.oh-my-zsh"
 
+export KUBECONFIG=~/.kube/context.yaml:$(ls ~/.kube | grep .yaml | grep -v context.yaml | sed 's|^|'"$HOME"'/.kube/|' | tr '\n' ':' | sed 's/:$//')
+
 ZSH_THEME="powerlevel10k/powerlevel10k"
 
 plugins=(
@@ -52,7 +54,7 @@ bindkey '^ ' autosuggest-accept
 eval `dircolors ~/.dir_colors`
 
 # ENV
-export PATH=$PATH:~/tools
+export PATH=$PATH:~/tools:~/.local/bin:/usr/share/nvm
 export SHELL=/bin/zsh
 export EDITOR=nvim
 
@@ -173,3 +175,10 @@ then
     source $f
   done
 fi
+
+# bun completions
+[ -s "/home/jannis/.bun/_bun" ] && source "/home/jannis/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
