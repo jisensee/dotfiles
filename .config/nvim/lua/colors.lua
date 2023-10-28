@@ -1,0 +1,16 @@
+return {
+  red = '#FF5555',
+  orange = '#FFB86C',
+  cyan = '#8BE9FD',
+  yellow = '#F1FA8C',
+  pink = '#FF79C6',
+  green = '#50FA7B',
+  purple = '#BD93F9',
+  bright_red = '#FF6E6E',
+  bright_green = '#69FF94',
+  bright_yellow = '#FFFFA5',
+  bright_blue = '#D6ACFF',
+  bright_magenta = '#FF92DF',
+  bright_cyan = '#A4FFFF',
+  bright_white = '#FFFFFF',
+}

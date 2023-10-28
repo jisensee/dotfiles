@@ -1,9 +1,9 @@
+local colors = require '../colors'
 return {
   'wellle/targets.vim',
   'tpope/vim-repeat',
   {
     'windwp/nvim-autopairs',
-    event = 'InsertEnter',
     config = true,
   },
   'tpope/vim-surround',
@@ -20,9 +20,32 @@ return {
   },
   {
     'lukas-reineke/indent-blankline.nvim',
-    main = 'ibl',
-    event = 'InsertEnter',
-    config = true,
+    config = function()
+      local hooks = require 'ibl.hooks'
+      hooks.register(hooks.type.HIGHLIGHT_SETUP, function()
+        vim.api.nvim_set_hl(0, 'RainbowRed', { fg = colors.bright_red })
+        vim.api.nvim_set_hl(0, 'RainbowYellow', { fg = colors.bright_yellow })
+        vim.api.nvim_set_hl(0, 'RainbowBlue', { fg = colors.bright_blue })
+        vim.api.nvim_set_hl(0, 'RainbowOrange', { fg = colors.orange })
+        vim.api.nvim_set_hl(0, 'RainbowGreen', { fg = colors.bright_green })
+        vim.api.nvim_set_hl(0, 'RainbowViolet', { fg = colors.purple })
+        vim.api.nvim_set_hl(0, 'RainbowCyan', { fg = colors.bright_cyan })
+      end)
+      require('ibl').setup {
+        indent = {
+          char = '│',
+          highlight = {
+            'RainbowRed',
+            'RainbowYellow',
+            'RainbowBlue',
+            'RainbowOrange',
+            'RainbowGreen',
+            'RainbowViolet',
+            'RainbowCyan',
+          },
+        },
+      }
+    end,
   },
   {
     'windwp/nvim-ts-autotag',
@@ -56,7 +79,6 @@ return {
   },
   {
     'abecodes/tabout.nvim',
-    event = 'InsertEnter',
     config = function()
       require('tabout').setup {
         tabkey = '<c-n>',
@@ -113,7 +135,6 @@ return {
   {
     'github/copilot.vim',
     cond = not vim.g.started_by_firenvim,
-    event = 'InsertEnter',
     config = function()
       vim.cmd [[imap <silent><script><expr> <C-Space> copilot#Accept("")]]
     end,

@@ -80,7 +80,11 @@ return {
     keys = {
       {
         '<BS>',
-        function() require('telescope').extensions.smart_open.smart_open() end,
+        function()
+          require('telescope').extensions.smart_open.smart_open {
+            cwd_only = true,
+          }
+        end,
         desc = 'Smart open file in current working directory',
       },
     },
