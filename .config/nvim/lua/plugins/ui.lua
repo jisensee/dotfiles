@@ -8,6 +8,7 @@ return {
       extended_keymaps = true,
       scroll_limit = 75,
       max_length = 100,
+      horizontal_scroll = false,
     },
   },
   {
