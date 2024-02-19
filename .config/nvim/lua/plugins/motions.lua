@@ -13,12 +13,12 @@ return {
     },
     keys = {
       {
-        '<S-Enter>',
+        's',
         mode = 'n',
         function() require('flash').jump() end,
       },
       {
-        '<C-Enter>',
+        'S',
         mode = 'n',
         function()
           require('flash').jump {
@@ -27,12 +27,12 @@ return {
         end,
       },
       {
-        's',
+        '<C-Enter>',
         mode = 'n',
         function() require('flash').treesitter_search() end,
       },
       {
-        'S',
+        '<S-Enter>',
         mode = 'n',
         function() require('flash').treesitter() end,
       },

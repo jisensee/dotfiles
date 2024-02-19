@@ -18,7 +18,7 @@ vim.opt.hlsearch = false
 -- swap & undo
 vim.opt.swapfile = false
 vim.opt.backup = false
-vim.opt.undodir = os.getenv("HOME") .. '/.vim/undodir'
+vim.opt.undodir = os.getenv 'HOME' .. '/.vim/undodir'
 vim.opt.undofile = true
 
 -- misc
@@ -27,3 +27,4 @@ vim.opt.hidden = true
 vim.opt.signcolumn = 'yes:2'
 vim.opt.updatetime = 500
 vim.opt.laststatus = 3
+vim.opt.conceallevel = 2
