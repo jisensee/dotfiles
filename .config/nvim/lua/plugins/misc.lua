@@ -62,4 +62,9 @@ return {
     build = function() require('dbee').install() end,
     config = true,
   },
+  {
+    'jisensee/abc.nvim',
+    config = function() require('abc-nvim').setup() end,
+    ft = 'abc',
+  },
 }
