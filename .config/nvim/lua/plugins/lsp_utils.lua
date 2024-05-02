@@ -53,7 +53,7 @@ return {
       local illuminate = require 'illuminate'
       illuminate.configure(opts)
 
-      local colors = require 'dracula.palettes'
+      -- local colors = require 'dracula.colors'
       local hl_groups = {
         'IlluminatedWordText',
         'IlluminatedWordRead',
@@ -63,7 +63,7 @@ return {
         hl_groups,
         function(group)
           vim.api.nvim_set_hl(0, group, {
-            bg = colors.nontext,
+            -- bg = colors.nontext,
             underline = true,
           })
         end

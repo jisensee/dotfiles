@@ -12,6 +12,7 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 vim.g.mapleader = ' '
+vim.opt.termguicolors = true
 
 require('lazy').setup 'plugins'
 
