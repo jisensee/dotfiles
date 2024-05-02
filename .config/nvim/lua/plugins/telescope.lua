@@ -87,6 +87,11 @@ return {
         end,
         desc = 'Smart open file in current working directory',
       },
+      {
+        '<leader><leader>',
+        function() require('telescope.builtin').builtin() end,
+        desc = 'Telescope pickers',
+      },
     },
   },
 }
