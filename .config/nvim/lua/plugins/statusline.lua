@@ -1,3 +1,6 @@
 return {
-  { 'echasnovski/mini.statusline', version = '*', config = true },
+  {
+    'nvim-lualine/lualine.nvim',
+    config = true,
+  },
 }
