@@ -77,7 +77,35 @@ local function lsp_zero_setup()
     },
   }
 
-  require('lspconfig').lua_ls.setup(lsp_zero.nvim_lua_ls())
+  local lspconfig = require 'lspconfig'
+  lspconfig.lua_ls.setup(lsp_zero.nvim_lua_ls())
+  lspconfig.tsserver.setup {
+    handlers = {
+      ['textDocument/publishDiagnostics'] = function(_, result, ctx, config)
+        if result.diagnostics == nil then return end
+
+        -- ignore some tsserver diagnostics
+        local idx = 1
+        while idx <= #result.diagnostics do
+          local entry = result.diagnostics[idx]
+
+          local formatter = require('format-ts-errors')[entry.code]
+          entry.message = formatter and formatter(entry.message)
+            or entry.message
+
+          -- codes: https://github.com/microsoft/TypeScript/blob/main/src/compiler/diagnosticMessages.json
+          if entry.code == 80001 then
+            -- { message = "File is a CommonJS module; it may be converted to an ES module.", }
+            table.remove(result.diagnostics, idx)
+          else
+            idx = idx + 1
+          end
+        end
+
+        vim.lsp.diagnostic.on_publish_diagnostics(_, result, ctx, config)
+      end,
+    },
+  }
 
   cmp_setup()
 end
@@ -106,6 +134,9 @@ return {
       'saadparwaiz1/cmp_luasnip',
       'onsails/lspkind.nvim',
       'L3MON4D3/LuaSnip',
+
+      -- MISC
+      'davidosomething/format-ts-errors.nvim',
     },
     cond = not vim.g.started_by_firenvim,
     config = function()

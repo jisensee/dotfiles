@@ -134,9 +134,21 @@ return {
   },
   {
     'github/copilot.vim',
-    cond = not vim.g.started_by_firenvim,
+    cond = false and not vim.g.started_by_firenvim,
     config = function()
       vim.cmd [[imap <silent><script><expr> <C-Space> copilot#Accept("")]]
+    end,
+  },
+  {
+    'supermaven-inc/supermaven-nvim',
+    config = function()
+      require('supermaven-nvim').setup {
+        keymaps = {
+          accept_suggestion = '<C-Space>',
+          accept_word = '<C-j>',
+          clear_suggestion = '<C-]>',
+        },
+      }
     end,
   },
 }
