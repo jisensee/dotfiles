@@ -7,7 +7,7 @@ return {
   {
     'TimUntersberger/neogit',
     dependencies = { 'nvim-lua/plenary.nvim' },
-    cond = not vim.g.started_by_firenvim,
+    cond = not vim.g.started_by_firenvim and false,
     event = 'VeryLazy',
     config = true,
   },

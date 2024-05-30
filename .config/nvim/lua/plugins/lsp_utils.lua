@@ -31,11 +31,11 @@ return {
     },
   },
   {
-    'weilbith/nvim-code-action-menu',
+    'aznhe21/actions-preview.nvim',
     keys = {
       {
         '<leader>.',
-        ':CodeActionMenu<cr>',
+        function() require('actions-preview').code_actions() end,
         desc = 'Show code actions',
         silent = true,
       },
@@ -59,15 +59,12 @@ return {
         'IlluminatedWordRead',
         'IlluminatedWordWrite',
       }
-      list.foreach(
-        hl_groups,
-        function(group)
-          vim.api.nvim_set_hl(0, group, {
-            -- bg = colors.nontext,
-            underline = true,
-          })
-        end
-      )
+      list.foreach(hl_groups, function(group)
+        vim.api.nvim_set_hl(0, group, {
+          -- bg = colors.nontext,
+          underline = true,
+        })
+      end)
 
       local wk = require 'which-key'
       wk.register({
