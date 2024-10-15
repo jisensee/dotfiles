@@ -133,14 +133,8 @@ return {
     },
   },
   {
-    'github/copilot.vim',
-    cond = false and not vim.g.started_by_firenvim,
-    config = function()
-      vim.cmd [[imap <silent><script><expr> <C-Space> copilot#Accept("")]]
-    end,
-  },
-  {
     'supermaven-inc/supermaven-nvim',
+    cond = not vim.g.started_by_firenvim,
     config = function()
       require('supermaven-nvim').setup {
         keymaps = {
