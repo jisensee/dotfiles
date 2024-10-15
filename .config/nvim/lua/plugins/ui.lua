@@ -3,12 +3,10 @@ return {
   {
     'declancm/cinnamon.nvim',
     opts = {
-      default_keymaps = true,
-      extra_keymaps = true,
-      extended_keymaps = true,
-      scroll_limit = 75,
-      max_length = 100,
-      horizontal_scroll = false,
+      keymaps = {
+        basic = true,
+        extra = true,
+      },
     },
   },
   {

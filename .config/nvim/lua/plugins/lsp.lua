@@ -2,29 +2,77 @@ local function lsp_keymap(bufnr)
   local telescope = require 'telescope.builtin'
   local wk = require 'which-key'
 
-  wk.register({
-    H = { vim.lsp.buf.hover, 'Show lsp hover' },
-    T = { vim.diagnostic.open_float, 'Show diagnostic messages' },
-    ['<a-h>'] = { vim.lsp.buf.signature_help, 'Show signature help' },
-  }, { buffer = bufnr })
-
-  wk.register({
-    r = { ':IncRename ', 'Rename symbol' },
-    v = { vim.diagnostic.goto_prev, 'Go to previous diagnostic' },
-    z = { vim.diagnostic.goto_next, 'Go to next diagnostic' },
-  }, { prefix = '<leader>', buffer = bufnr })
-
-  wk.register({
-    d = { telescope.lsp_definitions, 'Go to definition' },
-    D = { telescope.lsp_implementiations, 'Show implementations' },
-    r = { telescope.lsp_references, 'Show all references' },
-    o = {
-      telescope.lsp_type_definitions,
-      'Go to type definition of current symbol',
+  wk.add {
+    {
+      '<a-h>',
+      vim.lsp.buf.signature_help,
+      buffer = bufnr,
+      desc = 'Show signature help',
     },
-    s = { telescope.lsp_document_symbols, 'Show document symbols' },
-    S = { telescope.lsp_worksapce_symbols, 'Show workspace symbols' },
-  }, { prefix = 'g', buffer = bufnr })
+    { 'H', vim.lsp.buf.hover, buffer = bufnr, desc = 'Show lsp hover' },
+    {
+      'T',
+      vim.diagnostic.open_float,
+      buffer = bufnr,
+      desc = 'Show diagnostic messages',
+    },
+  }
+
+  wk.add {
+    { '<leader>r', ':IncRename ', buffer = bufnr, desc = 'Rename symbol' },
+    {
+      '<leader>v',
+      vim.diagnostic.goto_prev,
+      buffer = bufnr,
+      desc = 'Go to previous diagnostic',
+    },
+    {
+      '<leader>z',
+      vim.diagnostic.goto_next,
+      buffer = bufnr,
+      desc = 'Go to next diagnostic',
+    },
+  }
+
+  wk.add
+ {
+    {
+      'gd',
+      telescope.lsp_definitions,
+      buffer = bufnr,
+      desc = 'Go to definition',
+    },
+    {
+      'gD',
+      telescope.lsp_implementiations,
+      buffer = bufnr,
+      desc = 'Show implementations',
+    },
+    {
+      'go',
+      telescope.lsp_type_definitions,
+      buffer = bufnr,
+      desc = 'Go to type definition of current symbol',
+    },
+    {
+      'gr',
+      telescope.lsp_references,
+      buffer = bufnr,
+      desc = 'Show all references',
+    },
+    {
+      'gs',
+      telescope.lsp_document_symbols,
+      buffer = bufnr,
+      desc = 'Show document symbols',
+    },
+    {
+      'gS',
+      telescope.lsp_workspace_symbols,
+      buffer = bufnr,
+      desc = 'Show workspace symbols',
+    },
+  }
 end
 
 local function cmp_setup()
@@ -47,6 +95,9 @@ local function cmp_setup()
     formatting = {
       format = lspkind.cmp_format(),
     },
+    snippet = {
+      expand = function(args) require('luasnip').lsp_expand(args.body) end,
+    },
     mapping = cmp.mapping.preset.insert {
       ['<C-e>'] = cmp.mapping.complete(),
       ['<Tab>'] = cmp_action.luasnip_supertab(),
@@ -62,12 +113,19 @@ end
 local function lsp_zero_setup()
   local lsp_zero = require 'lsp-zero'
 
+  local lsp_attach = function(_, bufnr) lsp_keymap(bufnr) end
   lsp_zero.on_attach(function(_, bufnr) lsp_keymap(bufnr) end)
   lsp_zero.set_sign_icons {
     error = '✘',
     warn = '▲',
     hint = '⚑',
     info = '»',
+  }
+  lsp_zero.extend_lspconfig {
+    capabilities = require('cmp_nvim_lsp').default_capabilities(),
+    lsp_attach = lsp_attach,
+    float_border = 'rounded',
+    sign_text = true,
   }
 
   require('mason').setup()
@@ -79,7 +137,7 @@ local function lsp_zero_setup()
 
   local lspconfig = require 'lspconfig'
   lspconfig.lua_ls.setup(lsp_zero.nvim_lua_ls())
-  lspconfig.tsserver.setup {
+  lspconfig.ts_ls.setup {
     handlers = {
       ['textDocument/publishDiagnostics'] = function(_, result, ctx, config)
         if result.diagnostics == nil then return end
@@ -119,7 +177,7 @@ end
 return {
   {
     'VonHeikemen/lsp-zero.nvim',
-    branch = 'v3.x',
+    branch = 'v4.x',
     dependencies = {
       -- LSP
       'williamboman/mason.nvim',

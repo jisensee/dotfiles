@@ -1,36 +1,40 @@
 local wk = require 'which-key'
 
-wk.register({
+wk.add {
   -- copy & pasting
-  y = { '"+y', 'Yank into clipboard' },
-  p = { '"+p', 'Paste from clipboard' },
+  { '<leader>y', '"+y', desc = 'Yank into clipboard' },
+  { '<leader>p', '"+p', desc = 'Paste from clipboard' },
 
   -- window navigation
-  h = { '<c-w>h', 'Move one window to the left' },
-  j = { '<c-w>j', 'Move one window down' },
-  k = { '<c-w>k', 'Move one window up' },
-  l = { '<c-w>l', 'Move one window to the right' },
+  { '<leader>j', '<c-w>j', desc = 'Move one window down' },
+  { '<leader>k', '<c-w>k', desc = 'Move one window up' },
+  { '<leader>l', '<c-w>l', desc = 'Move one window to the right' },
+  { '<leader>h', '<c-w>h', desc = 'Move one window to the left' },
 
   -- window manipulation
-  H = { '<c-w>H', 'Move current window to the left' },
-  J = { '<c-w>J', 'Move current window down' },
-  K = { '<c-w>K', 'Move current window up' },
-  L = { '<c-w>L', 'Move current window to the right' },
+  { '<leader>H', '<c-w>H', desc = 'Move current window to the left' },
+  { '<leader>J', '<c-w>J', desc = 'Move current window down' },
+  { '<leader>K', '<c-w>K', desc = 'Move current window up' },
+  { '<leader>L', '<c-w>L', desc = 'Move current window to the right' },
 
   -- saving & quitting
-  w = { ':w<cr>', 'Write buffer' },
-  W = { ':noa w<cr>', 'Write buffer without running autocommands' },
-  x = { ':x<cr>', 'Write buffer then quit' },
-  X = { ':xa<cr>', 'Write all buffers then quit' },
-  q = { ':q<cr>', 'Quit buffer' },
-  Q = { ':q!<cr>', 'Quit buffer without saving' },
-  E = { ':qa<cr>', 'Quit neovim' },
+  { '<leader>E', ':qa<cr>', desc = 'Quit neovim' },
+  { '<leader>q', ':q<cr>', desc = 'Quit buffer' },
+  { '<leader>w', ':w<cr>', desc = 'Write buffer' },
+  { '<leader>x', ':x<cr>', desc = 'Write buffer then quit' },
+  {
+    '<leader>W',
+    ':noa w<cr>',
+    desc = 'Write buffer without running autocommands',
+  },
+  { '<leader>X', ':xa<cr>', desc = 'Write all buffers then quit' },
+  { '<leader>Q', ':q!<cr>', desc = 'Quit buffer without saving' },
 
   -- misc
-  o = { 'o<esc>k', 'Insert empty below' },
-  O = { 'O<esc>j', 'Insert empty above' },
-  U = { 'gUiWe', 'Uppercase word' },
-}, { prefix = '<leader>' })
+  { '<leader>o', 'o<esc>k', desc = 'Insert empty below' },
+  { '<leader>O', 'O<esc>j', desc = 'Insert empty above' },
+  { '<leader>U', 'gUiWe', desc = 'Uppercase word' },
+}
 
 -- Center screen when searching
 vim.keymap.set('n', 'n', 'nzz')

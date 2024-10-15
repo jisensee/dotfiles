@@ -9,10 +9,11 @@ return {
     config = function(_, opts)
       require('noice').setup(opts)
       vim.keymap.set('n', '<Esc>', require('notify').dismiss)
-      require('which-key').register(
-        { n = { ':Telescope notify<cr>', 'Show recent notifications' } },
-        { prefix = '<leader>' }
-      )
+      require('which-key').add {
+        '<leader>n',
+        ':Telescope notify<cr>',
+        desc = 'Show recent notifications',
+      }
     end,
     opts = {
       lsp = {

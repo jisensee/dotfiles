@@ -67,16 +67,18 @@ return {
       end)
 
       local wk = require 'which-key'
-      wk.register({
-        V = {
+      wk.add {
+        {
+          '<leader>V',
           illuminate.goto_prev_reference,
-          'Goto prev reference illuminated token',
+          desc = 'Goto prev reference illuminated token',
         },
-        Z = {
+        {
+          '<leader>Z',
           illuminate.goto_next_reference,
-          'Goto next reference illuminated token',
+          desc = 'Goto next reference illuminated token',
         },
-      }, { prefix = '<leader>' })
+      }
     end,
   },
   {
