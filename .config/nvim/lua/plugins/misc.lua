@@ -1,3 +1,22 @@
+local function toggle_telescope(harpoon_files)
+  local conf = require('telescope.config').values
+  local file_paths = {}
+  for _, item in ipairs(harpoon_files.items) do
+    table.insert(file_paths, item.value)
+  end
+
+  require('telescope.pickers')
+    .new({}, {
+      prompt_title = 'Harpoon',
+      finder = require('telescope.finders').new_table {
+        results = file_paths,
+      },
+      previewer = conf.file_previewer {},
+      sorter = conf.generic_sorter {},
+    })
+    :find()
+end
+
 return {
   {
     'rmagatti/auto-session',
@@ -23,16 +42,18 @@ return {
   },
   {
     'ThePrimeagen/harpoon',
+    branch = 'harpoon2',
     dependencies = {
       'nvim-telescope/telescope.nvim',
       'rcarriga/nvim-notify',
+      'nvim-lua/plenary.nvim',
     },
     cond = not vim.g.started_by_firenvim,
     keys = {
       {
         '<leader>a',
         function()
-          require('harpoon.mark').add_file()
+          require('harpoon'):list():add()
 
           local notify = require 'notify'
           notify('Added file to harpoon', 'info', { title = 'Harpoon' })
@@ -41,11 +62,18 @@ return {
       },
       {
         '<leader>m',
-        function() require('telescope').extensions.harpoon.marks() end,
-        desc = 'Open marked files',
+        function() toggle_telescope(require('harpoon'):list()) end,
+        desc = 'Open marked files in telescope',
+      },
+      {
+        '<C-h>',
+        function()
+          require('harpoon').ui:toggle_quick_menu(require('harpoon'):list())
+        end,
+        desc = 'Open marked files in harpoon ui',
       },
     },
-    config = function() require('telescope').load_extension 'harpoon' end,
+    config = function() require('harpoon'):setup() end,
   },
   {
     'kndndrj/nvim-dbee',

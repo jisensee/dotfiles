@@ -13,18 +13,9 @@ return {
     },
     keys = {
       {
-        's',
-        mode = 'n',
-        function() require('flash').jump() end,
-      },
-      {
         'S',
         mode = 'n',
-        function()
-          require('flash').jump {
-            pattern = vim.fn.expand '<cword>',
-          }
-        end,
+        function() require('flash').jump() end,
       },
       {
         '<C-Enter>',

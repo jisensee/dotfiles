@@ -1,22 +1,51 @@
 local colors = require '../colors'
 return {
-  'wellle/targets.vim',
   'tpope/vim-repeat',
   {
-    'windwp/nvim-autopairs',
+    'echasnovski/mini.ai',
+    version = '*',
     config = true,
   },
-  'tpope/vim-surround',
   {
-    'numToStr/Comment.nvim',
-    config = function()
-      require('Comment').setup {
-        pre_hook = require(
-          'ts_context_commentstring.integrations.comment_nvim'
-        ).create_pre_hook(),
-      }
-    end,
+    'echasnovski/mini.splitjoin',
+    version = '*',
+    config = true,
+  },
+  {
+    'echasnovski/mini.surround',
+    version = '*',
+    config = true,
+  },
+  {
+    'echasnovski/mini.pairs',
+    version = '*',
+    config = true,
+  },
+  {
+    'echasnovski/mini.comment',
+    version = '*',
     dependencies = { 'JoosepAlviste/nvim-ts-context-commentstring' },
+    config = true,
+    opts = {
+      options = {
+        custom_commentstring = function()
+          return require('ts_context_commentstring.internal').calculate_commentstring()
+        end,
+      },
+    },
+  },
+  {
+    'echasnovski/mini.move',
+    version = '*',
+    config = true,
+    opts = {
+      mappings = {
+        down = '<M-t>',
+        up = '<M-c>',
+        line_down = '<M-t>',
+        line_up = '<M-c>',
+      },
+    },
   },
   {
     'lukas-reineke/indent-blankline.nvim',
@@ -119,6 +148,7 @@ return {
   },
   {
     'bennypowers/splitjoin.nvim',
+    cond = false,
     keys = {
       {
         'gj',
@@ -138,7 +168,7 @@ return {
     config = function()
       require('supermaven-nvim').setup {
         keymaps = {
-          accept_suggestion = '<C-Space>',
+          accept_suggestion = '<Tab>',
           accept_word = '<C-j>',
           clear_suggestion = '<C-]>',
         },

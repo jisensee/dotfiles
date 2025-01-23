@@ -43,7 +43,6 @@ return {
   },
   {
     'RRethy/vim-illuminate',
-    cond = true,
     opts = {
       filetypes_denylist = {
         'NvimTree',

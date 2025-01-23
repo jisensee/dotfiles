@@ -43,6 +43,10 @@ return {
           filter = { find = '.+%d+B written' },
           view = 'mini',
         },
+        {
+          filter = { find = 'Unable to find ESLint library.' },
+          opts = { skip = true },
+        },
       },
     },
   },

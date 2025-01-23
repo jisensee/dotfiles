@@ -1,5 +1,6 @@
 local function lsp_keymap(bufnr)
   local telescope = require 'telescope.builtin'
+  local cinnamon = require 'cinnamon'
   local wk = require 'which-key'
 
   wk.add {
@@ -34,11 +35,10 @@ local function lsp_keymap(bufnr)
     },
   }
 
-  wk.add
- {
+  wk.add {
     {
       'gd',
-      telescope.lsp_definitions,
+      function() cinnamon.scroll(telescope.lsp_definitions) end,
       buffer = bufnr,
       desc = 'Go to definition',
     },
@@ -67,45 +67,10 @@ local function lsp_keymap(bufnr)
       desc = 'Show document symbols',
     },
     {
-      'gS',
+      'gws',
       telescope.lsp_workspace_symbols,
       buffer = bufnr,
       desc = 'Show workspace symbols',
-    },
-  }
-end
-
-local function cmp_setup()
-  local lspkind = require 'lspkind'
-  local cmp = require 'cmp'
-  local cmp_action = require('lsp-zero').cmp_action()
-
-  cmp.setup {
-    preselect = 'item',
-    completion = {
-      completeopt = 'menu,menuone,noinsert',
-    },
-    sources = {
-      { name = 'nvim_lsp' },
-      { name = 'luasnip' },
-      { name = 'buffer' },
-      { name = 'path' },
-      { name = 'nvim_lua' },
-    },
-    formatting = {
-      format = lspkind.cmp_format(),
-    },
-    snippet = {
-      expand = function(args) require('luasnip').lsp_expand(args.body) end,
-    },
-    mapping = cmp.mapping.preset.insert {
-      ['<C-e>'] = cmp.mapping.complete(),
-      ['<Tab>'] = cmp_action.luasnip_supertab(),
-      ['<S-Tab>'] = cmp_action.luasnip_shift_supertab(),
-      ['<CR>'] = cmp.mapping.confirm {
-        behavior = cmp.ConfirmBehavior.Replace,
-        select = true,
-      },
     },
   }
 end
@@ -122,7 +87,6 @@ local function lsp_zero_setup()
     info = '»',
   }
   lsp_zero.extend_lspconfig {
-    capabilities = require('cmp_nvim_lsp').default_capabilities(),
     lsp_attach = lsp_attach,
     float_border = 'rounded',
     sign_text = true,
@@ -137,35 +101,6 @@ local function lsp_zero_setup()
 
   local lspconfig = require 'lspconfig'
   lspconfig.lua_ls.setup(lsp_zero.nvim_lua_ls())
-  lspconfig.ts_ls.setup {
-    handlers = {
-      ['textDocument/publishDiagnostics'] = function(_, result, ctx, config)
-        if result.diagnostics == nil then return end
-
-        -- ignore some tsserver diagnostics
-        local idx = 1
-        while idx <= #result.diagnostics do
-          local entry = result.diagnostics[idx]
-
-          local formatter = require('format-ts-errors')[entry.code]
-          entry.message = formatter and formatter(entry.message)
-            or entry.message
-
-          -- codes: https://github.com/microsoft/TypeScript/blob/main/src/compiler/diagnosticMessages.json
-          if entry.code == 80001 then
-            -- { message = "File is a CommonJS module; it may be converted to an ES module.", }
-            table.remove(result.diagnostics, idx)
-          else
-            idx = idx + 1
-          end
-        end
-
-        vim.lsp.diagnostic.on_publish_diagnostics(_, result, ctx, config)
-      end,
-    },
-  }
-
-  cmp_setup()
 end
 
 local function snippets_setup()
@@ -183,23 +118,83 @@ return {
       'williamboman/mason.nvim',
       'williamboman/mason-lspconfig.nvim',
       'neovim/nvim-lspconfig',
-      -- CMP
-      'hrsh7th/nvim-cmp',
-      'hrsh7th/cmp-nvim-lsp',
-      'hrsh7th/cmp-buffer',
-      'hrsh7th/cmp-path',
-      'hrsh7th/cmp-nvim-lua',
-      'saadparwaiz1/cmp_luasnip',
-      'onsails/lspkind.nvim',
+      'yioneko/nvim-vtsls',
       'L3MON4D3/LuaSnip',
-
-      -- MISC
-      'davidosomething/format-ts-errors.nvim',
     },
     cond = not vim.g.started_by_firenvim,
     config = function()
       lsp_zero_setup()
       snippets_setup()
     end,
+  },
+  {
+    'saghen/blink.cmp',
+    version = '*',
+    opts = {
+      completion = {
+        documentation = {
+          auto_show = true,
+        },
+        menu = {
+          auto_show = function(ctx)
+            return ctx.mode ~= 'cmdline'
+              and not vim.tbl_contains({ '/', '?' }, vim.fn.getcmdtype())
+          end,
+        },
+      },
+      snippets = {
+        preset = 'luasnip',
+      },
+      keymap = {
+        preset = 'none',
+        ['<Up>'] = { 'select_prev', 'fallback' },
+        ['<Down>'] = { 'select_next', 'fallback' },
+        ['<CR>'] = { 'accept', 'fallback' },
+        ['<Tab>'] = { 'snippet_forward', 'fallback' },
+        ['<S-Tab>'] = { 'snippet_backward', 'fallback' },
+      },
+    },
+  },
+  {
+    'pmizio/typescript-tools.nvim',
+    dependencies = {
+      'nvim-lua/plenary.nvim',
+      'neovim/nvim-lspconfig',
+      'davidosomething/format-ts-errors.nvim',
+    },
+    cond = not vim.g.started_by_firenvim,
+    opts = {
+      settings = {
+        expose_as_code_action = 'all',
+        tsserver_plugins = {
+          '@styled/typescript-styled-plugin',
+        },
+      },
+      handlers = {
+        ['textDocument/publishDiagnostics'] = function(_, result, ctx, config)
+          if result.diagnostics == nil then return end
+
+          -- ignore some tsserver diagnostics
+          local idx = 1
+          while idx <= #result.diagnostics do
+            local entry = result.diagnostics[idx]
+
+            local formatter = require('format-ts-errors')[entry.code]
+            entry.message = formatter and formatter(entry.message)
+              or entry.message
+
+            -- codes: https://github.com/microsoft/TypeScript/blob/main/src/compiler/diagnosticMessages.json
+            if entry.code == 80001 then
+              -- { message = "File is a CommonJS module; it may be converted to an ES module.", }
+              table.remove(result.diagnostics, idx)
+            else
+              idx = idx + 1
+            end
+          end
+
+          vim.lsp.diagnostic.on_publish_diagnostics(_, result, ctx, config)
+        end,
+      },
+    },
   },
 }
