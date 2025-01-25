@@ -7,6 +7,7 @@ return {
   color_scheme = 'Dracula (Official)',
   disable_default_key_bindings = true,
   adjust_window_size_when_changing_font_size = false,
+  warn_about_missing_glyphs = false,
   leader = { key = 'Backspace', mods = 'CTRL' },
   keys = {
     { key = '=', mods = 'CTRL', action = act.IncreaseFontSize },
