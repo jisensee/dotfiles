@@ -42,6 +42,7 @@ bindsym $mod+q kill
 
 # rofi
 bindsym $mod+a exec "rofi -show combi -monitor -1 -show-icons"
+bindsym $mod+p exec "$HOME/.config/rofi/scripts"
 
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
@@ -182,6 +183,29 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
+# MOUSE
+mode "mouse" {
+  set $slow 10
+  set $fast 100
+
+  bindsym period exec xdotool mousemove_relative -- 0 -$slow
+  bindsym e exec xdotool mousemove_relative 0 $slow
+  bindsym o exec xdotool mousemove_relative -- -$slow 0
+  bindsym u exec xdotool mousemove_relative $slow 0
+
+  bindsym Shift+period exec xdotool mousemove_relative -- 0 -$fast
+  bindsym Shift+e exec xdotool mousemove_relative 0 $fast
+  bindsym Shift+o exec xdotool mousemove_relative -- -$fast 0
+  bindsym Shift+u exec xdotool mousemove_relative $fast 0
+
+  bindsym h exec xdotool click 1
+  bindsym t exec xdotool click 2
+  bindsym n exec xdotool click 3
+
+  bindsym Escape mode "default"
+}
+# bindsym $mod+p mode "mouse"
+
 # CUSTOM
 bindsym $mod+b exec firefox
 bindsym $mod+Shift+b exec firefox --private-window
@@ -189,7 +213,9 @@ bindsym $mod+Shift+b exec firefox --private-window
 bindsym Print exec gnome-screenshot -w
 bindsym Control+Print exec gnome-screenshot -i
 
-exec --no-startup-id picom -b --config ~/.config/picom.conf
+exec --no-startup-id picom -b --config ~/.config/picom.conf --backend glx
+
+bindsym $mod+i exec '/home/jannis/.local/bin/hints'
 
 # GAPS
 for_window [class="^.*"] border pixel 3
