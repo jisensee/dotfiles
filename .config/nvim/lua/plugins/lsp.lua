@@ -136,9 +136,8 @@ return {
           auto_show = true,
         },
         menu = {
-          auto_show = function(ctx)
-            return ctx.mode ~= 'cmdline'
-              and not vim.tbl_contains({ '/', '?' }, vim.fn.getcmdtype())
+          auto_show = function()
+              return not vim.tbl_contains({ '/', '?' }, vim.fn.getcmdtype())
           end,
         },
       },
