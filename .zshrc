@@ -17,6 +17,7 @@ plugins=(
   sudo
   virtualenv
   web-search
+  direnv
  ) 
 
 source $ZSH/oh-my-zsh.sh
@@ -55,6 +56,7 @@ eval `dircolors ~/.dir_colors`
 
 # ENV
 export PATH=$PATH:~/tools:~/.local/bin:/usr/share/nvm
+
 export SHELL=/bin/zsh
 export EDITOR=nvim
 
@@ -147,6 +149,10 @@ alias bb='sudo shutdown now'
 alias ff='fastfetch'
 alias s='systemctl'
 
+# YARn
+alias y='yarn'
+alias yt='yarn test'
+
 # KEYBOARD LAYOUTS
 alias kb-q='setxkbmap us,us'
 alias kb-d='setxkbmap -layout us,us -variant dvorak,dvorak'
@@ -161,6 +167,7 @@ alias uuid='cat /proc/sys/kernel/random/uuid'
 alias c='git --git-dir=$HOME/dotfiles --work-tree=$HOME'
 alias cst='c status -uno'
 
+alias 'glo'='git log --grep "chore(release)" --invert-grep --no-merges --oneline'
 
 function cdl() {
   cd $1
@@ -182,3 +189,7 @@ fi
 # bun
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
+
+# asdf
+# . /opt/asdf-vm/asdf.sh
+# . "/home/jannis/.starkli/env"
