@@ -162,17 +162,4 @@ return {
       },
     },
   },
-  {
-    'supermaven-inc/supermaven-nvim',
-    cond = not vim.g.started_by_firenvim,
-    config = function()
-      require('supermaven-nvim').setup {
-        keymaps = {
-          accept_suggestion = '<C-Space>',
-          accept_word = '<C-j>',
-          clear_suggestion = '<C-]>',
-        },
-      }
-    end,
-  },
 }

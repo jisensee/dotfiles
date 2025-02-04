@@ -132,6 +132,11 @@ return {
     version = '*',
     cond = not vim.g.started_by_firenvim,
     opts = {
+      enabled = function()
+        return not vim.tbl_contains({ 'codecompanion' }, vim.bo.filetype)
+          and vim.bo.buftype ~= 'prompt'
+          and vim.b.completion ~= false
+      end,
       completion = {
         documentation = {
           auto_show = true,
