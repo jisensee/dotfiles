@@ -130,6 +130,7 @@ return {
   {
     'saghen/blink.cmp',
     version = '*',
+    cond = not vim.g.started_by_firenvim,
     opts = {
       completion = {
         documentation = {
@@ -137,7 +138,7 @@ return {
         },
         menu = {
           auto_show = function()
-              return not vim.tbl_contains({ '/', '?' }, vim.fn.getcmdtype())
+            return not vim.tbl_contains({ '/', '?' }, vim.fn.getcmdtype())
           end,
         },
       },
@@ -151,6 +152,7 @@ return {
         ['<CR>'] = { 'accept', 'fallback' },
         ['<Tab>'] = { 'snippet_forward', 'fallback' },
         ['<S-Tab>'] = { 'snippet_backward', 'fallback' },
+        ['<C-e>'] = { function(cmp) cmp.show() end, 'fallback' },
       },
     },
   },
