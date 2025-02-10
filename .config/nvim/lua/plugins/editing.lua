@@ -12,11 +12,6 @@ return {
     config = true,
   },
   {
-    'echasnovski/mini.surround',
-    version = '*',
-    config = true,
-  },
-  {
     'echasnovski/mini.pairs',
     version = '*',
     config = true,
@@ -46,6 +41,11 @@ return {
         line_up = '<M-c>',
       },
     },
+  },
+  {
+    'kylechui/nvim-surround',
+    version = '*',
+    config = true,
   },
   {
     'lukas-reineke/indent-blankline.nvim',
@@ -119,20 +119,50 @@ return {
     end,
   },
   {
-    'AckslD/nvim-neoclip.lua',
-    dependencies = { 'nvim-telescope/telescope.nvim' },
-    cond = not vim.g.started_by_firenvim,
+    'gbprod/substitute.nvim',
+    dependencies = { 'gbprod/yanky.nvim' },
+    opts = function()
+      return {
+        on_substitute = require('yanky.integration').substitute(),
+      }
+    end,
+    keys = {
+      {
+        's',
+        function() require('substitute').operator() end,
+      },
+      {
+        'ss',
+        function() require('substitute').line() end,
+      },
+      {
+        'S',
+        function() require('substitute').eol() end,
+      },
+    },
+  },
+  {
+    'gbprod/yanky.nvim',
+    opts = {},
+    config = function(_, opts)
+      require('yanky').setup(opts)
+      require('telescope').load_extension 'yank_history'
+
+      vim.api.nvim_set_hl(0, 'YankyYanked', { fg = colors.red })
+      vim.api.nvim_set_hl(0, 'YankyPut', { fg = colors.red })
+    end,
+    dependencies = {
+      'nvim-telescope/telescope.nvim',
+      'gbprod/substitute.nvim',
+    },
+
+    lazy = false,
     keys = {
       {
         '<leader>c',
-        ':Telescope neoclip<cr>',
-        desc = 'Open Neoclip',
+        ':Telescope yank_history<cr>',
       },
     },
-    config = function()
-      require('neoclip').setup()
-      require('telescope').load_extension 'neoclip'
-    end,
   },
   {
     'nvim-pack/nvim-spectre',

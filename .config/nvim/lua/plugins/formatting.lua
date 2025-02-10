@@ -14,11 +14,13 @@ end
 local jsFormatters = function(bufnr)
   if is_rhino(bufnr) and not is_rhino_frontend(bufnr) then
     return { 'dprint' }
-  else
+  elseif is_rhino(bufnr) then
     return {
       -- 'eslint_d',
       'prettier_yarn',
     }
+  else
+    return { 'prettier', 'eslint_d' }
   end
 end
 

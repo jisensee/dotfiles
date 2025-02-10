@@ -13,7 +13,7 @@ return {
     },
     keys = {
       {
-        'S',
+        '<Enter>',
         mode = 'n',
         function() require('flash').jump() end,
       },

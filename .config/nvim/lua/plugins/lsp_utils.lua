@@ -2,35 +2,6 @@ local list = require 'util.list'
 
 return {
   {
-    'folke/trouble.nvim',
-    dependencies = { 'nvim-tree/nvim-web-devicons' },
-    opts = {
-      auto_open = false,
-      auto_close = true,
-    },
-    keys = {
-      {
-        '<leader>dd',
-        ':Trouble document_diagnostics<cr>',
-        desc = 'Open document diagnostics',
-        silent = true,
-      },
-      {
-        '<leader>dw',
-        ':Trouble workspace_diagnostics<cr>',
-        desc = 'Open workspace diagnostics',
-        silent = true,
-      },
-    },
-  },
-  {
-    'kosayoda/nvim-lightbulb',
-    dependencies = 'antoinemadec/FixCursorHold.nvim',
-    opts = {
-      autocmd = { enabled = true },
-    },
-  },
-  {
     'aznhe21/actions-preview.nvim',
     keys = {
       {
@@ -86,11 +57,8 @@ return {
     config = true,
   },
   {
-    'antosha417/nvim-lsp-file-operations',
+    'davidmh/mdx.nvim',
     config = true,
-    dependencies = {
-      'nvim-lua/plenary.nvim',
-      'nvim-tree/nvim-tree.lua',
-    },
+    dependencies = { 'nvim-treesitter/nvim-treesitter' },
   },
 }

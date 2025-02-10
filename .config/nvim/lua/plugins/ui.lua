@@ -32,5 +32,10 @@ return {
       },
     },
   },
-  { 'echasnovski/mini.diff', version = '*', config = true },
+  {
+    'echasnovski/mini.diff',
+    version = '*',
+    cond = not vim.g.started_by_firenvim,
+    config = true,
+  },
 }
