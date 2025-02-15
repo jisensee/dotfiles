@@ -121,6 +121,7 @@ return {
   {
     'gbprod/substitute.nvim',
     dependencies = { 'gbprod/yanky.nvim' },
+    cond = not vim.g.started_by_firenvim,
     opts = function()
       return {
         on_substitute = require('yanky.integration').substitute(),
@@ -143,6 +144,7 @@ return {
   },
   {
     'gbprod/yanky.nvim',
+    cond = not vim.g.started_by_firenvim,
     opts = {},
     config = function(_, opts)
       require('yanky').setup(opts)
@@ -150,46 +152,29 @@ return {
 
       vim.api.nvim_set_hl(0, 'YankyYanked', { fg = colors.red })
       vim.api.nvim_set_hl(0, 'YankyPut', { fg = colors.red })
+
+      vim.api.nvim_create_user_command(
+        'YankHistory',
+        'Telescope yank_history',
+        {}
+      )
     end,
     dependencies = {
       'nvim-telescope/telescope.nvim',
       'gbprod/substitute.nvim',
     },
-
     lazy = false,
-    keys = {
-      {
-        '<leader>c',
-        ':Telescope yank_history<cr>',
-      },
-    },
   },
   {
     'nvim-pack/nvim-spectre',
     cond = not vim.g.started_by_firenvim,
-    keys = {
-      {
-        '<leader>S',
+    init = function()
+      vim.api.nvim_create_user_command(
+        'Spectre',
         function() require('spectre').open() end,
-        desc = 'Open Spectre',
-      },
-    },
+        {}
+      )
+    end,
     config = true,
-  },
-  {
-    'bennypowers/splitjoin.nvim',
-    cond = false,
-    keys = {
-      {
-        'gj',
-        function() require('splitjoin').join() end,
-        desc = 'Join the object under cursor',
-      },
-      {
-        'g,',
-        function() require('splitjoin').split() end,
-        desc = 'Split the object under cursor',
-      },
-    },
   },
 }

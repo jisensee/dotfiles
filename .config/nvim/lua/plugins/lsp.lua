@@ -22,14 +22,21 @@ local function lsp_keymap(bufnr)
   wk.add {
     { '<leader>r', ':IncRename ', buffer = bufnr, desc = 'Rename symbol' },
     {
+      '<leader>R',
+      function() return ':IncRename ' .. vim.fn.expand '<cword>' end,
+      buffer = bufnr,
+      desc = 'Rename symbol with old name prefilled',
+      expr = true,
+    },
+    {
       '<leader>v',
-      vim.diagnostic.goto_prev,
+      function() vim.diagnostic.jump { count = 1 } end,
       buffer = bufnr,
       desc = 'Go to previous diagnostic',
     },
     {
       '<leader>z',
-      vim.diagnostic.goto_next,
+      function() vim.diagnostic.jump { count = -1 } end,
       buffer = bufnr,
       desc = 'Go to next diagnostic',
     },
@@ -103,70 +110,25 @@ local function lsp_zero_setup()
   lspconfig.lua_ls.setup(lsp_zero.nvim_lua_ls())
 end
 
-local function snippets_setup()
-  require('luasnip.loaders.from_lua').load { paths = { './snippets' } }
-  local ls = require 'luasnip'
-  ls.filetype_extend('typescriptreact', { 'typescript' })
-end
-
 return {
   {
     'VonHeikemen/lsp-zero.nvim',
     branch = 'v4.x',
+    cond = not vim.g.started_by_firenvim,
     dependencies = {
       -- LSP
       'williamboman/mason.nvim',
       'williamboman/mason-lspconfig.nvim',
       'neovim/nvim-lspconfig',
-      'yioneko/nvim-vtsls',
-      'L3MON4D3/LuaSnip',
     },
-    cond = not vim.g.started_by_firenvim,
-    config = function()
-      lsp_zero_setup()
-      snippets_setup()
-    end,
+    config = function() lsp_zero_setup() end,
   },
-  {
-    'saghen/blink.cmp',
-    version = '*',
-    cond = not vim.g.started_by_firenvim,
-    opts = {
-      enabled = function()
-        return not vim.tbl_contains({ 'codecompanion' }, vim.bo.filetype)
-          and vim.bo.buftype ~= 'prompt'
-          and vim.b.completion ~= false
-      end,
-      completion = {
-        documentation = {
-          auto_show = true,
-        },
-        menu = {
-          auto_show = function()
-            return not vim.tbl_contains({ '/', '?' }, vim.fn.getcmdtype())
-          end,
-        },
-      },
-      snippets = {
-        preset = 'luasnip',
-      },
-      keymap = {
-        preset = 'none',
-        ['<Up>'] = { 'select_prev', 'fallback' },
-        ['<Down>'] = { 'select_next', 'fallback' },
-        ['<CR>'] = { 'accept', 'fallback' },
-        ['<Tab>'] = { 'snippet_forward', 'fallback' },
-        ['<S-Tab>'] = { 'snippet_backward', 'fallback' },
-        ['<C-e>'] = { function(cmp) cmp.show() end, 'fallback' },
-      },
-    },
-  },
+  { 'dmmulroy/ts-error-translator.nvim' },
   {
     'pmizio/typescript-tools.nvim',
     dependencies = {
       'nvim-lua/plenary.nvim',
       'neovim/nvim-lspconfig',
-      'davidosomething/format-ts-errors.nvim',
     },
     cond = not vim.g.started_by_firenvim,
     opts = {
@@ -177,28 +139,9 @@ return {
         },
       },
       handlers = {
-        ['textDocument/publishDiagnostics'] = function(_, result, ctx, config)
-          if result.diagnostics == nil then return end
-
-          -- ignore some tsserver diagnostics
-          local idx = 1
-          while idx <= #result.diagnostics do
-            local entry = result.diagnostics[idx]
-
-            local formatter = require('format-ts-errors')[entry.code]
-            entry.message = formatter and formatter(entry.message)
-              or entry.message
-
-            -- codes: https://github.com/microsoft/TypeScript/blob/main/src/compiler/diagnosticMessages.json
-            if entry.code == 80001 then
-              -- { message = "File is a CommonJS module; it may be converted to an ES module.", }
-              table.remove(result.diagnostics, idx)
-            else
-              idx = idx + 1
-            end
-          end
-
-          vim.lsp.diagnostic.on_publish_diagnostics(_, result, ctx, config)
+        ['textDocument/publishDiagnostics'] = function(err, result, ctx)
+          require('ts-error-translator').translate_diagnostics(err, result, ctx)
+          vim.lsp.diagnostic.on_publish_diagnostics(err, result, ctx)
         end,
       },
     },

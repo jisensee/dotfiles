@@ -9,11 +9,11 @@ return {
     config = function(_, opts)
       require('noice').setup(opts)
       vim.keymap.set('n', '<Esc>', require('notify').dismiss)
-      require('which-key').add {
-        '<leader>n',
-        ':Telescope notify<cr>',
-        desc = 'Show recent notifications',
-      }
+      vim.api.nvim_create_user_command(
+        'LastNotifications',
+        'Telescope notify',
+        {}
+      )
     end,
     opts = {
       lsp = {
@@ -37,6 +37,7 @@ return {
         command_palette = true, -- position the cmdline and popupmenu together
         long_message_to_split = true, -- long messages will be sent to a split
         lsp_doc_border = true, -- add a border to hover docs and signature help
+        inc_rename = true,
       },
       routes = {
         {

@@ -50,7 +50,7 @@ return {
       <props_def>
     }
 
-    const <comp_name>:FC<<<comp_name>Props>> = ({ <props> }) =>> 
+    const <comp_name> = ({ <props> }: <comp_name>Props) =>> 
   ]],
       {
         comp_name = i(1),
