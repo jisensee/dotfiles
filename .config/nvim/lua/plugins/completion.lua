@@ -5,6 +5,10 @@ return {
     cond = not vim.g.started_by_firenvim,
     opts = {
       cmdline = {
+        keymap = {
+          ['<Tab>'] = { 'accept' },
+          ['<CR>'] = { 'accept_and_enter', 'fallback' },
+        },
         completion = {
           menu = {
             auto_show = true,
