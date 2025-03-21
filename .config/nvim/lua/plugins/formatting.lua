@@ -1,26 +1,26 @@
-local function is_rhino(bufnr)
+local function is_rhino_core(bufnr)
   local path = vim.api.nvim_buf_get_name(bufnr)
   return path:find('rhino-core', nil, true) ~= nil
 end
 
 local function is_rhino_frontend(bufnr)
   local path = vim.api.nvim_buf_get_name(bufnr)
-
-  return path:find('services/portal', nil, true) ~= nil
-    or path:find('services/webapp', nil, true) ~= nil
-    or path:find 'shared-ui'
+  return path:find('services/webapp', nil, true) ~= nil or path:find 'shared-ui'
 end
 
 local jsFormatters = function(bufnr)
-  if is_rhino(bufnr) and not is_rhino_frontend(bufnr) then
+  if is_rhino_core(bufnr) and not is_rhino_frontend(bufnr) then
     return { 'dprint' }
-  elseif is_rhino(bufnr) then
+  elseif is_rhino_core(bufnr) then
     return {
       -- 'eslint_d',
-      'prettier_yarn',
+      'dprint_prettier',
     }
   else
-    return { 'prettier', 'eslint_d' }
+    return {
+      'eslint_d',
+      'prettier',
+    }
   end
 end
 
@@ -35,10 +35,14 @@ return {
         lsp_fallback = true,
       },
       formatters = {
-        prettier_yarn = {
+        yarn_prettier = {
           command = 'yarn',
           args = { 'prettier', '--write', '$FILENAME' },
           stdin = false,
+        },
+        dprint_prettier = {
+          command = 'dprint-prettier',
+          args = { 'fmt', '--stdin', '$FILENAME' },
         },
       },
       formatters_by_ft = {

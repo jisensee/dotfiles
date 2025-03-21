@@ -4,6 +4,13 @@ return {
     version = '*',
     cond = not vim.g.started_by_firenvim,
     opts = {
+      cmdline = {
+        completion = {
+          menu = {
+            auto_show = true,
+          },
+        },
+      },
       enabled = function()
         return not vim.tbl_contains({ 'codecompanion' }, vim.bo.filetype)
           and vim.bo.buftype ~= 'prompt'
