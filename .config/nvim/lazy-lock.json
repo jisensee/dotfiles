@@ -48,6 +48,7 @@
   "nvim-web-devicons": { "branch": "master", "commit": "4c3a5848ee0b09ecdea73adcd2a689190aeb728c" },
   "obsidian.nvim": { "branch": "main", "commit": "ae1f76a75c7ce36866e1d9342a8f6f5b9c2caf9b" },
   "plenary.nvim": { "branch": "master", "commit": "857c5ac632080dba10aae49dba902ce3abf91b35" },
+  "pretty-ts-errors.nvim": { "branch": "main", "commit": "4d61da257307143b3e2c9ae6310e1ea5589dd731" },
   "rainbow-delimiters.nvim": { "branch": "master", "commit": "2a2f7ea717d4e0373baa50c635e8afc708f6d604" },
   "smart-open.nvim": { "branch": "0.1.x", "commit": "99ea9c3cfc407d25204147dae93520ab6acc39a5" },
   "sqlite.lua": { "branch": "master", "commit": "50092d60feb242602d7578398c6eb53b4a8ffe7b" },

@@ -61,4 +61,22 @@ return {
     config = true,
     dependencies = { 'nvim-treesitter/nvim-treesitter' },
   },
+  {
+    'youyoumu/pretty-ts-errors.nvim',
+    opts = {
+      auto_open = false,
+      float_opts = {
+        max_height = 50,
+      },
+    },
+    config = function(_, opts) require('pretty-ts-errors').setup(opts) end,
+    ft = { 'typescript', 'typescriptreact' },
+    keys = {
+      {
+        '<C-t>',
+        function() require('pretty-ts-errors').show_formatted_error() end,
+        desc = 'Show pretty ts error',
+      },
+    },
+  },
 }
